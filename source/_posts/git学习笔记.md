@@ -63,40 +63,43 @@ git checkout -u origin/master totallyNotMaster
 
 
 创建并切换到一个新branch new_br
-git checkout -b <new_br> [src_br]
+git checkout -b new_br [src_br]
 
 
 Git 手动建立tracking 
 更新现在分支track remote
-git branch --set-upstreamto=origin/<remote> <local>
+git branch --set-upstreamto=origin/remote  local
 
 
 把本地分支 push 到一个新的remote 并track
-git push -u origin <local>:<remote>
+git push -u origin local:remote
 
 
 创建一个运程分支一样名字并track 切换
-git checkout --track origin/<remote>
+git checkout --track origin/remote
+git fetch 可以将远程分支信息获取到本地
+再运行 git checkout -b --track local-branchname origin/remote_branchname  
+就可以将远程分支映射到本地命名为local-branchname  的一分支。
 
 git reset --hard HEAD^
 
 git push 参数
-git push <remote> <place>
-git push origin <src>:<dst>
-如果<dst>不存在,那就会在远程程创建一个new branch,如果<src>为空 会删除远程的分支
-git push origin <local>:<remote>
-git push orgin <local>:     删除一个本地分支
-git push orgin :<remote>    删除运程分支
+git push remote place
+git push origin src:dst
+如果dst不存在,那就会在远程程创建一个new branch,如果src为空 会删除远程的分支
+git push origin local:remote
+git push orgin local:     删除一个本地分支
+git push orgin :remote    删除运程分支
 
 
 git fetch
 
 
 git tag  : 永远指向某个特定的commit,有新的commit里,
-git checkout <tagname> 到tagname的点
+git checkout tagname 到tagname的点
 http://blog.csdn.net/wangjia55/article/details/8793577
 
-git describe <ref>  ref 是一个位置commit
+git describe ref  ref 是一个位置commit
 
 git revert :回退某次提交,并重新提交,相当于代码恢复修改前,也就说revert也是一个commit,只是比较特殊,会修改某些操作
 git reset :回退到某次提交,同时回退修改log,但是修改内容回退到本地local buffer,由用户确定是不是checkout丢弃
@@ -144,12 +147,11 @@ quotepath = false
 
 ### git 删除运程文件夹
 
-git rm -r -n <file> 
+git rm -r -n file 
 -n 只会显示会删除哪些文件,但不会删除
 
-git rm -r --cached <file> 
+git rm -r --cached file 
 删除远程文件,但不会删除本地
-
 在gitignore 上添加 忽略的文件
 
 
