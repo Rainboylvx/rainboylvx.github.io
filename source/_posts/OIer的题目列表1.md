@@ -44,7 +44,7 @@ http://cojs.tk/cogs/problem/problem.php?pid=1601 这个也许不适合这里
 http://www.nocow.cn/index.php/Translate:USACO/skidesign
 
 
-### 等续--随后写完
+### 待续--随后写完
 
 
 ### DP
