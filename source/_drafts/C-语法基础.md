@@ -3,7 +3,6 @@ title: C++语法基础
 date: 2016-3-13
 tags:
 	- c++语言知识
-cate
 ---
 
 
