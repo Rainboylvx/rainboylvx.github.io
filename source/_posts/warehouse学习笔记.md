@@ -1,3 +1,12 @@
+---
+title: warehouse学习笔记
+date:  2016-04-09 19:57
+categories:
+    - 学习笔记
+tags:
+    - 笔记
+---
+
 
 
 
