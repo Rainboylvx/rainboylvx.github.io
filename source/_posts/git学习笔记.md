@@ -13,6 +13,12 @@ tags:
  - [Git分支管理策略](http://www.ruanyifeng.com/blog/2012/07/git.html)
  - [在线git学习-推荐](http://pcottle.github.io/learnGitBranching/)
 
+### 应该时常看看的文章
+
+git是一种记忆型的知识,是一门熟能生巧的哲学
+
+ - [熟能生巧的哲学](http://www.cnblogs.com/BeginMan/p/3591005.html)
+
 
 ## 我的git 理解
 
@@ -155,6 +161,12 @@ git rm -r --cached file
 在gitignore 上添加 忽略的文件
 
 
+### 别名配置
+
+也就是git alias
+
+
 ### 最后
 
 本文比较乱,因为git的学习是那种一边查一边的方法,本文会不断完善.
+
