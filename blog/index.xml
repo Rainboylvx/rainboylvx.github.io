@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 03 Sep 2025 21:05:27 +0800</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</guid><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 03 Sep 2025 21:05:27 +0800</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</guid><description>&lt;h2 id="自动deploy-blog-到github"&gt;自动deploy blog 到github&lt;/h2&gt;
+&lt;p&gt;参考&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2" target="_blank" rel="noreferrer nofollow"&gt;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;对应的视频教程: &lt;a href="https://www.bilibili.com/video/BV1bovfeaEtQ" target="_blank" rel="noreferrer nofollow"&gt;https://www.bilibili.com/video/BV1bovfeaEtQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="另一个-可以-发布blog到vps服务器"&gt;另一个 可以 发布blog到vps服务器&lt;/h2&gt;
+&lt;p&gt;下面是新另外一个blog&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noreferrer nofollow"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noreferrer nofollow"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;背景 我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。&lt;/p&gt;&lt;/blockquote&gt;
