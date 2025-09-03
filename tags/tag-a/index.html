@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"}>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1b" />
+
+    <meta name="description" content="Tag A">
+
+    <link rel="alternate" type="application/rss+xml" href="https://hugo-dead-simple.netlify.com/tags/tag-a/index.xml" title="Rainboy's Blog" />
+    
+        <title>Tag A | Rainboy&#39;s Blog</title>
+    
+
+    
+    <style>
+        :root {
+          --background: #ffffff;
+        }
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --background: #1b1b1b;
+          }
+        }
+        html {
+            background-color: var(--background);
+        }
+        body {
+            background-color: var(--background);
+        }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="/style.min.00c1b0a7844f75fdb75caa7372b923be3231f839380ff0c3498e07b18e44f228.css" media="all">
+
+    
+    
+
+  </head>
+
+  <body>
+        
+        <nav>
+          <ul class="menu">
+            
+                <li><a tabindex="-1" class="menu-link" href="/"><u>H</u>ome</a></li>
+            
+                <li><a tabindex="-1" class="menu-link" href="/tags"><u>T</u>ags</a></li>
+            
+          </ul>
+        </nav>
+        
+
+
+<h1>Tag A</h1>
+<ul class="post-list">
+    
+
+    <li>
+
+    <div style="display: grid; grid-template-columns: 7em auto">
+      <span class="date">Sep 3, 2025</span>
+      
+      <a href="/posts/my-second-post/">My Second Post</a>
+      
+    </div>
+
+</li>
+
+
+
+    
+
+    <li>
+
+    <div style="display: grid; grid-template-columns: 7em auto">
+      <span class="date">Sep 3, 2025</span>
+      
+      <a href="/posts/my-first-post/">My First Post</a>
+      
+    </div>
+
+</li>
+
+
+
+    
+  </ul>
+
+
+<br>
+
+<footer>
+
+<script defer>
+  document.addEventListener("keydown", function (e) {
+    if (document.activeElement.isContentEditable) {
+      return false;
+    }
+    if (document.activeElement.tagName == "INPUT") {
+      return false;
+    }
+    if (e.altKey || e.ctrlKey || e.shiftKey) {
+      return false;
+    }
+    var key = e.key;
+    if (key === "h") {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.href = "/";
+    } else if (key === "t") {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.href = `https://${location.hostname}/tags`;
+    } else if (key === "i") {
+      e.preventDefault();
+      e.stopPropagation();
+      const inputs = document.querySelectorAll("input");
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].offsetParent !== null) {
+          inputs[i].selectionStart = inputs[i].selectionEnd =
+            inputs[i].value.length;
+          inputs[i].focus();
+          break;
+        }
+      }
+    }
+    return false;
+  });
+</script>
+
+
+<script defer>
+  function throttle(fn, wait) {
+    var time = Date.now();
+    return function () {
+      var now = Date.now();
+      if (time + wait - now < 0) {
+        fn();
+        time = now;
+      }
+    };
+  }
+
+  function scrollHandler() {
+    const anchors = Array.from(document.querySelectorAll("body h2, body h3"));
+
+    function scrollCallback() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      
+      for (var i = 0; i < anchors.length; i++) {
+        var anchorId = anchors[i].getAttribute("id");
+        var link = document.querySelector(
+          'nav ul li a[href="#' + anchorId + '"]',
+        );
+        if (link) {
+          link.classList.remove("active-toc");
+        }
+      }
+
+      
+      for (var i = anchors.length - 1; i >= 0; i--) {
+        var offsetTop = anchors[i].offsetTop;
+        if (scrollTop > offsetTop - 75) {
+          var anchorId = anchors[i].getAttribute("id");
+          var link = document.querySelector(
+            'nav ul li a[href="#' + anchorId + '"]',
+          );
+          if (link) {
+            link.classList.add("active-toc");
+            break;
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", throttle(scrollCallback, 200));
+  }
+  setTimeout(scrollHandler, 100);
+</script>
+
+<script defer>
+  function addCopyButtonToCodeBlocks() {
+    
+    
+    const codeBlocks = document.querySelectorAll(
+      'code[class^="language-"]:not(.output):not([class*="language-console"])',
+    );
+
+    codeBlocks.forEach((codeBlock) => {
+      const copyButton = document.createElement("button");
+      copyButton.classList.add("copy-code-button");
+      copyButton.innerHTML = "copy";
+
+      
+      copyButton.addEventListener("click", () => {
+        
+        const elements = codeBlock.querySelectorAll(".cl");
+        let codeToCopy = "";
+        elements.forEach((element) => {
+          codeToCopy += element.innerText;
+        });
+        navigator.clipboard.writeText(codeToCopy);
+
+        
+        copyButton.innerHTML = "copied!";
+        setTimeout(() => {
+          copyButton.innerHTML = "copy";
+        }, 1500);
+      });
+
+      
+      codeBlock.parentNode.before(copyButton);
+    });
+  }
+  setTimeout(function () {
+    addCopyButtonToCodeBlocks();
+  }, 100);
+</script>
+
+<script>
+window.store = {
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/blog\/": {
+        "title": "Blogs",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/blog\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/blog\/helloworld\/": {
+        "title": "Helloworld",
+        "tags": [],
+        "content": "hello world write by Rainboy\n", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/blog\/helloworld\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/": {
+        "title": "首页",
+        "tags": [],
+        "content": "欢迎来到我的 Hugo 网站。\n这里是rainboy写的文章\n这里根据 article_categories 动态生成 grid icon link 点击跳转到对应的内容\n", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/categories\/": {
+        "title": "Categories",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/categories\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/categories\/category-b\/": {
+        "title": "Category B",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/categories\/category-b\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/posts\/my-second-post\/": {
+        "title": "My Second Post",
+        "tags": ["Tag A","Tag B",],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/posts\/my-second-post\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/posts\/": {
+        "title": "Posts",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/posts\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/tags\/tag-a\/": {
+        "title": "Tag A",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/tags\/tag-a\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/tags\/tag-b\/": {
+        "title": "Tag B",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/tags\/tag-b\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/tags\/": {
+        "title": "Tags",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/tags\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/categories\/category-a\/": {
+        "title": "Category A",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/categories\/category-a\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/posts\/my-first-post\/": {
+        "title": "My First Post",
+        "tags": ["Tag A","Tag B",],
+        "content": "hello world frist post by rainboy\n", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/posts\/my-first-post\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/1.2%E7%BE%A4%E7%9A%84%E6%A6%82%E5%BF%B5\/": {
+        "title": "",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/1.2%E7%BE%A4%E7%9A%84%E6%A6%82%E5%BF%B5\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/summary\/": {
+        "title": "",
+        "tags": [],
+        "content": "Summary 说明\n1等价关系与集合的分类\n1.2群的概念\n", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/summary\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/1%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB%E4%B8%8E%E9%9B%86%E5%90%88%E7%9A%84%E5%88%86%E7%B1%BB\/": {
+        "title": "1等价关系与集合的分类",
+        "tags": [],
+        "content": "1等价关系与集合的分类 对应视频的p1-p6\n定义二元关系RRR 等价关系 反身性：∀a→aRa\\forall a \\to aRa∀a→aRa 对称性：aRb⇒bRaaRb \\Rightarrow bRaaRb⇒bRa 传递性：aRb∧bRc⇒aRcaRb \\land bRc \\Rightarrow aRcaRb∧bRc⇒aRc 等价类 定义：[a][a][a]表示所有与aaa等价的元素的集合 等价类是满足以下条件的集合：任意两个元素aaa和bbb都属于同一个等价类当且仅当aRbaRbaRb 公式定义: [a]={x∈S∣xRa}[a]= \\{ x \\in S | xRa \\}[a]={x∈S∣xRa} 类在这里的意思为:\u0026ldquo;物以群分\u0026rdquo;,分类的意思,等价类就是把满足等价关系的元素归为一类. 商集: SSS的全体等价类构成的集合,集合SSS在等价关系下的商集记作S/∽S / \\backsimS/∽ 集合的分类 定义：SSS是一个集合，如果存在一个等价关系RRR使得SSS的所有元素都可以划分为等价类，则称SSS为RRR的分类 如果非空集合SSS是它的某些两两不相交的非空子集的并,则称这些子集为集合SSS的一种分类(partition),其中每个子集称为集合SSS的一个类(class) 若集合SSS的子集族{Si∣i∈I}\\{S_i | i \\in I\\}{Si​∣i∈I}构成了S的一种分类当且仅当\nS=⋃i∈ISiS = \\bigcup_{i \\in I} S_iS=⋃i∈I​Si​ Si∩Sj=∅S_i \\cap S_j = \\varnothingSi​∩Sj​=∅ (i.e., SiS_iSi​ and SjS_jSj​ are pairwise disjoint) 集合SSS的任何一种等价关系都确定了SSS的一种分类。\n例题 例5 aRb⇔m∣a−b,∀a,b∈Z(1) aRb \\Leftrightarrow m \\mid a - b , \\forall a,b \\in \\mathbb{Z} \\tag 1 aRb⇔m∣a−b,∀a,b∈Z(1)证明1式是等价关系.也就是证明m∣a−bm | a -b m∣a−b是等价关系.\n公式的含义解释: m是a与b差的因子,则说明a,b对于m同余.这两者是等价的.\n下面证明这两者是等价关系.\n设 A:a≡b(mod m)a \\equiv b (\\mod m)a≡b(modm), B: m∣a−bm \\mid a-bm∣a−b.\nA→BA \\to BA→B,把a,b写成带余数除法的形式.\na=k1×m+rb=k2×m+ra−b=m(k1−k2)→m∣a−b a = k_1 \\times m + r \\\\ b = k_2 \\times m + r \\\\ a - b = m(k_1 - k_2) \\to m \\mid a - b a=k1​×m+rb=k2​×m+ra−b=m(k1​−k2​)→m∣a−b必要性证明完毕,证明充分性.\nm∣a−b→a−b=k×m→a=b+k×m→amod m=(b+k×m)mod m→amod m=bmod m m \\mid a - b \\\\ \\to a -b = k \\times m \\\\ \\to a = b + k \\times m \\\\ \\to a \\mod m = (b+k \\times m) \\mod m \\\\ \\to a \\mod m = b \\mod m m∣a−b→a−b=k×m→a=b+k×m→amodm=(b+k×m)modm→amodm=bmodmqed;\n证明自反性:\naRa⇔m∣a−a aRa \\Leftrightarrow m \\mid a - a aRa⇔m∣a−a显然成立.\n证明对称性:\n根据 m∣x→m∣−x m \\mid x \\to m \\mid -x m∣x→m∣−x那么\nm∣a−b→m∣−(a−b)→m∣b−a m \\mid a - b \\to m \\mid -(a - b) \\to m \\mid b - a m∣a−b→m∣−(a−b)→m∣b−a证明传递性:\nm∣a−b∧m∣b−c→m∣a−cm | a - b \\land m| b - c \\to m | a - cm∣a−b∧m∣b−c→m∣a−c\na=k1×m+rb=k2×m+rc=k3×m+r→a−c=k1×m+r−k3×m−r→m∣a−c a = k_1 \\times m + r \\\\ b = k_2 \\times m + r \\\\ c = k_3 \\times m + r \\\\ \\to a - c = k_1 \\times m + r - k_3 \\times m - r\\\\ \\to m \\mid a - c a=k1​×m+rb=k2​×m+rc=k3​×m+r→a−c=k1​×m+r−k3​×m−r→m∣a−c证明完毕\n说明同余是一种等价关系.\n书上又定义了什么叫做同余剩余类.\n例9 这个见书.\n课后题目 习题1. 试分别举出满足下列条件的关系： (1)有对称性，传递性，但无反身性； (2)有反身性，传递性，但无对称性； (3)有反身性，对称性，但无传递性. 解:设集合S={a,b,c}S = \\{a,b,c\\}S={a,b,c}\n(1) ,R={(a,b),(b,a),(a,a),b,b}R = \\{(a,b),(b,a),(a,a),{b,b}\\}R={(a,b),(b,a),(a,a),b,b},因为没有(c,c)(c,c)(c,c)所以不满足反身性. (2) ,R={(a,a),(b,b),(c,c),(a,b)}R = \\{(a,a),(b,b),(c,c),(a,b)\\}R={(a,a),(b,b),(c,c),(a,b)},因为没有(b,a)(b,a)(b,a)所以不满足对称性. (3) ,R={(a,a),(b,b),(c,c),(a,b),(b,a),(c,a),(c,b)}R = \\{(a,a),(b,b),(c,c),(a,b),(b,a),(c,a),(c,b)\\}R={(a,a),(b,b),(c,c),(a,b),(b,a),(c,a),(c,b)},因为没有(a,c)(a,c)(a,c)所以不满足传递性. 习题2.找出下面证明中的错误： 有人断言，若S的关系R有对称性和传递性，则必有反身性.这晨因 为，对任意的a∈S,由对称性，如果aRb,则bRa.再由传递性，得aRa,所 以R有反身性.\n关键在于a∈Sa \\in Sa∈S，但如果aaa就没有自己的关系呢?例如习题1的(1),就没有c的关系,所以不能说R有反身性. 因为不一定有cRbcRbcRb这个关系.\n", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/1%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB%E4%B8%8E%E9%9B%86%E5%90%88%E7%9A%84%E5%88%86%E7%B1%BB\/"
+    },
+    
+    "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/": {
+        "title": "Group_theories",
+        "tags": [],
+        "content": "", 
+        "url": "https:\/\/hugo-dead-simple.netlify.com\/group_theory\/"
+    },
+    
+}
+</script>
+
+
+    <script defer src="/js/lunr.js"></script>
+    <script defer src="/js/search.js"></script>
+
+
+</footer>
+
+</body>
+</html>
+
