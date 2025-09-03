@@ -1,19 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Blogs on Rainboy&#39;s Blog</title>
-    <link>https://hugo-dead-simple.netlify.com/blog/</link>
-    <description>Recent content in Blogs on Rainboy&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 03 Sep 2025 16:49:19 +0800</lastBuildDate>
-    <atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Helloworld</title>
-      <link>https://hugo-dead-simple.netlify.com/blog/helloworld/</link>
-      <pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate>
-      <guid>https://hugo-dead-simple.netlify.com/blog/helloworld/</guid>
-      <description>&lt;h2 id=&#34;hello-world&#34;&gt;hello world&lt;/h2&gt;&#xA;&lt;p&gt;write by &lt;a href=&#34;https://github.com/rainboylvx&#34;  target=&#34;_blank&#34; rel=&#34;noreferrer nofollow&#34;&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 03 Sep 2025 21:05:27 +0800</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noreferrer nofollow"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noreferrer nofollow"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;背景 我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;注意&lt;/p&gt;
+&lt;p&gt;本文最后更新于 2024-02-13，文中内容可能已过时。&lt;/p&gt;
+&lt;h2 id="背景"&gt;背景&lt;a href="#%e8%83%8c%e6%99%af" &gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。鉴于此，我早就转向一款既美观又实用的静态博客平台——我选择了 Hugo，并选用了 FixIt 主题。恰逢过年，我拥有了许多碎片化的时间，这成为了我迁移博客的绝佳时机。&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://blog.wjhwjhn.com/images/image-20240213122431630.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;h2 id="问题和解决方案"&gt;问题和解决方案&lt;a href="#%e9%97%ae%e9%a2%98%e5%92%8c%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" &gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;在迁移博客的过程中，我遇到了一系列问题。为了帮助同样面对这些挑战的读者，我在下面详细记录了我所面临的问题以及我采取的解决措施，希望这些经验能为您提供实际的帮助和指引。&lt;/p&gt;
+&lt;p&gt;警告&lt;/p&gt;
+&lt;p&gt;在迁移之前，请务必备份原有博客的文件和数据库数据，以防意外发生。&lt;/p&gt;
+&lt;h3 id="文章迁移"&gt;文章迁移&lt;a href="#%e6%96%87%e7%ab%a0%e8%bf%81%e7%a7%bb" &gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;文章内容：文章内容储存在 &lt;code&gt;typecho_contents&lt;/code&gt; 表的 &lt;code&gt;text&lt;/code&gt; 字段中，提取比较容易，只需要去除 &lt;code&gt;&amp;lt;!--markdown--&amp;gt;&lt;/code&gt; 标记即可，原先编写文章时就使用的是 markdown，所以直接创建文件即可，不过在这个过程中也遇到了不少问题
+&lt;ol&gt;
+&lt;li&gt;在我刚建立这个博客时，因为对 markdown 语法的不熟悉，导致以前的很多文章使用了 markdown 的方言。这些文章，在 Typecho 中显示正常，但是在 Hugo 中就出现了排版错误，好在有问题的文章不是很多，这里手动编辑了一下；&lt;/li&gt;
+&lt;li&gt;在 Hugo 中，文章的元信息（文章创建时间、文章类别、文章标题等…）都内嵌文章开头的 yaml 元信息中，这些信息需要从 Typecho 的数据库中提取并生成，例如 &lt;code&gt;typecho_contents&lt;/code&gt; 表的 &lt;code&gt;created&lt;/code&gt; 、&lt;code&gt;modified&lt;/code&gt; 、&lt;code&gt;title&lt;/code&gt; 字段；&lt;/li&gt;
+&lt;li&gt;原先的 Typecho 的 &lt;code&gt;typecho_contents&lt;/code&gt; 表的 &lt;code&gt;status&lt;/code&gt; 字段，如果是非 &lt;code&gt;public&lt;/code&gt; 的文章，则设置 &lt;code&gt;hiddenFromHomePage: true&lt;/code&gt;、&lt;code&gt;hiddenFromSearch: true&lt;/code&gt;、&lt;code&gt;hiddenFromRss: true&lt;/code&gt;、&lt;code&gt;hiddenFromRelated: true&lt;/code&gt; 以及 &lt;code&gt;password: {password}&lt;/code&gt; 密码字段，由主题进行加密处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;原博客链接跳转
+&lt;ol&gt;
+&lt;li&gt;问题：原博客的链接是使用 &lt;code&gt;/archives/{cid}/&lt;/code&gt; 这种形式的，而新博客的链接是使用 &lt;code&gt;/posts/{name}&lt;/code&gt; 这种形式的；&lt;/li&gt;
+&lt;li&gt;解决方案：利用文章元信息中的 &lt;code&gt;aliases&lt;/code&gt; 字段来生成一个额外的别名链接。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="评论和阅读量迁移"&gt;评论和阅读量迁移&lt;a href="#%e8%af%84%e8%ae%ba%e5%92%8c%e9%98%85%e8%af%bb%e9%87%8f%e8%bf%81%e7%a7%bb" &gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使用了 Twikoo 的评论系统，并解决了链接转换问题&lt;/p&gt;</description></item><item><title>Helloworld</title><link>https://hugo-dead-simple.netlify.com/blog/helloworld/</link><pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/helloworld/</guid><description>&lt;h2 id="hello-world"&gt;hello world&lt;/h2&gt;
+&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noreferrer nofollow"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
