@@ -1,0 +1,273 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=cache-control content="max-age=0"><meta http-equiv=cache-control content="no-cache"><meta http-equiv=expires content="0"><meta http-equiv=expires content="Tue, 01 Jan 1980 1:00:00 GMT"><meta http-equiv=pragma content="no-cache"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png }><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#1b1b1b"><meta name=description content="MongoDB 练习 4"><title>MongoDB 练习 4 | Rainboy's Blog</title><style>:root{--background:#ffffff}@media(prefers-color-scheme:dark){:root{--background:#1b1b1b}}html{background-color:var(--background)}body{background-color:var(--background)}</style><link rel=stylesheet type=text/css href=/style.min.00c1b0a7844f75fdb75caa7372b923be3231f839380ff0c3498e07b18e44f228.css media=all><link rel=stylesheet href=/grid.css></head><body><nav><ul class=menu><li><a tabindex=-1 class=menu-link href=/><u>H</u>ome</a></li><li><a tabindex=-1 class=menu-link href=/tags><u>T</u>ags</a></li></ul></nav><div id=single-header><h1>MongoDB 练习 4</h1><div id=single-meta><span class=datesub>2025-09-09</span>
+<span id=tags>&nbsp;&nbsp;
+<span><a href=https://hugo-dead-simple.netlify.com/tags/mongodb/>#mongodb</a>
+</span>&nbsp; <span><a href=https://hugo-dead-simple.netlify.com/tags/exercises/>#exercises</a>
+</span>&nbsp;</span></div></div><aside class="hidden lg:block toc" id=tableOfContentContainer><nav id=TableOfContents><ul><li><a href=#51>51</a><ul><li><a href=#假设我们有以下文档集合>假设我们有以下文档集合：</a></li><li><a href=#方法-1使用-avg-操作符>方法 1：使用 <code>$avg</code> 操作符</a></li><li><a href=#聚合管道示例>聚合管道示例：</a></li><li><a href=#解释>解释：</a></li><li><a href=#方法-2使用-unwind-与-group-来求平均值>方法 2：使用 <code>$unwind</code> 与 <code>$group</code> 来求平均值</a></li><li><a href=#解释-1>解释：</a></li><li><a href=#方法-3直接计算字段的平均值>方法 3：直接计算字段的平均值</a></li><li><a href=#总结>总结：</a></li></ul></li><li><a href=#52>52</a></li><li><a href=#53>53</a></li><li><a href=#54>54</a></li><li><a href=#55>55</a></li><li><a href=#56-如何按两个值进行分组>56 如何按两个值进行分组</a></li><li><a href=#57-多阶段配合>57 多阶段配合</a></li><li><a href=#58-同上>58 同上</a></li><li><a href=#59>59</a></li><li><a href=#60>60</a></li><li><a href=#61-66-平均分最高低分>61-66 平均分,最高低分</a></li><li><a href=#67>67</a></li><li><a href=#68>68</a></li><li><a href=#69>69</a></li><li><a href=#70>70</a></li><li><a href=#71>71</a></li><li><a href=#72>72</a></li><li><a href=#73>73</a></li><li><a href=#74>74</a></li><li><a href=#75>75</a></li><li><a href=#76--77-正则>76 77 正则</a></li><li><a href=#78>78</a></li><li><a href=#79>79</a></li><li><a href=#80>80</a></li><li><a href=#81>81</a></li><li><a href=#82>82</a></li><li><a href=#83>83</a></li></ul></nav></aside><main><h2 id=51>51</h2><blockquote><p>Write a MongoDB query to find the average score for each restaurant.</p></blockquote><p>一个数组的平均值</p><p>这里我遇到的第一个 <code>aggregate</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$name&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>avgScore</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>$avg</span><span class=o>:</span> <span class=s2>&#34;$grades.score&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><p>这里gpt给出的多种求平均值的方法</p><p>在 MongoDB 中，要求数组的平均值可以使用 <strong>聚合框架</strong> 来处理。MongoDB 的聚合框架提供了强大的数据操作功能，包括计算数组中元素的平均值。可以通过以下几种方式来实现：</p><h3 id=假设我们有以下文档集合>假设我们有以下文档集合：</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;_id&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;scores&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>90</span><span class=p>,</span> <span class=mi>80</span><span class=p>,</span> <span class=mi>70</span><span class=p>,</span> <span class=mi>85</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=err>,</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;_id&#34;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;scores&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>60</span><span class=p>,</span> <span class=mi>75</span><span class=p>,</span> <span class=mi>85</span><span class=p>,</span> <span class=mi>90</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=方法-1使用-avg-操作符>方法 1：使用 <code>$avg</code> 操作符</h3><p>MongoDB 的聚合框架允许在管道中使用 <code>$avg</code> 操作符来计算某个数组的平均值。为了计算数组 <code>scores</code> 的平均值，我们需要先将数组元素展开（使用 <code>$unwind</code>），然后计算平均值。</p><h3 id=聚合管道示例>聚合管道示例：</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>collection</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$project</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>averageScore</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$avg</span><span class=o>:</span> <span class=s2>&#34;$scores&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h3 id=解释>解释：</h3><ol><li><strong><code>$project</code></strong>：用于指定输出的字段，在这里我们指定了一个新字段 <code>averageScore</code>。</li><li><strong><code>$avg</code></strong>：用于计算指定字段的平均值。在这里，我们应用 <code>$avg</code> 操作符来计算 <code>scores</code> 数组的平均值。</li></ol><h3 id=方法-2使用-unwind-与-group-来求平均值>方法 2：使用 <code>$unwind</code> 与 <code>$group</code> 来求平均值</h3><p>如果你想更细粒度地处理数组中的元素，可以使用 <code>$unwind</code> 来展平数组，然后使用 <code>$group</code> 来求数组的平均值。</p><h4 id=聚合管道示例-1>聚合管道示例：</h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>collection</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$scores&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span> <span class=nx>_id</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span> <span class=nx>averageScore</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$avg</span><span class=o>:</span> <span class=s2>&#34;$scores&#34;</span> <span class=p>}</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h3 id=解释-1>解释：</h3><ol><li><strong><code>$unwind</code></strong>：将 <code>scores</code> 数组中的每个元素展平为单独的文档。每个文档将包含一个数组元素。</li><li><strong><code>$group</code></strong>：将所有展平后的文档组合在一起，并使用 <code>$avg</code> 来计算这些文档中 <code>scores</code> 字段的平均值。</li></ol><p>这个方法适用于当你希望对数组中的所有元素进行处理并计算平均值的情况。</p><h3 id=方法-3直接计算字段的平均值>方法 3：直接计算字段的平均值</h3><p>如果数组字段本身已经包含了所有的数值，且你只想计算这个数组字段的平均值，而不是数组中的每个元素，可以直接在 <code>aggregate</code> 阶段中计算平均值：</p><h4 id=示例>示例：</h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>collection</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$project</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>averageScore</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$avg</span><span class=o>:</span> <span class=s2>&#34;$scores&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h3 id=总结>总结：</h3><ul><li><strong><code>$avg</code></strong> 用于计算一个数值字段的平均值，可以直接在聚合管道中对数组字段进行操作。</li><li><strong><code>$unwind</code> + <code>$group</code></strong> 适用于需要将数组元素分开处理，并求所有元素的平均值。</li></ul><p>根据需求选择适合的方法，通常情况下，直接使用 <code>$avg</code> 对数组字段求平均值最为简单和高效。</p><h2 id=52>52</h2><blockquote><p>　Write a MongoDB query to find the highest score for each restaurant.</p></blockquote><p>这里用到了 <code>$group</code>阶段的<code>$max</code>操作</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$name&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>highest_score</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>$max</span><span class=o>:</span> <span class=s2>&#34;$grades.score&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=53>53</h2><blockquote><p>Write a MongoDB query to find the lowest score for each restaurant.</p></blockquote><p>和上一个题目一样，用<code>$min</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$name&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>lowest_score</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>$min</span><span class=o>:</span> <span class=s2>&#34;$grades.score&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=54>54</h2><blockquote><p>Write a MongoDB query to find the count of restaurants in each borough.</p></blockquote><p>用到了count</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$borough&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>count</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}])</span>
+</span></span></code></pre></div><h2 id=55>55</h2><blockquote><p>Write a MongoDB query to find the count of restaurants for each cuisine.</p></blockquote><p>只是用到了<code>$sum</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$cuisine&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>count</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}])</span>
+</span></span></code></pre></div><h2 id=56-如何按两个值进行分组>56 如何按两个值进行分组</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>cuisine</span><span class=o>:</span> <span class=s2>&#34;$cuisine&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>borough</span><span class=o>:</span> <span class=s2>&#34;$borough&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>count</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}])</span>
+</span></span></code></pre></div><h2 id=57-多阶段配合>57 多阶段配合</h2><blockquote><p>Write a MongoDB query to find the count of restaurants that received a grade of &lsquo;A&rsquo; for each cuisine.</p></blockquote><p>多阶段</p><ol><li>unwind</li><li>match</li><li>group</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$match</span><span class=o>:</span> <span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$cuisine&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>count</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=58-同上>58 同上</h2><blockquote><p>Write a MongoDB query to find the count of restaurants that received a grade of &lsquo;A&rsquo; for each borough.</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$match</span><span class=o>:</span> <span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$borough&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>count</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=59>59</h2><blockquote><p>Write a MongoDB query to find the count of restaurants that received a grade of &lsquo;A&rsquo; for each cuisine and borough.</p></blockquote><p>聚合确实能达到</p><p>这里没有unwind</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$match</span><span class=o>:</span> <span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=p>{</span> <span class=nx>cuisine</span><span class=o>:</span> <span class=s2>&#34;$cuisine&#34;</span><span class=p>,</span> <span class=nx>borough</span><span class=o>:</span> <span class=s2>&#34;$borough&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=nx>count</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span> <span class=nx>count</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]);</span>
+</span></span></code></pre></div><h2 id=60>60</h2><blockquote><p>Write a MongoDB query to find the number of restaurants that have been graded in each month of the year.</p></blockquote><p>问一年中，每个月分评级的restaurants分别有多少个,那显然要<code>$group</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$project</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=nx>month</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$month</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$toDate</span><span class=o>:</span> <span class=s2>&#34;$grades.date&#34;</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=nx>year</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$year</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$toDate</span><span class=o>:</span> <span class=s2>&#34;$grades.date&#34;</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>_id</span><span class=o>:</span> <span class=p>{</span> <span class=nx>month</span><span class=o>:</span> <span class=s2>&#34;$month&#34;</span><span class=p>,</span> <span class=nx>year</span><span class=o>:</span> <span class=s2>&#34;$year&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=nx>count</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;_id.year&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;_id.month&#34;</span><span class=o>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]);</span>
+</span></span></code></pre></div><h2 id=61-66-平均分最高低分>61-66 平均分,最高低分</h2><p>上面求过了</p><h2 id=67>67</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that received a grade of &lsquo;A&rsquo; on a specific date</p></blockquote><p>查询一个array里满足特定条件的。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;grades&#34;</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;$elemMatch&#34;</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;date&#34;</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=s2>&#34;$eq&#34;</span><span class=o>:</span> <span class=nx>ISODate</span><span class=p>(</span><span class=s2>&#34;2013-07-22T00:00:00Z&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;grade&#34;</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=s2>&#34;$eq&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;name&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;address&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;_id&#34;</span><span class=o>:</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></div><h2 id=68>68</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that received a grade of &lsquo;B&rsquo; or &lsquo;C&rsquo; on a specific date.</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>   <span class=p>{</span>
+</span></span><span class=line><span class=cl>     <span class=s2>&#34;grades&#34;</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>       <span class=nx>$elemMatch</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>         <span class=s2>&#34;date&#34;</span><span class=o>:</span> <span class=nx>ISODate</span><span class=p>(</span><span class=s2>&#34;2013-04-05&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>         <span class=s2>&#34;grade&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$in</span><span class=o>:</span> <span class=p>[</span> <span class=s2>&#34;B&#34;</span><span class=p>,</span> <span class=s2>&#34;C&#34;</span> <span class=p>]</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>       <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=p>}</span>
+</span></span><span class=line><span class=cl>   <span class=p>},</span>
+</span></span><span class=line><span class=cl>   <span class=p>{</span>
+</span></span><span class=line><span class=cl>     <span class=s2>&#34;name&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=s2>&#34;address&#34;</span><span class=o>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>   <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></div><h2 id=69>69</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that have at least one &lsquo;A&rsquo; grade and one &lsquo;B&rsquo; grade.</p></blockquote><p>啊！ 查询数组里： 至少含有一个A，且至少含有一个B ,<code>\exits A in arr \and \exits B in arr</code></p><h2 id=70>70</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that have at least one &lsquo;A&rsquo; grade and no &lsquo;B&rsquo; grades.</p></blockquote><p><code>one A no B</code>.两个条件同时成立</p><p>no b -> <code>not exits b in Arr</code> -> <code>{$not : { "grades.score" : 'A'}</code></p><p>和我想的差不多</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$and</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$not</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$eq</span><span class=o>:</span> <span class=s2>&#34;B&#34;</span> <span class=p>}</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>address</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>_id</span><span class=o>:</span> <span class=mi>0</span> <span class=p>})</span>
+</span></span></code></pre></div><h2 id=71>71</h2><blockquote><p>Write a MongoDB query to find the name ,address and grades of the restaurants that have at least one &lsquo;A&rsquo; grade and no &lsquo;C&rsquo; grades.</p></blockquote><p>同上</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$and</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$not</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$eq</span><span class=o>:</span> <span class=s2>&#34;C&#34;</span> <span class=p>}</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>address</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span><span class=mi>1</span><span class=p>,</span> <span class=nx>_id</span><span class=o>:</span> <span class=mi>0</span> <span class=p>})</span>
+</span></span></code></pre></div><h2 id=72>72</h2><blockquote><p>Write a MongoDB query to find the name, address, and grades of the restaurants that have at least one &lsquo;A&rsquo; grade, no &lsquo;B&rsquo; grades, and no &lsquo;C&rsquo; grades.</p></blockquote><p>同上</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$and</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$not</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$eq</span><span class=o>:</span> <span class=s2>&#34;B&#34;</span> <span class=p>}</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$not</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$eq</span><span class=o>:</span> <span class=s2>&#34;C&#34;</span> <span class=p>}</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>address</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span><span class=mi>1</span><span class=p>,</span> <span class=nx>_id</span><span class=o>:</span> <span class=mi>0</span> <span class=p>})</span>
+</span></span></code></pre></div><h2 id=73>73</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that have the word &lsquo;coffee&rsquo; in their name</p></blockquote><p>正则</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>({</span> <span class=nx>name</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$regex</span><span class=o>:</span> <span class=sr>/coffee/i</span> <span class=p>}</span> <span class=p>},</span> <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>address</span><span class=o>:</span> <span class=mi>1</span> <span class=p>})</span>
+</span></span></code></pre></div><h2 id=74>74</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that have a zipcode that starts with &lsquo;10&rsquo;.</p></blockquote><p>这里我觉得官方给的答案不对。</p><h2 id=75>75</h2><blockquote><p>Write a MongoDB query to find the name and address of the restaurants that have a cuisine that starts with the letter &lsquo;B&rsquo;.</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=p>{</span> <span class=s2>&#34;cuisine&#34;</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$regex</span><span class=o>:</span> <span class=sr>/^B/</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>	<span class=p>{</span> <span class=s2>&#34;name&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>	<span class=s2>&#34;address&#34;</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>	<span class=s2>&#34;cuisine&#34;</span> <span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>	<span class=s2>&#34;_id&#34;</span><span class=o>:</span> <span class=mi>0</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></div><h2 id=76--77-正则>76 77 正则</h2><p>没有什么好写的</p><h2 id=78>78</h2><p>找最大值，那就需要排序</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$restaurant_id&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>avgScore</span><span class=o>:</span> <span class=p>{</span><span class=nx>$avg</span><span class=o>:</span> <span class=s2>&#34;$grades.score&#34;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span><span class=nx>avgScore</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span><span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$limit</span><span class=o>:</span> <span class=mi>1</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$project</span><span class=o>:</span> <span class=p>{</span><span class=nx>_id</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>avgScore</span><span class=o>:</span> <span class=mi>1</span><span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=79>79</h2><p>找最大的值A的那些restaurants的id，用到聚合</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$match</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;A&#34;</span><span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$restaurant_id&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>count</span><span class=o>:</span> <span class=p>{</span><span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span><span class=nx>count</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span><span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$count&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>restaurants</span><span class=o>:</span> <span class=p>{</span><span class=nx>$push</span><span class=o>:</span> <span class=s2>&#34;$_id&#34;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span><span class=nx>_id</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span><span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$limit</span><span class=o>:</span> <span class=mi>1</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$project</span><span class=o>:</span> <span class=p>{</span><span class=nx>restaurants</span><span class=o>:</span> <span class=mi>1</span><span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=80>80</h2><blockquote><p>Write a MongoDB query to find the cuisine type that is most likely to receive a &lsquo;C&rsquo; grade.</p></blockquote><p>哪个区域的C最多,用到了聚合</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$match</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;grades.grade&#34;</span><span class=o>:</span> <span class=s2>&#34;C&#34;</span><span class=p>}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$group</span><span class=o>:</span> <span class=p>{</span><span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$cuisine&#34;</span><span class=p>,</span> <span class=nx>count</span><span class=o>:</span> <span class=p>{</span><span class=nx>$sum</span><span class=o>:</span> <span class=mi>1</span><span class=p>}}},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span><span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span><span class=nx>count</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span><span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=81>81</h2><blockquote><p>Write a MongoDB query to find the restaurant that has the highest average score for thecuisine &ldquo;Turkish&rdquo;.</p></blockquote><p>聚合。</p><h2 id=82>82</h2><blockquote><p>Write a MongoDB query to find the restaurants that achieved the highest total score.</p></blockquote><p>连续的聚合,聚合就是一种管道。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>db</span><span class=p>.</span><span class=nx>restaurants</span><span class=p>.</span><span class=nx>aggregate</span><span class=p>([</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$grades&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$name&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>totalScore</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$sum</span><span class=o>:</span> <span class=s2>&#34;$grades.score&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span> <span class=nx>totalScore</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$totalScore&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>restaurants</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$push</span><span class=o>:</span> <span class=s2>&#34;$_id&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$sort</span><span class=o>:</span> <span class=p>{</span> <span class=nx>_id</span><span class=o>:</span> <span class=o>-</span><span class=mi>1</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$limit</span><span class=o>:</span> <span class=mi>1</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$unwind</span><span class=o>:</span> <span class=s2>&#34;$restaurants&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>$group</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_id</span><span class=o>:</span> <span class=s2>&#34;$_id&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=nx>restaurants</span><span class=o>:</span> <span class=p>{</span> <span class=nx>$push</span><span class=o>:</span> <span class=s2>&#34;$restaurants&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>])</span>
+</span></span></code></pre></div><h2 id=83>83</h2></main><br><footer><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script></footer></body></html>
