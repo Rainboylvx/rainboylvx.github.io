@@ -607,4 +607,630 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;jianXiaoJjieJie&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;dajiao&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;//函数对象类型
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="脚手架"&gt;脚手架&lt;/h2&gt;
-&lt;p&gt;换了一个脚手架 &lt;a href="https://github.com/xddq/nodejs-typescript-modern-starter" target="_blank" rel="noreferrer nofollow"&gt;GitHub - xddqnodejs-typescript-modern-starter Minimal and modern starter template to develop a Node.js project leveraging Typescript&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/mongodb/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/readme/</guid><description/></item><item><title>Search Results</title><link>https://hugo-dead-simple.netlify.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/search/</guid><description/></item></channel></rss>
+&lt;p&gt;换了一个脚手架 &lt;a href="https://github.com/xddq/nodejs-typescript-modern-starter" target="_blank" rel="noreferrer nofollow"&gt;GitHub - xddqnodejs-typescript-modern-starter Minimal and modern starter template to develop a Node.js project leveraging Typescript&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/1/</guid><description>&lt;h3 id="p4"&gt;p4&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;tcp 基于字节流&lt;/li&gt;
+&lt;li&gt;无边界的字节流,需要对数据进行分割&lt;/li&gt;
+&lt;li&gt;粘包问题,解决方法:
+&lt;ul&gt;
+&lt;li&gt;发送方: 发送数据前,先将数据包的长度信息发送给对方&lt;/li&gt;
+&lt;li&gt;接收方: 接收到数据包长度信息后,根据长度信息,将数据包拆分为多个数据包进行处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;面向连接的 tcp 协议,需要建立连接,断开连接,保证数据传输的可靠性 缓冲传输&lt;/p&gt;
+&lt;p&gt;tcp报文格式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;紧急指针: 紧急数据指针,只有紧急数据才会使用紧急指针,紧急数据是指需要立即传输的数据&lt;/li&gt;
+&lt;li&gt;选项字段: 选项字段,可以携带一些控制信息,如窗口大小,最大报文段长度,时间戳等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tcp三次握手&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次握手: 客户端发送 SYN 报文,服务器收到后,发送 SYN+ACK 报文,客户端收到后,发送 ACK 报文&lt;/li&gt;
+&lt;li&gt;第二次握手: 客户端发送 ACK 报文,服务器收到后,发送 ACK 报文&lt;/li&gt;
+&lt;li&gt;第三次握手: 客户端发送 ACK 报文,服务器收到后,连接建立完成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tcp四次挥手&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次挥手: 客户端发送 FIN 报文,服务器收到后,发送 ACK 报文,客户端收到后,进入 TIME-WAIT 状态&lt;/li&gt;
+&lt;li&gt;第二次挥手: 服务器发送 FIN 报文,客户端收到后,发送 ACK 报文,服务器收到后,进入 CLOSED 状态&lt;/li&gt;
+&lt;li&gt;第三次挥手: 服务器发送 ACK 报文,客户端收到后,进入 CLOSED 状态&lt;/li&gt;
+&lt;li&gt;第四次挥手: 客户端发送 ACK 报文,服务器收到后,进入 CLOSED 状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tcp拥塞控制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;慢启动: 开始时,发送方的发送速率较低,逐渐增大,以便逼近网络的实际速率&lt;/li&gt;
+&lt;li&gt;拥塞避免: 网络拥塞时,发送方的发送速率降低,以防止网络过载&lt;/li&gt;
+&lt;li&gt;快速重传: 接收方收到重复的 ACK 报文,认为是丢包,立即重传丢失的报文段&lt;/li&gt;
+&lt;li&gt;超时重传: 发送方在一段时间内没有收到 ACK 报文,认为报文丢失,重新发送&lt;/li&gt;
+&lt;li&gt;快速恢复: 当网络拥塞程度减缓时,发送方的发送速率增加,以便减轻网络拥塞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;滑动窗口协议&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/2/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;mindmap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; root((学习目标))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; 1.什么是socket
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; 2.IPv4套接口地址结构
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; 3.网终字节序
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; 4.字节序转换函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; 5.地址转换函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt; 6.套接字类型
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="1-什么是socket"&gt;1. 什么是socket&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;socket可以看成是用户进程与内核网络协议栈的
+编程接口&lt;/li&gt;
+&lt;li&gt;socket不仅可以用于本机的进程间通信，还可以
+用于网络上不同主机的进程间通信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我的理解: socket就是对前面学习的tcp/ip的代码封装,但是位于系统的内核,也就是说提供给用户的一组API,用于网络通信.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!WARNING]
+socket 这里理解成&amp;quot;插座&amp;quot;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;mindmap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; root((socket需要的属性))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; 地址: sockaddr_in
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; sin_addr
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; sin_port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; sin_family
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="ipv4-socket-地址结构体"&gt;ipv4 socket 地址结构体&lt;/h2&gt;
+&lt;p&gt;ipv4 socket地址结构体,在头文件&lt;code&gt;netinet/in.h&lt;/code&gt;中定义。 &lt;code&gt;sockaddr_in&lt;/code&gt;结构体定义如下：&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;man 7 ip&lt;/code&gt;命令查看&lt;code&gt;sockaddr_in&lt;/code&gt;结构体的定义：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;sa_family_t&lt;/span&gt; &lt;span class="n"&gt;sin_family&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 地址族，ipv4 就是AF_INET
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="kt"&gt;in_port_t&lt;/span&gt; &lt;span class="n"&gt;sin_port&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 端口号 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt; &lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// IP地址
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;sin_zero&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// 未使用,注意这个在man 7 ip中没有说明
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;//暗示程序员不需要知道这个??
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;//当成上面的普通的来用?
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;sin_family&lt;/code&gt;字段表示地址族,socket在设计的时候还可以用于其它的协议,不仅是tcp/ip,比如还有&lt;code&gt;unix&lt;/code&gt;域，对于IPv4地址，该值为&lt;code&gt;AF_INET&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sin_port&lt;/code&gt;字段表示端口号，使用网络字节序（big-endian）存储。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sin_addr&lt;/code&gt;字段表示IP地址，使用&lt;code&gt;struct in_addr&lt;/code&gt;结构体表示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;struct in_addr&lt;/code&gt;结构体定义如下：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1/</guid><description>&lt;h2 id="线程安全的对象生命周期管理"&gt;线程安全的对象生命周期管理&lt;/h2&gt;
+&lt;p&gt;在多线种的情况下,编写一个线程安全的类尤为困难.这里想要使用&lt;code&gt;share_ptr&lt;/code&gt;来完全这些问题.&lt;/p&gt;
+&lt;p&gt;1.1.2 MutexLock与MutexLockGuard&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这是一个简单的资源类，用RAII(RAII全称是“Resource Acquisition is Initialization”，直译过来是“资源获取即初始化”,也就是说在构造函数中申请分配资源，在析构函数中释放资源)手法封装互斥器的创建与销毁。在Linux下是pthread_mutex_t，默认是不可重入的（&amp;amp;2.1.1）。MutexLock一般是别的class的数据成员。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MutexLockGuard封装临界区的进入和退出，即加锁和解锁。MutexLockGuard一般是个栈上的对象，它的作用域刚好等于临界区域。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这两个class都不允许拷贝构造和赋值，使用原则见&amp;amp;2.1。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;1.1.3 一个线程安全的Counter示例&lt;/p&gt;
+&lt;p&gt;这里使用了神奇的&lt;code&gt;mutable&lt;/code&gt;关键字.&lt;/p&gt;
+&lt;p&gt;下面是相关的内容.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://blog.csdn.net/aaa123524457/article/details/80967330" target="_blank" rel="noreferrer nofollow"&gt;关键字mutable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cnblogs.com/kevinWu7/p/10163449.html" target="_blank" rel="noreferrer nofollow"&gt;关键字const&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;书上的&lt;code&gt;counter&lt;/code&gt;类,在对象销毁的时候会有&lt;code&gt;race caondition&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;1.2 对象的创建很简单&lt;/p&gt;
+&lt;p&gt;对象的构造要做到线程安全,唯一的要求就是在构造期间不要泄漏this指针.&lt;/p&gt;
+&lt;p&gt;1.3 销毁太难&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;成员函数用来保护临界区的互斥器本身必须是有效的。而析构函
+数破坏了这一假设，它会把mutex成员变量销毁掉。悲剧啊&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;1.3.2 作为数据成员的 mutex 不能保护析构&lt;/p&gt;
+&lt;p&gt;原始指针有各种问题&lt;/p&gt;
+&lt;p&gt;1.4 线程安全的 Observer 有多难&lt;/p&gt;
+&lt;p&gt;一个&lt;code&gt;Observable&lt;/code&gt;类,它持有另一个&lt;code&gt;Observer&lt;/code&gt;的指针,在使用这个指针&lt;code&gt;Observer * -&amp;gt; update&lt;/code&gt;时,如何保证&lt;code&gt;Observer&lt;/code&gt;是存在的呢?&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;Observer&lt;/code&gt;析构时调用&lt;code&gt;unregister()&lt;/code&gt;,这也不行,两个线程A,B同时在访问.
+A在析构,B的update,会产生未知情况.&lt;/p&gt;
+&lt;p&gt;1.4.1 线程安全的 Observer 有多难&lt;/p&gt;
+&lt;p&gt;1.4.2 线程安全的 Observer 有多难&lt;/p&gt;
+&lt;p&gt;1.6 神器shared_ptr/weak_ptr&lt;/p&gt;
+&lt;p&gt;1.8 应用到 Observer 上&lt;/p&gt;
+&lt;p&gt;既然通过 weak_ptr 能探查对象的生死，那么 Observer 模式的竞态条件就很容易解决，只要让 Observable 保存 weak_ptr&lt;Observer&gt; 即可&lt;/p&gt;
+&lt;p&gt;如何改成&lt;code&gt;shared_ptr&lt;/code&gt;,则对应的对象会一直存在.&lt;/p&gt;
+&lt;p&gt;1.9 再论 shared_ptr 的线程安全&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2/</guid><description>&lt;p&gt;1． 首要原则是尽量最低限度地共享对象， 减少需要同步的场合。
+一个对象能不暴露给别的线程就不要暴露； 如果要暴露， 优先考虑
+immutable对象； 实在不行才暴露可修改的对象， 并用同步措施来充分
+保护它。
+2． 其次是使用高级的并发编程构件， 如TaskQueue、 ProducerConsumer Queue、 CountDownLatch等等。
+3． 最后不得已必须使用底层同步原语（primitives） 时， 只用非递
+归的互斥器和条件变量， 慎用读写锁， 不要用信号量。
+4． 除了使用atomic整数之外， 不自己编写lock-free代码3， 也不要
+用“内核级”同步原语45。 不凭空猜测“哪种做法性能会更好”， 比如spin
+lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame/</guid><description>&lt;p&gt;channel -&amp;gt; eventloop &amp;lt;- poller&lt;/p&gt;
+&lt;p&gt;eventloop 到底做了什么呢?&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme/</guid><description>&lt;p&gt;我前面已经看完了 TCPIP网络编程这本书.&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="readme/assets/image.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/834810071/muduo_study" target="_blank" rel="noreferrer nofollow"&gt;muduo 学习笔记 834810071/muduo_study&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/EricPengShuai/muduo" target="_blank" rel="noreferrer nofollow"&gt;基于 【高级】手写C++ Muduo网络库项目-掌握高性能网络库实现原理 代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Shangyizhou/A-Tiny-Network-Library" target="_blank" rel="noreferrer nofollow"&gt;GitHub - ShangyizhouA-Tiny-Network-Library 使用 C++ 11 重构陈硕的 muduo 库，去除 boost 依赖。内部实现有 HTTP 服务器，可支持 GET 请求。&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/qinguoyi/TinyWebServer" target="_blank" rel="noreferrer nofollow"&gt;可以参考这个项目,看它是如果实现用户的注册与登录的&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/chenshuo/documents" target="_blank" rel="noreferrer nofollow"&gt;chenshuo/documents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;有ppt &lt;a href="https://github.com/iceCream1997/muduo_server_learn" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/iceCream1997/muduo_server_learn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/S1mpleBug/muduo_cpp11?tab=readme-ov-file" target="_blank" rel="noreferrer nofollow"&gt;S1mpleBugmuduo_cpp11 C++11版本muduo网络库 除去了对boost库的依赖&lt;/a&gt; 还有视频教程&lt;/li&gt;
+&lt;li&gt;结合我自己写的一些c++的笔记 &lt;a href="https://cpphub.roj.ac.cn" target="_blank" rel="noreferrer nofollow"&gt;https://cpphub.roj.ac.cn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;当然还有我们的&lt;a href="https://en.cppreference.com/w/" target="_blank" rel="noreferrer nofollow"&gt;cppreference&lt;/a&gt; 手册&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Hansimov/linux-server" target="_blank" rel="noreferrer nofollow"&gt;Hansimovlinux-server 《Linux 高性能服务器编程》和《Linux多线程服务端编程：使用muduo C++网络库》的笔记和源码，以及两个轻量级服务器的项目代码&lt;/a&gt; 也比较有用&lt;/li&gt;
+&lt;li&gt;raichen/LinuxServerCodes: Linux高性能服务器编程源码 &lt;a href="https://github.com/raichen/LinuxServerCodes" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/raichen/LinuxServerCodes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chenshuo/muduo: Event-driven network library for multi-threaded Linux server in C++11 &lt;a href="https://github.com/chenshuo/muduo" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/chenshuo/muduo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;qinguoyi/TinyWebServer: Linux下C++轻量级Web服务器 &lt;a href="https://github.com/qinguoyi/TinyWebServer" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/qinguoyi/TinyWebServer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;linyacool/WebServer: A C++ High Performance Web Server &lt;a href="https://github.com/linyacool/WebServer" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/linyacool/WebServer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使用工具Webbench，进行测试&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="其它可以参考的库"&gt;其它可以参考的库&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/Frees0u1/smuduoChatServer/tree/master" target="_blank" rel="noreferrer nofollow"&gt;Frees0u1smuduoChatServer 基于Muduo精简实现的Smuduo,在保留原有功能和特性(事件驱动的Reactor模式，非阻塞IO)的基础上，移除boost库依赖，大量使用C++11新特性.&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3/</guid><description>&lt;p&gt;在你的 C++ 代码中，当执行 cv.wait(lk); 时，lk 锁（即 std::unique_lock 对象）会被自动释放。
+详细解释&lt;/p&gt;
+&lt;p&gt;1.cv.wait(lk); 的作用:&lt;/p&gt;
+&lt;p&gt;2.cv.wait(lk); 这个调用会使当前线程在条件变量 cv 上等待，同时会解锁与 lk 关联的互斥锁 m。这意味着其他线程可以获取该互斥锁，并对共享数据进行修改。&lt;/p&gt;
+&lt;p&gt;3.锁的释放与再获取:&lt;/p&gt;
+&lt;p&gt;4.当条件变量 cv 通知（notify_one 或 notify_all）时，线程会被唤醒，重新获得 m 互斥锁，之后才会继续执行。wait 的返回时机通常是在被通知后，这时会重新获得锁。&lt;/p&gt;
+&lt;p&gt;5.实现原理:&lt;/p&gt;
+&lt;p&gt;6.在 cv.wait(lk); 的实现中，调用会执行以下步骤：
+7.释放 lk（即释放互斥锁）。
+8.将线程置于等待状态（挂起）。
+9.等待通知后，再重新获取互斥锁。&lt;/p&gt;
+&lt;p&gt;总结
+因此，在 cv.wait(lk); 调用时，lk 对应的互斥锁会被释放，允许其他线程在此期间执行临界区代码。当条件变量发出通知后，等待的线程会重新获得锁并继续执行。这是条件变量实现线程同步的核心机制。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1/</guid><description>&lt;h1 id="第一章-理解网络编程和socket"&gt;第一章 理解网络编程和socket&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;![INFO]
+网络编程就是编写程序使用两台连网的计算机相互交换数据.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这就是整个网络编程的全部内容.我觉得不需要去详细的理解TCP/IP的细节.&lt;/p&gt;
+&lt;p&gt;下面我按我的理解这一章的内容.&lt;/p&gt;
+&lt;p&gt;如果我们想到在电脑上创建一个server端的软件,用来接收其它电脑上另一个程序通过网络发来的信息,应该如何做呢? 应该按下面的流程来做&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;title: server socket 创建流程
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;flowchart TD
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; step_1[1.创建socket,API:socket]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; step_2[2.绑定端口与ip: bind]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; step_3[3.开启监听 listen]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt; step_4[4.接受产生的socket: accept ]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;9&lt;/span&gt;&lt;span class="cl"&gt; step_1 --&amp;gt; step_2 --&amp;gt; step_3 --&amp;gt; step_4;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="第一步创建-socket插座"&gt;第一步创建 socket(插座)&lt;/h2&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="chapter_1/assets/image.png" alt="alt text" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;如果我们家里需要网络通信,首先要有一个网络面板(网络插座)用来连接网络,然后才能通信. 同样我们也需要先创建一个socket,这个socket的作用就是用于后面的网络连接.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;protocal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;具体参数的含义与理解见一下章节&lt;/p&gt;
+&lt;h2 id="第二步-bind函数"&gt;第二步 bind函数&lt;/h2&gt;
+&lt;p&gt;通过第一步我们创建了一个socket(插座),那么应该把它放在哪里呢?
+其实就是根据哪些信息可以找到这个socket.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;信息首先要能发送给电脑,也就是需要知道电脑的IP,一个电脑可以有多个IP.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="chapter_1/assets/image-2.png" alt="多网口" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;比如这个电脑就有两个网口,(单网口也可以有多IP)&lt;/p&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;可以想像到一个电脑上能进行网络通信的软件有多个,那么就有很多个socket.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="chapter_1/assets/image-3.png" alt="2" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="chapter_1/assets/image-4.png" alt="3" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="chapter_1/assets/image-5.png" alt="4" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;电脑为了和外部通信,创建了端口这个概念.&lt;/p&gt;
+&lt;p&gt;你可以把端口想像成电脑一个一个孔洞,每一个数据通过这个孔洞发流入进电脑,如何你的socket&amp;quot;安装&amp;quot;在这个端口上,那么就可以接收到这个数据了.&lt;/p&gt;
+&lt;p&gt;然后这个socket和还需要和某一端口绑定在一起.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;myaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="第三步-激活监听listen"&gt;第三步: 激活监听,listen&lt;/h2&gt;
+&lt;p&gt;现在我们有了一个socket,并把它放到了合适的位置(bind),接下就能通信了吗?
+不能,还需要启用,激活它,就像家里弄了网络面板,网线,还需要网络公司给我们开通网络权限.&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10/</guid><description>&lt;p&gt;为了加大服务器同时处理用户的连接,有效的利用CPU&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;多进程服务器: 创建多个进程提供服务&lt;/li&gt;
+&lt;li&gt;多路复用: 捆绑并统一管理IO对象提供服务&lt;/li&gt;
+&lt;li&gt;多线程: 生成与客户短等量化的线程提供服务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="101-进程概念及引用"&gt;10.1 进程概念及引用&lt;/h2&gt;
+&lt;h3 id="理解进程"&gt;理解进程&lt;/h3&gt;
+&lt;p&gt;进程的定义如下：&lt;strong&gt;占用内存空间的正在运行的程序&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="进程id"&gt;进程ID&lt;/h3&gt;
+&lt;p&gt;在说进程创建方法之前，先要简要说明进程 ID。无论进程是如何创建的，所有的进程都会被操作系统分配一个 ID。此 ID 被称为「进程ID」，其值为大于 2 的整数。1 要分配给操作系统启动后的（用于协助操作系统）首个进程，因此用户无法得到 ID 值为 1 。接下来观察在 Linux 中运行的进程。&lt;/p&gt;
+&lt;h3 id="fork创建进程"&gt;fork创建进程&lt;/h3&gt;
+&lt;p&gt;创建进程的方式很多，此处只介绍用于创建多进程服务端的 fork 函数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="kt"&gt;pid_t&lt;/span&gt; &lt;span class="nf"&gt;fork&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 成功时返回进程ID,失败时返回 -1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;fork 函数将创建调用的进程副本。也就是说，并非根据完全不同的程序创建进程，而是复制正在运行的、调用 fork 函数的进程。另外，两个进程都执行 fork 函数调用后的语句（准确的说是在 fork 函数返回后）。但因为是通过同一个进程、复制相同的内存空间，之后的程序流要根据 fork 函数的返回值加以区分。即利用 fork 函数的如下特点区分程序执行流程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;父进程：fork 函数返回子进程 ID&lt;/li&gt;
+&lt;li&gt;子进程：fork 函数返回 0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此处，「父进程」（Parent Process）指原进程，即调用 fork 函数的主体，而「子进程」（Child Process）是通过父进程调用 fork 函数复制出的进程。接下来是调用 fork 函数后的程序运行流程。如图所示：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://camo.githubusercontent.com/7c517aeff982752b7b862d181d7d4061edcb420dd3e668e3ab0a9c0704daa2a2/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f32302f356334336461353431326239302e706e67" target="_blank" rel="noreferrer nofollow"&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://camo.githubusercontent.com/7c517aeff982752b7b862d181d7d4061edcb420dd3e668e3ab0a9c0704daa2a2/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f32302f356334336461353431326239302e706e67" alt="" /&gt;
+&lt;/p&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从图中可以看出，父进程调用 fork 函数的同时复制出子进程，并分别得到 fork 函数的返回值。但复制前，父进程将全局变量 gval 增加到 11,将局部变量 lval 的值增加到 25，因此在这种状态下完成进程复制。复制完成后根据 fork 函数的返回类型区分父子进程。父进程的 lval 的值增加 1 ，但这不会影响子进程的 lval 值。同样子进程将 gval 的值增加 1 也不会影响到父进程的 gval 。因为 fork 函数调用后分成了完全不同的进程，只是二者共享同一段代码而已。接下来给出一个例子：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2/</guid><description>&lt;h1 id="socket类型与协议设置"&gt;socket类型与协议设置&lt;/h1&gt;
+&lt;p&gt;下我只与我理解的内容,如果全部都写,那么就变在了抄书了.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;int socket(int domain, int type, int protocol);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中的&lt;code&gt;domain&lt;/code&gt;参数指定协议族,常见的有AF_INET, AF_INET6, AF_UNIX等,分别对应IPv4, IPv6, Unix Domain Socket.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt;参数指定socket类型,常见的有SOCK_STREAM, SOCK_DGRAM, SOCK_RAW, SOCK_SEQPACKET等,分别对应TCP流式socket, UDP数据报式socket, 原始套接字, 顺序包套接字等.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;protocol&lt;/code&gt;参数指定协议,常见的有IPPROTO_TCP, IPPROTO_UDP, IPPROTO_RAW, IPPROTO_SCTP等,分别对应TCP, UDP, 原始协议, SCTP等.&lt;/p&gt;
+&lt;p&gt;一般情况下,我们只需要设置&lt;code&gt;domain&lt;/code&gt;和&lt;code&gt;type&lt;/code&gt;参数,因为&lt;code&gt;protocol&lt;/code&gt;参数一般由系统自动设置.&lt;/p&gt;
+&lt;p&gt;例如,创建一个TCP流式socket,可以使用如下代码:&lt;/p&gt;
+&lt;p&gt;这个用到的最多,其实也只用到这个(我们自己写的简单代码).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建一个UDP数据报式socket,可以使用如下代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建一个原始套接字,可以使用如下代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="传输的数据不存在数据边界"&gt;传输的数据不存在数据边界&lt;/h2&gt;
+&lt;p&gt;书上告诉我们,socket数据的传输是无边界的,也就是说,我们发送的数据可能被拆分成多个包,也可能被粘包,接收方也可能一次接收多个包,这取决于网络的传输速率和接收方处理能力.&lt;/p&gt;
+&lt;p&gt;这里给出一个我根据书上写的&lt;code&gt;client.c&lt;/code&gt;代码,用来接收TCP流式socket数据:&lt;/p&gt;
+&lt;p&gt;它一次只能读取一个字节.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;tot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;read_len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;//一次读取一个字节
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;read_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;read_len&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;//输出读取的字符
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;%c&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tot&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;read_len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3/</guid><description>&lt;h1 id="地址族与数据序列"&gt;地址族与数据序列&lt;/h1&gt;
+&lt;p&gt;书上讲解了一些&lt;code&gt;ipv4&lt;/code&gt;地址的概念，以及&lt;code&gt;ipv6&lt;/code&gt;地址的概念。&lt;/p&gt;
+&lt;p&gt;又说了一些端口号的概念，以及端口号的作用。&lt;/p&gt;
+&lt;p&gt;但是还是很复杂的,直接理解我第一章节说的内容,每个概念只有一句话.但是这是建立在我对网络编程的了解基础上的.&lt;/p&gt;
+&lt;p&gt;下讲解了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;mindmap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt; root((sockadd_in))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt; sin_family(sin_family)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt; AF_INET(AF_INET)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; AF_INET6(AF_INET6)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; AF_Local(AF_Local)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; sin_port(sin_port)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt; htons(&amp;#34;htons(int)&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; sin_addr(sin_addr)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; s_addr(s_addr)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; inet_addr(&amp;#34;inet_addr(char*)&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;需要把&lt;code&gt;sockaddr_in&lt;/code&gt;转化成&lt;code&gt;struct sockaddr *&lt;/code&gt;才能使用&lt;code&gt;bind()&lt;/code&gt;等函数.&lt;/p&gt;
+&lt;h2 id="网络字节序与地址的转换"&gt;网络字节序与地址的转换&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;htons(int)&lt;/code&gt;：将&lt;code&gt;int&lt;/code&gt;类型整数转换为网络字节序。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;htonl(int)&lt;/code&gt;：将&lt;code&gt;int&lt;/code&gt;类型整数转换为网络字节序。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ntohs(int)&lt;/code&gt;：将&lt;code&gt;int&lt;/code&gt;类型整数转换为主机字节序。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ntohl(int)&lt;/code&gt;：将&lt;code&gt;int&lt;/code&gt;类型整数转换为主机字节序。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;inet_addr(char*)&lt;/code&gt;：将&lt;code&gt;char*&lt;/code&gt;类型字符串转换为&lt;code&gt;in_addr&lt;/code&gt;类型。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;inet_aton(char*, struct in_addr*)&lt;/code&gt;：将&lt;code&gt;char*&lt;/code&gt;类型字符串转换为&lt;code&gt;in_addr&lt;/code&gt;类型。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;inet_ntoa(struct in_addr)&lt;/code&gt;：将&lt;code&gt;in_addr&lt;/code&gt;类型转换为&lt;code&gt;char*&lt;/code&gt;类型字符串,失败返回-1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每次创建服务器端socket都要输入IP地址会有些繁琐,此时可以使用如下的初始化地址信息&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;serv_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;8989&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_family&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;htons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serv_port&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s_addr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;inet_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;INADDR_ANY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4/</guid><description>&lt;h1 id="基于tcp的服务器端客户端"&gt;基于tcp的服务器端/客户端&lt;/h1&gt;
+&lt;p&gt;详细的内容看这里,我就不复制了:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote/blob/master/ch04/README.md" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/riba2534/TCP-IP-NetworkNote/blob/master/ch04/README.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://camo.githubusercontent.com/270414295465a1c9e1cbd2f105bbd31b2d146d9282b431a8ab53aa369bfd137c/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f31342f356333633231383839646230362e706e67" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;TCP/IP 协议栈共分为 4 层，可以理解为数据收发分成了 4 个层次化过程，通过层次化的方式来解决问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;链路层: 物理层,负责网络设备之间的通信，如网卡、网线等&lt;/li&gt;
+&lt;li&gt;IP层: 数据包进行中线选择&lt;/li&gt;
+&lt;li&gt;TCP/UDP层: 负责数据包的传输，保证数据包的可靠性和顺序性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="实现基于-tcp-的服务器客户端"&gt;实现基于 TCP 的服务器/客户端&lt;/h2&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://camo.githubusercontent.com/69fcf57d2971b632de8b50baeab7039cd018c607363fc5c4f8c80f532362a5db/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f31342f356333633237383261373831302e706e67" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://camo.githubusercontent.com/2ded080eac322e985c4cd748055c169e7e832905497d93d0949fa45c08b69bfb/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f31342f356333633331643737653836632e706e67" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;h2 id="代码"&gt;代码:&lt;/h2&gt;
+&lt;p&gt;hello_server&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;ch04&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;hello_server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代码: hello_client&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;ch04&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;hello_client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="echo服务器客户端"&gt;echo服务器/客户端&lt;/h2&gt;
+&lt;p&gt;程序运行的基本方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器端在同一时刻只与一个客户端相连，并提供回声服务。&lt;/li&gt;
+&lt;li&gt;服务器端依次向 5 个客户端提供服务并退出。&lt;code&gt;for&lt;/code&gt;循环5次&lt;/li&gt;
+&lt;li&gt;客户端接受用户输入的字符串并发送到服务器端。&lt;/li&gt;
+&lt;li&gt;服务器端将接受的字符串数据传回客户端，即「回声」&lt;/li&gt;
+&lt;li&gt;服务器端与客户端之间的字符串回声一直执行到客户端输入 Q 为止。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;ch04&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;echo_server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;ch04&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;echo_client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="faq"&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;问: 我在在linux下使用socket进行tcp网络编程,如果client端调用了close(sock)函数,那么server端口的read函数会读取到什么?&lt;/p&gt;
+&lt;p&gt;答:&lt;/p&gt;
+&lt;p&gt;在Linux下使用socket进行TCP网络编程时,如果客户端调用了&lt;code&gt;close(sock)&lt;/code&gt;函数,服务器端的&lt;code&gt;read&lt;/code&gt;函数的行为取决于客户端关闭连接的方式和时机。&lt;/p&gt;
+&lt;p&gt;通常情况下,当客户端调用&lt;code&gt;close(sock)&lt;/code&gt;函数时,会向服务器发送一个FIN包,表示客户端想要关闭连接。服务器收到FIN包后,会做出以下响应:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果服务器已经读取了所有客户端发送的数据,那么&lt;code&gt;read&lt;/code&gt;函数会返回0,表示已经到达文件末尾(EOF)。这意味着客户端已经关闭了连接,并且没有更多的数据可读。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果服务器还没有读取完客户端发送的所有数据,那么&lt;code&gt;read&lt;/code&gt;函数会继续读取剩余的数据,直到读取完所有数据或者遇到错误为止。在这种情况下,&lt;code&gt;read&lt;/code&gt;函数会返回实际读取到的字节数。当所有数据读取完毕后,再次调用&lt;code&gt;read&lt;/code&gt;函数会返回0,表示已经到达文件末尾(EOF)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果客户端在发送数据的过程中突然关闭了连接,那么服务器的&lt;code&gt;read&lt;/code&gt;函数可能会返回一个错误,通常是&lt;code&gt;ECONNRESET&lt;/code&gt;错误,表示连接被重置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;需要注意的是,如果客户端在关闭连接之前没有发送所有的数据,那么服务器可能会丢失一部分数据。为了确保数据的完整性,通常建议在关闭连接之前,先调用&lt;code&gt;shutdown(sock, SHUT_WR)&lt;/code&gt;函数,告诉操作系统不再发送数据,然后再调用&lt;code&gt;close(sock)&lt;/code&gt;函数关闭连接。&lt;/p&gt;
+&lt;p&gt;总之,服务器端的&lt;code&gt;read&lt;/code&gt;函数在客户端关闭连接时的行为取决于具体的情况:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果客户端发送了所有数据并关闭连接,&lt;code&gt;read&lt;/code&gt;函数会返回0,表示EOF。&lt;/li&gt;
+&lt;li&gt;如果客户端关闭连接时还有未读取的数据,&lt;code&gt;read&lt;/code&gt;函数会继续读取剩余数据,直到读取完毕,然后返回0,表示EOF。&lt;/li&gt;
+&lt;li&gt;如果客户端异常关闭连接,&lt;code&gt;read&lt;/code&gt;函数可能会返回错误,如&lt;code&gt;ECONNRESET&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作为服务器端,需要正确处理这些不同的情况,以确保程序的正确性和鲁棒性。&lt;/p&gt;
+&lt;p&gt;问: 如何检测到 read函数返回一个错误, 例如是ECONNRESET?&lt;/p&gt;
+&lt;p&gt;在Linux系统中,当&lt;code&gt;read&lt;/code&gt;函数返回错误时,会设置全局变量&lt;code&gt;errno&lt;/code&gt;来指示具体的错误类型。你可以通过检查&lt;code&gt;errno&lt;/code&gt;的值来判断是否发生了&lt;code&gt;ECONNRESET&lt;/code&gt;错误。&lt;/p&gt;
+&lt;p&gt;下面是一个示例代码,演示了如何检测&lt;code&gt;read&lt;/code&gt;函数返回的错误:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;errno.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;ssize_t&lt;/span&gt; &lt;span class="nf"&gt;read_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;ssize_t&lt;/span&gt; &lt;span class="n"&gt;num_read&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_read&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;ECONNRESET&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Connection reset by peer&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;read&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;num_read&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面的代码中,&lt;code&gt;read_data&lt;/code&gt;函数封装了&lt;code&gt;read&lt;/code&gt;函数的调用。它检查&lt;code&gt;read&lt;/code&gt;函数的返回值:&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5/</guid><description>&lt;h1 id="基于tcp的服务器端客户端2"&gt;基于tcp的服务器端/客户端(2)&lt;/h1&gt;
+&lt;p&gt;本章节详细的讲解了TCP 中必要的理论知识&lt;/p&gt;
+&lt;p&gt;回声客户端问题的解决办法
+这个问题其实很容易解决，因为可以提前接受数据的大小。若之前传输了20字节长的字符串，则再接收时循环调用 read 函数读取 20 个字节即可。既然有了解决办法，核心那么代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;//得到发送的数据大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="n"&gt;str_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;recv_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;recv_len&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;str_len&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;recv_cnt&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;recv_buf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;str_len&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;recv_len&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;//对方关闭了连接
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;recv_cnt&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;recv_cnt&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;error_handing&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;read error&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;recv_len&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;recv_cnt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;recv_len&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;\0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Received message: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="tcp-原理"&gt;TCP 原理&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;TCP socket中的I/O缓冲&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IO缓冲在每个TCP socket中单独存在.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IO缓冲在在创建TCP socket自动生成.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;即使关闭socket 也会继续传递输出缓冲中遗留的数据.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关闭socket会丢失输入缓冲中的数据.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不会发生超过输入缓冲大小的数据传输!&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;write函数会在数据移到输出缓冲时返回.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id="1-tcp连接"&gt;1. TCP连接&lt;/h3&gt;
+&lt;p&gt;3次握手(three-way handshaking)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;[SYN] SEQ:1000 ACK:NULL
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;[SYN+ACK] SEQ: 2000, ACK: 1001
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;[ACK] SEQ: 1001, ACK: 2001
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="2-tcp传输"&gt;2. TCP传输&lt;/h3&gt;
+&lt;h3 id="3-tcp断开"&gt;3. TCP断开&lt;/h3&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7/</guid><description>&lt;h2 id="1-单方面断开连接带来的问题"&gt;1 单方面断开连接带来的问题&lt;/h2&gt;
+&lt;p&gt;主机 A 发送完最后的数据后，调用 close 函数断开了最后的连接，之后主机 A 无法再接受主机 B 传输的数据。实际上，是完全无法调用与接受数据相关的函数。最终，由主机 B 传输的、主机 A 必须要接受的数据也销毁了。&lt;/p&gt;
+&lt;h2 id="2-shutdown函数的作用"&gt;2. shutdown函数的作用&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;shutdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;howto&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;成功时返回 0 ，失败时返回 -1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;sock: 需要断开套接字文件描述符
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;howto: 传递断开方式信息
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;调用上述函数时，第二个参数决定断开连接的方式，其值如下所示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SHUT_RD&lt;/code&gt; : 断开输入流&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SHUT_WR&lt;/code&gt; : 断开输出流&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SHUT_RDWR&lt;/code&gt; : 同时断开 I/O 流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;若向 shutdown 的第二个参数传递&lt;code&gt;SHUT_RD&lt;/code&gt;，则断开输入流，套接字无法接收数据。即使输入缓冲收到数据也会抹去，而且无法调用相关函数。如果向 shutdown 的第二个参数传递&lt;code&gt;SHUT_WR&lt;/code&gt;，则中断输出流，也就无法传输数据。若如果输出缓冲中还有未传输的数据，则将传递给目标主机。最后，若传递关键字&lt;code&gt;SHUT_RDWR&lt;/code&gt;，则同时中断 I/O 流。这相当于分 2 次调用 shutdown ，其中一次以&lt;code&gt;SHUT_RD&lt;/code&gt;为参数，另一次以&lt;code&gt;SHUT_WR&lt;/code&gt;为参数&lt;/p&gt;
+&lt;h2 id="3-为什么要半关闭连接"&gt;3. 为什么要半关闭连接&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;留下足够的时间,等所有的数据交换完不就行了,好像也没有必要使用半关闭.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;考虑以下情况：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一旦客户端连接到服务器，服务器将约定的文件传输给客户端，客户端收到后发送字符串「Thank you」给服务器端。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;此处「Thank you」的传递是多余的，这只是用来模拟客户端断开连接前还有数据要传输的情况。此时程序的还嫌难度并不小，因为传输文件的服务器端只需连续传输文件数据即可，而客户端无法知道需要接收数据到何时。客户端也没办法无休止的调用输入函数，因为这有可能导致程序&lt;strong&gt;阻塞&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;是否可以让服务器和客户端约定一个代表文件尾的字符？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这种方式也有问题，因为这意味这文件中不能有与约定字符相同的内容。为了解决该问题，服务端应最后向客户端传递 EOF 表示文件传输结束。客户端通过函数返回值接受 EOF ，这样可以避免与文件内容冲突。那么问题来了，服务端如何传递 EOF ？&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8/</guid><description>&lt;h2 id="第-8-章-域名及网络地址"&gt;第 8 章 域名及网络地址&lt;/h2&gt;
+&lt;p&gt;本章代码，在&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noreferrer nofollow"&gt;TCP-IP-NetworkNote&lt;/a&gt;中可以找到。&lt;/p&gt;
+&lt;h3 id="81-域名系统"&gt;8.1 域名系统&lt;/h3&gt;
+&lt;p&gt;DNS 是对IP地址和域名进行相互转换的系统，其核心是 DNS 服务器&lt;/p&gt;
+&lt;h4 id="811-什么是域名"&gt;8.1.1 什么是域名&lt;/h4&gt;
+&lt;p&gt;域名就是我们常常在地址栏里面输入的地址，将比较难记忆的IP地址变成人类容易理解的信息。&lt;/p&gt;
+&lt;h4 id="812-dns-服务器"&gt;8.1.2 DNS 服务器&lt;/h4&gt;
+&lt;p&gt;相当于一个字典，可以查询出某一个域名对应的IP地址&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://i.loli.net/2019/01/18/5c41854859ae3.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;如图所示，显示了 DNS 服务器的查询路径。&lt;/p&gt;
+&lt;h3 id="82-ip地址和域名之间的转换"&gt;8.2 IP地址和域名之间的转换&lt;/h3&gt;
+&lt;h4 id="821-程序中有必要使用域名吗"&gt;8.2.1 程序中有必要使用域名吗？&lt;/h4&gt;
+&lt;p&gt;一句话，需要，因为IP地址可能经常改变，而且也不容易记忆，通过域名可以随时更改解析，达到更换IP的目的&lt;/p&gt;
+&lt;h4 id="822-利用域名获取ip地址"&gt;8.2.2 利用域名获取IP地址&lt;/h4&gt;
+&lt;p&gt;使用以下函数可以通过传递字符串格式的域名获取IP地址&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;netdb.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;hostent&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;gethostbyname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;成功时返回 hostent 结构体地址，失败时返回 NULL 指针
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个函数使用方便，只要传递字符串，就可以返回域名对应的IP地址。只是返回时，地址信息装入 hostent 结构体。此结构体的定义如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;hostent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;h_name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Official name of host. */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;h_aliases&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Alias list. */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;h_addrtype&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Host address type. */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;h_length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Length of address. */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;h_addr_list&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* List of addresses from name server. */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从上述结构体可以看出，不止返回IP信息，同事还带着其他信息一起返回。域名转换成IP时只需要关注 h_addr_list 。下面简要说明上述结构体的成员：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9/</guid><description>&lt;h2 id="第-9-章-套接字的多种可选项"&gt;第 9 章 套接字的多种可选项&lt;/h2&gt;
+&lt;p&gt;本章代码，在&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noreferrer nofollow"&gt;TCP-IP-NetworkNote&lt;/a&gt;中可以找到。&lt;/p&gt;
+&lt;h3 id="91-套接字可选项和-io-缓冲大小"&gt;9.1 套接字可选项和 I/O 缓冲大小&lt;/h3&gt;
+&lt;p&gt;我们进行套接字编程时往往只关注数据通信，而忽略了套接字具有的不同特性。但是，理解这些特性并根据实际需要进行更改也很重要&lt;/p&gt;
+&lt;h4 id="911-套接字多种可选项"&gt;9.1.1 套接字多种可选项&lt;/h4&gt;
+&lt;p&gt;我们之前写得程序都是创建好套接字之后直接使用的，此时通过默认的套接字特性进行数据通信，这里列出了一些套接字可选项。&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;协议层&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;选项名&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;读取&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;设置&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_SNDBUF&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_RCVBUF&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_REUSEADDR&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_KEEPALIVE&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_BROADCAST&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_DONTROUTE&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_OOBINLINE&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_ERROR&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;X&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;SOL_SOCKET&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;SO_TYPE&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;X&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_IP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;IP_TOS&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_IP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;IP_TTL&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_IP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;IP_MULTICAST_TTL&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_IP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;IP_MULTICAST_LOOP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_IP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;IP_MULTICAST_IF&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_TCP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;TCP_KEEPALIVE&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_TCP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;TCP_NODELAY&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;IPPROTO_TCP&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;TCP_MAXSEG&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;O&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;从表中可以看出，套接字可选项是分层的。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme/</guid><description>&lt;h2 id="说明"&gt;说明&lt;/h2&gt;
+&lt;p&gt;作者: 韩国 - 尹圣雨&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="readme/assets/image.png" alt="alt text" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;h2 id="学习资源"&gt;学习资源&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noreferrer nofollow"&gt;riba2534TCP-IP-NetworkNote 📘《TCPIP网络编程》(韩-尹圣雨)学习笔记&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/mongodb/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/readme/</guid><description/></item><item><title>Search Results</title><link>https://hugo-dead-simple.netlify.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/search/</guid><description/></item></channel></rss>
