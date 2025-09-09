@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>chapter 1 Introduction</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</guid><description>&lt;p&gt;这篇文章是《Learn You a Haskell for Great Good!》教程的引言，主要内容可以总结为以下几点：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Github无法推送</title><link>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81/</link><pubDate>Tue, 09 Sep 2025 12:55:26 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81/</guid><description>&lt;p&gt;2025-09-09,我发现我的电脑 git 无法推送,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;ssh -vvv -T git@github.com 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卡死&lt;/p&gt;
+&lt;p&gt;神奇的是,并不是因为https无法推送,而是ssh无法推送,这是我第一次遇到这种情况.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;╭─rainboy@y9000x ~
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;╰─$ nslookup github.com 119.119.119.119
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;Server: 119.119.119.119
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;Address: 119.119.119.119#53
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;Non-authoritative answer:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;Name: github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;Address: 20.205.243.166
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;ssh -T git@20.205.243.166
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卡死&lt;/p&gt;
+&lt;p&gt;使用在线 dns check : &lt;a href="https://dnschecker.org/#A/github.com" target="_blank" rel="noreferrer nofollow"&gt;https://dnschecker.org/#A/github.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="./images/2025-09-09.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;得到ip : &lt;code&gt;140.82.114.3&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;ssh -T git@140.82.114.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;The authenticity of host &lt;span class="s1"&gt;&amp;#39;140.82.114.3 (140.82.114.3)&amp;#39;&lt;/span&gt; can&lt;span class="s1"&gt;&amp;#39;t be established.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;This host key is known by the following other names/addresses:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; ~/.ssh/known_hosts:59: github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; ~/.ssh/known_hosts:98: [ssh.github.com]:443
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; ~/.ssh/known_hosts:99: 140.82.114.4
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Warning: Permanently added &amp;#39;&lt;/span&gt;140.82.114.3&lt;span class="s1"&gt;&amp;#39; (ED25519) to the list of known hosts.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Hi Rainboylvx! You&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;成功了 !?&lt;/p&gt;</description></item><item><title>chapter 1 Introduction</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</guid><description>&lt;p&gt;这篇文章是《Learn You a Haskell for Great Good!》教程的引言，主要内容可以总结为以下几点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;教程目标&lt;/strong&gt;：本教程主要面向有命令式编程（如 C++, Java, Python）经验，但初次接触函数式编程的开发者。作者建议通过阅读多种资料来学习Haskell，因为它起初可能感觉很奇怪，但一旦“开窍”就会变得容易。&lt;/p&gt;
