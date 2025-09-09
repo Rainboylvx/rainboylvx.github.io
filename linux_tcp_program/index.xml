@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>linux网络编程学习笔记 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/</link><description>Recent content in linux网络编程学习笔记 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 05 Sep 2025 00:04:01 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/linux_tcp_program/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/1/</guid><description>&lt;h3 id="p4"&gt;p4&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>linux网络编程学习笔记 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/index.html</link><description>Recent content in linux网络编程学习笔记 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 05 Sep 2025 00:04:01 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/linux_tcp_program/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/1.html</guid><description>&lt;h3 id="p4"&gt;p4&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;tcp 基于字节流&lt;/li&gt;
 &lt;li&gt;无边界的字节流,需要对数据进行分割&lt;/li&gt;
@@ -36,7 +36,7 @@
 &lt;li&gt;超时重传: 发送方在一段时间内没有收到 ACK 报文,认为报文丢失,重新发送&lt;/li&gt;
 &lt;li&gt;快速恢复: 当网络拥塞程度减缓时,发送方的发送速率增加,以便减轻网络拥塞&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;滑动窗口协议&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/2/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;p&gt;滑动窗口协议&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/2.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/2.html</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;mindmap
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; root((学习目标))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; 1.什么是socket
@@ -78,7 +78,7 @@ socket 这里理解成&amp;quot;插座&amp;quot;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;li&gt;&lt;code&gt;sin_port&lt;/code&gt;字段表示端口号，使用网络字节序（big-endian）存储。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sin_addr&lt;/code&gt;字段表示IP地址，使用&lt;code&gt;struct in_addr&lt;/code&gt;结构体表示。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;struct in_addr&lt;/code&gt;结构体定义如下：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1/</guid><description>&lt;h2 id="线程安全的对象生命周期管理"&gt;线程安全的对象生命周期管理&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;struct in_addr&lt;/code&gt;结构体定义如下：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</guid><description>&lt;h2 id="线程安全的对象生命周期管理"&gt;线程安全的对象生命周期管理&lt;/h2&gt;
 &lt;p&gt;在多线种的情况下,编写一个线程安全的类尤为困难.这里想要使用&lt;code&gt;share_ptr&lt;/code&gt;来完全这些问题.&lt;/p&gt;
 &lt;p&gt;1.1.2 MutexLock与MutexLockGuard&lt;/p&gt;
 &lt;blockquote&gt;
@@ -113,7 +113,7 @@ A在析构,B的update,会产生未知情况.&lt;/p&gt;
 &lt;p&gt;1.8 应用到 Observer 上&lt;/p&gt;
 &lt;p&gt;既然通过 weak_ptr 能探查对象的生死，那么 Observer 模式的竞态条件就很容易解决，只要让 Observable 保存 weak_ptr&lt;Observer&gt; 即可&lt;/p&gt;
 &lt;p&gt;如何改成&lt;code&gt;shared_ptr&lt;/code&gt;,则对应的对象会一直存在.&lt;/p&gt;
-&lt;p&gt;1.9 再论 shared_ptr 的线程安全&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2/</guid><description>&lt;p&gt;1． 首要原则是尽量最低限度地共享对象， 减少需要同步的场合。
+&lt;p&gt;1.9 再论 shared_ptr 的线程安全&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</guid><description>&lt;p&gt;1． 首要原则是尽量最低限度地共享对象， 减少需要同步的场合。
 一个对象能不暴露给别的线程就不要暴露； 如果要暴露， 优先考虑
 immutable对象； 实在不行才暴露可修改的对象， 并用同步措施来充分
 保护它。
@@ -122,8 +122,8 @@ immutable对象； 实在不行才暴露可修改的对象， 并用同步措施
 归的互斥器和条件变量， 慎用读写锁， 不要用信号量。
 4． 除了使用atomic整数之外， 不自己编写lock-free代码3， 也不要
 用“内核级”同步原语45。 不凭空猜测“哪种做法性能会更好”， 比如spin
-lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame/</guid><description>&lt;p&gt;channel -&amp;gt; eventloop &amp;lt;- poller&lt;/p&gt;
-&lt;p&gt;eventloop 到底做了什么呢?&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme/</guid><description>&lt;p&gt;我前面已经看完了 TCPIP网络编程这本书.&lt;/p&gt;
+lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/frame.html</guid><description>&lt;p&gt;channel -&amp;gt; eventloop &amp;lt;- poller&lt;/p&gt;
+&lt;p&gt;eventloop 到底做了什么呢?&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/readme.html</guid><description>&lt;p&gt;我前面已经看完了 TCPIP网络编程这本书.&lt;/p&gt;
 &lt;p&gt;&lt;p class="imgp"&gt;
  &lt;img loading="lazy" src="readme/assets/image.png" alt="" /&gt;
 &lt;/p&gt;
@@ -148,7 +148,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;h2 id="其它可以参考的库"&gt;其它可以参考的库&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="https://github.com/Frees0u1/smuduoChatServer/tree/master" target="_blank" rel="noreferrer nofollow"&gt;Frees0u1smuduoChatServer 基于Muduo精简实现的Smuduo,在保留原有功能和特性(事件驱动的Reactor模式，非阻塞IO)的基础上，移除boost库依赖，大量使用C++11新特性.&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3/</guid><description>&lt;p&gt;在你的 C++ 代码中，当执行 cv.wait(lk); 时，lk 锁（即 std::unique_lock 对象）会被自动释放。
+&lt;/ol&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/my_test/%E7%90%86%E8%A7%A3.html</guid><description>&lt;p&gt;在你的 C++ 代码中，当执行 cv.wait(lk); 时，lk 锁（即 std::unique_lock 对象）会被自动释放。
 详细解释&lt;/p&gt;
 &lt;p&gt;1.cv.wait(lk); 的作用:&lt;/p&gt;
 &lt;p&gt;2.cv.wait(lk); 这个调用会使当前线程在条件变量 cv 上等待，同时会解锁与 lk 关联的互斥锁 m。这意味着其他线程可以获取该互斥锁，并对共享数据进行修改。&lt;/p&gt;
@@ -160,7 +160,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 8.将线程置于等待状态（挂起）。
 9.等待通知后，再重新获取互斥锁。&lt;/p&gt;
 &lt;p&gt;总结
-因此，在 cv.wait(lk); 调用时，lk 对应的互斥锁会被释放，允许其他线程在此期间执行临界区代码。当条件变量发出通知后，等待的线程会重新获得锁并继续执行。这是条件变量实现线程同步的核心机制。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1/</guid><description>&lt;h1 id="第一章-理解网络编程和socket"&gt;第一章 理解网络编程和socket&lt;/h1&gt;
+因此，在 cv.wait(lk); 调用时，lk 对应的互斥锁会被释放，允许其他线程在此期间执行临界区代码。当条件变量发出通知后，等待的线程会重新获得锁并继续执行。这是条件变量实现线程同步的核心机制。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1.html</guid><description>&lt;h1 id="第一章-理解网络编程和socket"&gt;第一章 理解网络编程和socket&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;![INFO]
 网络编程就是编写程序使用两台连网的计算机相互交换数据.&lt;/p&gt;&lt;/blockquote&gt;
@@ -217,7 +217,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;myaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="第三步-激活监听listen"&gt;第三步: 激活监听,listen&lt;/h2&gt;
 &lt;p&gt;现在我们有了一个socket,并把它放到了合适的位置(bind),接下就能通信了吗?
-不能,还需要启用,激活它,就像家里弄了网络面板,网线,还需要网络公司给我们开通网络权限.&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10/</guid><description>&lt;p&gt;为了加大服务器同时处理用户的连接,有效的利用CPU&lt;/p&gt;
+不能,还需要启用,激活它,就像家里弄了网络面板,网线,还需要网络公司给我们开通网络权限.&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</guid><description>&lt;p&gt;为了加大服务器同时处理用户的连接,有效的利用CPU&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;多进程服务器: 创建多个进程提供服务&lt;/li&gt;
 &lt;li&gt;多路复用: 捆绑并统一管理IO对象提供服务&lt;/li&gt;
@@ -243,7 +243,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
  &lt;img loading="lazy" src="https://camo.githubusercontent.com/7c517aeff982752b7b862d181d7d4061edcb420dd3e668e3ab0a9c0704daa2a2/68747470733a2f2f692e6c6f6c692e6e65742f323031392f30312f32302f356334336461353431326239302e706e67" alt="" /&gt;
 &lt;/p&gt;
 &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;从图中可以看出，父进程调用 fork 函数的同时复制出子进程，并分别得到 fork 函数的返回值。但复制前，父进程将全局变量 gval 增加到 11,将局部变量 lval 的值增加到 25，因此在这种状态下完成进程复制。复制完成后根据 fork 函数的返回类型区分父子进程。父进程的 lval 的值增加 1 ，但这不会影响子进程的 lval 值。同样子进程将 gval 的值增加 1 也不会影响到父进程的 gval 。因为 fork 函数调用后分成了完全不同的进程，只是二者共享同一段代码而已。接下来给出一个例子：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2/</guid><description>&lt;h1 id="socket类型与协议设置"&gt;socket类型与协议设置&lt;/h1&gt;
+&lt;p&gt;从图中可以看出，父进程调用 fork 函数的同时复制出子进程，并分别得到 fork 函数的返回值。但复制前，父进程将全局变量 gval 增加到 11,将局部变量 lval 的值增加到 25，因此在这种状态下完成进程复制。复制完成后根据 fork 函数的返回类型区分父子进程。父进程的 lval 的值增加 1 ，但这不会影响子进程的 lval 值。同样子进程将 gval 的值增加 1 也不会影响到父进程的 gval 。因为 fork 函数调用后分成了完全不同的进程，只是二者共享同一段代码而已。接下来给出一个例子：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_2.html</guid><description>&lt;h1 id="socket类型与协议设置"&gt;socket类型与协议设置&lt;/h1&gt;
 &lt;p&gt;下我只与我理解的内容,如果全部都写,那么就变在了抄书了.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;int socket(int domain, int type, int protocol);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中的&lt;code&gt;domain&lt;/code&gt;参数指定协议族,常见的有AF_INET, AF_INET6, AF_UNIX等,分别对应IPv4, IPv6, Unix Domain Socket.&lt;/p&gt;
@@ -272,7 +272,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;%c&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tot&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;read_len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3/</guid><description>&lt;h1 id="地址族与数据序列"&gt;地址族与数据序列&lt;/h1&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_3.html</guid><description>&lt;h1 id="地址族与数据序列"&gt;地址族与数据序列&lt;/h1&gt;
 &lt;p&gt;书上讲解了一些&lt;code&gt;ipv4&lt;/code&gt;地址的概念，以及&lt;code&gt;ipv6&lt;/code&gt;地址的概念。&lt;/p&gt;
 &lt;p&gt;又说了一些端口号的概念，以及端口号的作用。&lt;/p&gt;
 &lt;p&gt;但是还是很复杂的,直接理解我第一章节说的内容,每个概念只有一句话.但是这是建立在我对网络编程的了解基础上的.&lt;/p&gt;
@@ -305,7 +305,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_family&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;htons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serv_port&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s_addr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;inet_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;INADDR_ANY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4/</guid><description>&lt;h1 id="基于tcp的服务器端客户端"&gt;基于tcp的服务器端/客户端&lt;/h1&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_4.html</guid><description>&lt;h1 id="基于tcp的服务器端客户端"&gt;基于tcp的服务器端/客户端&lt;/h1&gt;
 &lt;p&gt;详细的内容看这里,我就不复制了:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote/blob/master/ch04/README.md" target="_blank" rel="noreferrer nofollow"&gt;https://github.com/riba2534/TCP-IP-NetworkNote/blob/master/ch04/README.md&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;p class="imgp"&gt;
@@ -388,7 +388,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;num_read&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面的代码中,&lt;code&gt;read_data&lt;/code&gt;函数封装了&lt;code&gt;read&lt;/code&gt;函数的调用。它检查&lt;code&gt;read&lt;/code&gt;函数的返回值:&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5/</guid><description>&lt;h1 id="基于tcp的服务器端客户端2"&gt;基于tcp的服务器端/客户端(2)&lt;/h1&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面的代码中,&lt;code&gt;read_data&lt;/code&gt;函数封装了&lt;code&gt;read&lt;/code&gt;函数的调用。它检查&lt;code&gt;read&lt;/code&gt;函数的返回值:&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_5.html</guid><description>&lt;h1 id="基于tcp的服务器端客户端2"&gt;基于tcp的服务器端/客户端(2)&lt;/h1&gt;
 &lt;p&gt;本章节详细的讲解了TCP 中必要的理论知识&lt;/p&gt;
 &lt;p&gt;回声客户端问题的解决办法
 这个问题其实很容易解决，因为可以提前接受数据的大小。若之前传输了20字节长的字符串，则再接收时循环调用 read 函数读取 20 个字节即可。既然有了解决办法，核心那么代码如下：&lt;/p&gt;
@@ -437,7 +437,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;[SYN+ACK] SEQ: 2000, ACK: 1001
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;[ACK] SEQ: 1001, ACK: 2001
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="2-tcp传输"&gt;2. TCP传输&lt;/h3&gt;
-&lt;h3 id="3-tcp断开"&gt;3. TCP断开&lt;/h3&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7/</guid><description>&lt;h2 id="1-单方面断开连接带来的问题"&gt;1 单方面断开连接带来的问题&lt;/h2&gt;
+&lt;h3 id="3-tcp断开"&gt;3. TCP断开&lt;/h3&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_7.html</guid><description>&lt;h2 id="1-单方面断开连接带来的问题"&gt;1 单方面断开连接带来的问题&lt;/h2&gt;
 &lt;p&gt;主机 A 发送完最后的数据后，调用 close 函数断开了最后的连接，之后主机 A 无法再接受主机 B 传输的数据。实际上，是完全无法调用与接受数据相关的函数。最终，由主机 B 传输的、主机 A 必须要接受的数据也销毁了。&lt;/p&gt;
 &lt;h2 id="2-shutdown函数的作用"&gt;2. shutdown函数的作用&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
@@ -463,7 +463,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;p&gt;此处「Thank you」的传递是多余的，这只是用来模拟客户端断开连接前还有数据要传输的情况。此时程序的还嫌难度并不小，因为传输文件的服务器端只需连续传输文件数据即可，而客户端无法知道需要接收数据到何时。客户端也没办法无休止的调用输入函数，因为这有可能导致程序&lt;strong&gt;阻塞&lt;/strong&gt;。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;是否可以让服务器和客户端约定一个代表文件尾的字符？&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;这种方式也有问题，因为这意味这文件中不能有与约定字符相同的内容。为了解决该问题，服务端应最后向客户端传递 EOF 表示文件传输结束。客户端通过函数返回值接受 EOF ，这样可以避免与文件内容冲突。那么问题来了，服务端如何传递 EOF ？&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8/</guid><description>&lt;h2 id="第-8-章-域名及网络地址"&gt;第 8 章 域名及网络地址&lt;/h2&gt;
+&lt;p&gt;这种方式也有问题，因为这意味这文件中不能有与约定字符相同的内容。为了解决该问题，服务端应最后向客户端传递 EOF 表示文件传输结束。客户端通过函数返回值接受 EOF ，这样可以避免与文件内容冲突。那么问题来了，服务端如何传递 EOF ？&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</guid><description>&lt;h2 id="第-8-章-域名及网络地址"&gt;第 8 章 域名及网络地址&lt;/h2&gt;
 &lt;p&gt;本章代码，在&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noreferrer nofollow"&gt;TCP-IP-NetworkNote&lt;/a&gt;中可以找到。&lt;/p&gt;
 &lt;h3 id="81-域名系统"&gt;8.1 域名系统&lt;/h3&gt;
 &lt;p&gt;DNS 是对IP地址和域名进行相互转换的系统，其核心是 DNS 服务器&lt;/p&gt;
@@ -495,7 +495,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;h_length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Length of address. */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;h_addr_list&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* List of addresses from name server. */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从上述结构体可以看出，不止返回IP信息，同事还带着其他信息一起返回。域名转换成IP时只需要关注 h_addr_list 。下面简要说明上述结构体的成员：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9/</guid><description>&lt;h2 id="第-9-章-套接字的多种可选项"&gt;第 9 章 套接字的多种可选项&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从上述结构体可以看出，不止返回IP信息，同事还带着其他信息一起返回。域名转换成IP时只需要关注 h_addr_list 。下面简要说明上述结构体的成员：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_9.html</guid><description>&lt;h2 id="第-9-章-套接字的多种可选项"&gt;第 9 章 套接字的多种可选项&lt;/h2&gt;
 &lt;p&gt;本章代码，在&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noreferrer nofollow"&gt;TCP-IP-NetworkNote&lt;/a&gt;中可以找到。&lt;/p&gt;
 &lt;h3 id="91-套接字可选项和-io-缓冲大小"&gt;9.1 套接字可选项和 I/O 缓冲大小&lt;/h3&gt;
 &lt;p&gt;我们进行套接字编程时往往只关注数据通信，而忽略了套接字具有的不同特性。但是，理解这些特性并根据实际需要进行更改也很重要&lt;/p&gt;
@@ -615,7 +615,7 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;从表中可以看出，套接字可选项是分层的。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme/</guid><description>&lt;h2 id="说明"&gt;说明&lt;/h2&gt;
+&lt;p&gt;从表中可以看出，套接字可选项是分层的。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/readme.html</guid><description>&lt;h2 id="说明"&gt;说明&lt;/h2&gt;
 &lt;p&gt;作者: 韩国 - 尹圣雨&lt;/p&gt;
 &lt;p&gt;&lt;p class="imgp"&gt;
  &lt;img loading="lazy" src="readme/assets/image.png" alt="alt text" /&gt;

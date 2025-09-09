@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Exercises on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/exercises/</link><description>Recent content in Exercises on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 04 Sep 2025 01:06:23 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/exercises/index.xml" rel="self" type="application/rss+xml"/><item><title>MongoDB 练习 1</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise/</guid><description>&lt;h2 id="5"&gt;5&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Exercises on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/exercises.html</link><description>Recent content in Exercises on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 04 Sep 2025 01:06:23 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/exercises/index.xml" rel="self" type="application/rss+xml"/><item><title>MongoDB 练习 1</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise.html</guid><description>&lt;h2 id="5"&gt;5&lt;/h2&gt;
 &lt;ol start="5"&gt;
 &lt;li&gt;Write a MongoDB query to display all the restaurant which is in the borough Bronx.&lt;/li&gt;
 &lt;/ol&gt;
@@ -22,7 +22,7 @@
 &lt;ol start="10"&gt;
 &lt;li&gt;Write a MongoDB query to find the restaurants which locate in latitude value less than -95.754168.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;这里考察我们如何查询数组里某个下标的值&lt;/p&gt;</description></item><item><title>MongoDB 练习 2</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise2/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise2/</guid><description>&lt;h2 id="21"&gt;21&lt;/h2&gt;
+&lt;p&gt;这里考察我们如何查询数组里某个下标的值&lt;/p&gt;</description></item><item><title>MongoDB 练习 2</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise2.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise2.html</guid><description>&lt;h2 id="21"&gt;21&lt;/h2&gt;
 &lt;p&gt;Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which prepared dish except &amp;lsquo;American&amp;rsquo; and &amp;lsquo;Chinees&amp;rsquo; or restaurant&amp;rsquo;s name begins with letter &amp;lsquo;Wil&amp;rsquo;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;restaurants&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;$or&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
@@ -45,7 +45,7 @@
 &lt;ol start="22"&gt;
 &lt;li&gt;Write a MongoDB query to find the restaurant Id, name, and grades for those restaurants which achieved a grade of &amp;ldquo;A&amp;rdquo; and scored 11 on an ISODate &amp;ldquo;2014-08-11T00:00:00Z&amp;rdquo; among many of survey dates.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;达到了 grade A 且 scored 11. 首先,我们要理解这里的意思到底是什么意思?&lt;/p&gt;</description></item><item><title>MongoDB 练习 3</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise3/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise3/</guid><description>&lt;h2 id="41"&gt;41&lt;/h2&gt;
+&lt;p&gt;达到了 grade A 且 scored 11. 首先,我们要理解这里的意思到底是什么意思?&lt;/p&gt;</description></item><item><title>MongoDB 练习 3</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</guid><description>&lt;h2 id="41"&gt;41&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;没有什么难度&lt;/p&gt;
@@ -59,7 +59,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里用到了&lt;code&gt;$all&lt;/code&gt;运算符, 表示后面的值&lt;code&gt;[2,6]&lt;/code&gt;都要单独同时匹配&lt;/p&gt;
 &lt;h2 id="42"&gt;42&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American or Chinese.&lt;/p&gt;</description></item><item><title>MongoDB 练习 4</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise4/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise4/</guid><description>&lt;h2 id="51"&gt;51&lt;/h2&gt;
+&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American or Chinese.&lt;/p&gt;</description></item><item><title>MongoDB 练习 4</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</guid><description>&lt;h2 id="51"&gt;51&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Write a MongoDB query to find the average score for each restaurant.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;一个数组的平均值&lt;/p&gt;
