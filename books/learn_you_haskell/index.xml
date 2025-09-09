@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>learn you haskell for great good on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/</link><description>Recent content in learn you haskell for great good on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Sep 2025 04:54:52 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/books/learn_you_haskell/index.xml" rel="self" type="application/rss+xml"/><item><title>chapter 1 Introduction</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1/</guid><description>&lt;p&gt;这篇文章是《Learn You a Haskell for Great Good!》教程的引言，主要内容可以总结为以下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;教程目标&lt;/strong&gt;：本教程主要面向有命令式编程（如 C++, Java, Python）经验，但初次接触函数式编程的开发者。作者建议通过阅读多种资料来学习Haskell，因为它起初可能感觉很奇怪，但一旦“开窍”就会变得容易。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Haskell的核心特性&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;纯函数式 (Purely Functional)&lt;/strong&gt;：你不是告诉计算机“如何做”，而是定义“是什么”。变量一旦赋值就不可改变，函数没有副作用，这保证了同样的输入总能得到同样的输出。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;惰性求值 (Lazy)&lt;/strong&gt;：代码只在真正需要结果时才被执行，这使得程序更高效，并能轻松处理无限大的数据结构。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;静态类型 (Statically Typed)&lt;/strong&gt;：编译器在编译阶段就能捕捉大量类型错误。同时，其强大的类型推导系统意味着你无需为每个变量都显式声明类型。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优雅简洁 (Elegant and Concise)&lt;/strong&gt;：代码通常比等效的命令式代码更短，更易于维护。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如何开始学习&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;你需要一个文本编辑器和Haskell编译器（GHC）。&lt;/li&gt;
+&lt;li&gt;推荐使用 &lt;code&gt;GHCup&lt;/code&gt; 这个工具来安装所需环境。&lt;/li&gt;
+&lt;li&gt;学习时，可以使用 &lt;code&gt;ghci&lt;/code&gt; 这个交互式环境来加载 &lt;code&gt;.hs&lt;/code&gt; 文件并实时测试函数，这样边学边练效率更高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>chapter 2 Starting Out</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2/</guid><description/></item></channel></rss>
