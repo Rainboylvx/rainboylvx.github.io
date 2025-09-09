@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>线性代数及其应用 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/books/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/index.html</link><description>Recent content in 线性代数及其应用 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Sep 2025 12:25:36 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/books/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>第一章</title><link>https://hugo-dead-simple.netlify.com/books/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/chapter_1.html</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/chapter_1.html</guid><description>&lt;h2 id="1-线性方程组"&gt;1 线性方程组&lt;/h2&gt;
+&lt;h3 id="11-相关定义"&gt;1.1 相关定义&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;线性方程&lt;/li&gt;
+&lt;li&gt;线性方程组&lt;/li&gt;
+&lt;li&gt;解集&lt;/li&gt;
+&lt;li&gt;线性方程组&lt;u&gt;等价&lt;/u&gt;的定义: 解的集合 (解集) 相等&lt;/li&gt;
+&lt;li&gt;相容 - 有解,不相容&lt;/li&gt;
+&lt;li&gt;系数矩阵&lt;/li&gt;
+&lt;li&gt;增广矩阵&lt;/li&gt;
+&lt;li&gt;解方程组的一般方法: 消去未知数 (&lt;strong&gt;消元法&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;初等行变换
+&lt;ol&gt;
+&lt;li&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://s2.loli.net/2025/08/05/6ez5AUSBpvMW7s9.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;线性方程组的两个基本问题
+&lt;ol&gt;
+&lt;li&gt;方程组是否相容，即它是否&lt;u&gt;至少有一个解 (有解)&lt;/u&gt;？&lt;/li&gt;
+&lt;li&gt;若它有解，它是否只有一个解，即&lt;u&gt;解是否唯一&lt;/u&gt;？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="2-行化简与阶梯型矩阵"&gt;2 行化简与阶梯型矩阵&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;非零行&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;非零行的&lt;strong&gt;先导元素&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!summary]+ 行阶梯形矩阵定义
+定义一个矩阵称为阶梯形（或行阶梯形），若它有以下三个性质：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;每一非零行都在每一零行之上&lt;/li&gt;
+&lt;li&gt;某一行的先导元素所在的列位于前一行先导元素的右边&lt;/li&gt;
+&lt;li&gt;某一先导元素所在列下方元素都是零，&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;若一个阶梯形矩阵还满足以下性质，则称它为&lt;strong&gt;简化阶梯形&lt;/strong&gt;（或简化行阶梯形）
+4. 每一非零行的先导元素是 &lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6444em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+5. 每一先导元素 &lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6444em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 是该元素所在列的唯一非零元素&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://s2.loli.net/2025/08/05/xNfRO2I4hJzCMeY.png" alt="image.png" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;1. 任何非零矩阵都可以行化简(即使用初等行变化)变为阶梯形矩阵
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;2. 一个矩阵只能化为唯一的简化阶梯型矩阵
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="21-定理-1-简化阶梯形矩阵的唯一性"&gt;2.1 定理 1: 简化阶梯形矩阵的唯一性&lt;/h3&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://s2.loli.net/2025/08/05/NAuEo3Mm4hOHIZ9.png" alt="" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基本变量 (先导变量)&lt;/li&gt;
+&lt;li&gt;自由变量&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="22-定理-2-解的存在于维一性定理"&gt;2.2 定理 2: 解的存在于维一性定理&lt;/h3&gt;
+&lt;p&gt;&lt;p class="imgp"&gt;
+ &lt;img loading="lazy" src="https://s2.loli.net/2025/08/05/LBoZ9aiqXE52tU8.png" alt="image.png" /&gt;
+&lt;/p&gt;
+&lt;/p&gt;</description></item></channel></rss>

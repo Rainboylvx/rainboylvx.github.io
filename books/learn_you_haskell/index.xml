@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>learn you haskell for great good on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/index.html</link><description>Recent content in learn you haskell for great good on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Sep 2025 04:54:52 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/books/learn_you_haskell/index.xml" rel="self" type="application/rss+xml"/><item><title>chapter 1 Introduction</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1.html</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1.html</guid><description>&lt;p&gt;这篇文章是《Learn You a Haskell for Great Good!》教程的引言，主要内容可以总结为以下几点：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>learn you haskell for great good on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/index.html</link><description>Recent content in learn you haskell for great good on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Sep 2025 12:25:31 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/books/learn_you_haskell/index.xml" rel="self" type="application/rss+xml"/><item><title>chapter 1 Introduction</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1.html</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_1.html</guid><description>&lt;p&gt;这篇文章是《Learn You a Haskell for Great Good!》教程的引言，主要内容可以总结为以下几点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;教程目标&lt;/strong&gt;：本教程主要面向有命令式编程（如 C++, Java, Python）经验，但初次接触函数式编程的开发者。作者建议通过阅读多种资料来学习Haskell，因为它起初可能感觉很奇怪，但一旦“开窍”就会变得容易。&lt;/p&gt;
@@ -20,4 +20,31 @@
 &lt;li&gt;学习时，可以使用 &lt;code&gt;ghci&lt;/code&gt; 这个交互式环境来加载 &lt;code&gt;.hs&lt;/code&gt; 文件并实时测试函数，这样边学边练效率更高。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>chapter 2 Starting Out</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2.html</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2.html</guid><description/></item></channel></rss>
+&lt;/ol&gt;</description></item><item><title>chapter 2 Starting Out</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2.html</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_2.html</guid><description>&lt;h2 id="这是什么页面"&gt;这是什么页面？&lt;/h2&gt;
+&lt;p&gt;这是Haskell编程教程的“Starting Out”章节，旨在介绍Haskell语言的基础知识，包括交互模式、基本操作、函数定义、列表和元组等核心概念。页面通过示例代码和解释帮助初学者快速上手。&lt;/p&gt;
+&lt;h2 id="主要内容"&gt;主要内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GHCI交互模式&lt;/strong&gt;：Haskell使用GHCI（Glasgow Haskell Compiler Interactive）进行交互式编程，允许用户直接输入表达式并查看结果，例如算术运算（如 &lt;code&gt;2 + 15&lt;/code&gt;）和布尔操作（如 &lt;code&gt;True &amp;amp;&amp;amp; False&lt;/code&gt;）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;基本操作&lt;/strong&gt;：包括算术运算符（+、-、*、/）、布尔运算符（&amp;amp;&amp;amp;、||、not）和相等比较（==、/=）。Haskell是强类型语言，操作数类型必须匹配，否则会报错。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;函数定义与调用&lt;/strong&gt;：函数通过空格分隔参数调用（如 &lt;code&gt;succ 8&lt;/code&gt; 返回 9）。函数可以定义为前缀或中缀形式（使用反引号，如 &lt;code&gt;92 `div` 10&lt;/code&gt;）。示例包括自定义函数如 &lt;code&gt;doubleMe x = x + x&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;列表&lt;/strong&gt;：列表是同质数据结构，用方括号表示（如 &lt;code&gt;[1,2,3]&lt;/code&gt;）。支持操作如连接（++）、cons操作符（:）、索引（!!），以及常用函数（head、tail、length、reverse等）。列表推导允许过滤和转换元素（如 &lt;code&gt;[x*2 | x &amp;lt;- [1..10], x*2 &amp;gt;= 12]&lt;/code&gt;）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;范围和无列表&lt;/strong&gt;：使用范围（如 &lt;code&gt;[1..20]&lt;/code&gt;）生成序列，支持步长（如 &lt;code&gt;[2,4..20]&lt;/code&gt;）。无限列表可通过函数如 &lt;code&gt;cycle&lt;/code&gt; 和 &lt;code&gt;repeat&lt;/code&gt; 创建，并结合 &lt;code&gt;take&lt;/code&gt; 截取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;元组&lt;/strong&gt;：元组存储固定数量的异质元素，用括号表示（如 &lt;code&gt;(1,&amp;quot;a&amp;quot;)&lt;/code&gt;）。与列表不同，元组大小和类型固定。常用函数包括 &lt;code&gt;fst&lt;/code&gt; 和 &lt;code&gt;snd&lt;/code&gt; 用于 pairs，以及 &lt;code&gt;zip&lt;/code&gt; 用于合并列表成元组列表。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;实用示例&lt;/strong&gt;：页面包含多个代码示例，如计算直角三角形周长，演示如何结合列表推导和条件过滤解决问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="目的"&gt;目的&lt;/h2&gt;
+&lt;p&gt;该页面为Haskell初学者提供实践基础，通过交互式示例和简单函数定义，培养函数式编程思维。重点在于理解类型系统、列表处理和函数组合，为后续学习铺垫。&lt;/p&gt;</description></item></channel></rss>
