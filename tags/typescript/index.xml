@@ -108,22 +108,22 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 错误：`null` 不能赋值给 `Object`
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;Object&lt;/code&gt; 类型实际上包含了 &lt;strong&gt;所有类型&lt;/strong&gt;，除 &lt;code&gt;null&lt;/code&gt; 和 &lt;code&gt;undefined&lt;/code&gt; 之外。&lt;/p&gt;</description></item><item><title>typescript 学习笔记</title><link>https://hugo-dead-simple.netlify.com/typescript/index.html</link><pubDate>Mon, 14 Mar 2022 14:12:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/index.html</guid><description>&lt;ul&gt;
-&lt;li&gt;&lt;a href="readme.md" &gt;首页&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="debug" &gt;如何调试&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="typescript_program" &gt;笔记:ts编程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="%e5%af%b9%e8%b1%a1%e5%ad%97%e9%9d%a2%e9%87%8f" &gt;对象字面量的使用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="object_object" &gt;TypeScript 中的 object 和 Object 的区别&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="preverseconstenums" &gt;preserveConstEnums编译器选项&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="src/Decorator/index" &gt;装饰器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/readme.html"&gt;首页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/debug.html"&gt;如何调试&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/typescript_program.html"&gt;笔记:ts编程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F.html"&gt;对象字面量的使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/object_object.html"&gt;TypeScript 中的 object 和 Object 的区别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/preverseconstenums.html"&gt;preserveConstEnums编译器选项&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/typescript/src/decorator.html"&gt;装饰器&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>typescript 学习笔记</title><link>https://hugo-dead-simple.netlify.com/typescript/readme.html</link><pubDate>Mon, 14 Mar 2022 14:12:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/readme.html</guid><description>&lt;h2 id="资料"&gt;资料&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.typescripttutorial.net/" target="_blank" rel="noreferrer nofollow"&gt;TypeScript Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://es6.ruanyifeng.com/" target="_blank" rel="noreferrer nofollow"&gt;阮一峰 es6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://typescript.p6p.net/typescript-tutorial/intro.html" target="_blank" rel="noreferrer nofollow"&gt;阮一峰 TypeScript 教程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html" target="_blank" rel="noreferrer nofollow"&gt;TypeScript Handbook - The TypeScript Handbook&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ts.xcatliu.com/" target="_blank" rel="noreferrer nofollow"&gt;TypeScript 入门教程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zhongsp.gitbooks.io/typescript-handbook/content/" target="_blank" rel="noreferrer nofollow"&gt;TypeScript Handbook（中文版）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.cnblogs.com/linwu-hi/collections/4343" target="_blank" rel="noreferrer nofollow"&gt;现代TypeScript高级教程- - linwu-hi - 博客园&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.typescripttutorial.net/" target="_blank" rel="noopener"&gt;TypeScript Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://es6.ruanyifeng.com/" target="_blank" rel="noopener"&gt;阮一峰 es6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://typescript.p6p.net/typescript-tutorial/intro.html" target="_blank" rel="noopener"&gt;阮一峰 TypeScript 教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html" target="_blank" rel="noopener"&gt;TypeScript Handbook - The TypeScript Handbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ts.xcatliu.com/" target="_blank" rel="noopener"&gt;TypeScript 入门教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zhongsp.gitbooks.io/typescript-handbook/content/" target="_blank" rel="noopener"&gt;TypeScript Handbook（中文版）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cnblogs.com/linwu-hi/collections/4343" target="_blank" rel="noopener"&gt;现代TypeScript高级教程- - linwu-hi - 博客园&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="安装"&gt;安装&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;yarn global add typescript ts-node
@@ -158,4 +158,4 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;jianXiaoJjieJie&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;dajiao&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;//函数对象类型
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="脚手架"&gt;脚手架&lt;/h2&gt;
-&lt;p&gt;换了一个脚手架 &lt;a href="https://github.com/xddq/nodejs-typescript-modern-starter" target="_blank" rel="noreferrer nofollow"&gt;GitHub - xddqnodejs-typescript-modern-starter Minimal and modern starter template to develop a Node.js project leveraging Typescript&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;换了一个脚手架 &lt;a href="https://github.com/xddq/nodejs-typescript-modern-starter" target="_blank" rel="noopener"&gt;GitHub - xddqnodejs-typescript-modern-starter Minimal and modern starter template to develop a Node.js project leveraging Typescript&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

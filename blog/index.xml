@@ -12,7 +12,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;Address: 20.205.243.166
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;ssh -T git@20.205.243.166
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卡死&lt;/p&gt;
-&lt;p&gt;使用在线 dns check : &lt;a href="https://dnschecker.org/#A/github.com" target="_blank" rel="noreferrer nofollow"&gt;https://dnschecker.org/#A/github.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用在线 dns check : &lt;a href="https://dnschecker.org/#A/github.com" target="_blank" rel="noopener"&gt;https://dnschecker.org/#A/github.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;p class="imgp"&gt;
  &lt;img loading="lazy" src="./images/2025-09-09.png" alt="" /&gt;
 &lt;/p&gt;
@@ -31,17 +31,17 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Warning: Permanently added &amp;#39;&lt;/span&gt;140.82.114.3&lt;span class="s1"&gt;&amp;#39; (ED25519) to the list of known hosts.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Hi Rainboylvx! You&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;成功了 !?&lt;/p&gt;</description></item><item><title>Latex数学公式手册</title><link>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C.html</link><pubDate>Sun, 07 Sep 2025 20:01:50 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C.html</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
-&lt;p&gt;准备整理一下我所使用的Latex数学公式(其实我大部分时间都在使用&lt;a href="https://katex.org/" target="_blank" rel="noreferrer nofollow"&gt;katex&lt;/a&gt; )&lt;/p&gt;
+&lt;p&gt;准备整理一下我所使用的Latex数学公式(其实我大部分时间都在使用&lt;a href="https://katex.org/" target="_blank" rel="noopener"&gt;katex&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;下面列举一些有用的资源&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;katex document &lt;a href="https://katex.org/docs/api" target="_blank" rel="noreferrer nofollow"&gt;https://katex.org/docs/api&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.cnblogs.com/1024th/p/11623258.html" target="_blank" rel="noreferrer nofollow"&gt;LaTeX公式手册(全网最全) - 樱花赞 - 博客园&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;这个显示有问题，有时间的话，我会 fork 一下修改 &lt;a href="https://1024th.github.io/MathJax_Tutorial_CN/#/quickstart" target="_blank" rel="noreferrer nofollow"&gt;https://1024th.github.io/MathJax_Tutorial_CN/#/quickstart&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;在线latex公式编辑器 &lt;a href="https://www.latexlive.com/" target="_blank" rel="noreferrer nofollow"&gt;https://www.latexlive.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;katex document &lt;a href="https://katex.org/docs/api" target="_blank" rel="noopener"&gt;https://katex.org/docs/api&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cnblogs.com/1024th/p/11623258.html" target="_blank" rel="noopener"&gt;LaTeX公式手册(全网最全) - 樱花赞 - 博客园&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;这个显示有问题，有时间的话，我会 fork 一下修改 &lt;a href="https://1024th.github.io/MathJax_Tutorial_CN/#/quickstart" target="_blank" rel="noopener"&gt;https://1024th.github.io/MathJax_Tutorial_CN/#/quickstart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;在线latex公式编辑器 &lt;a href="https://www.latexlive.com/" target="_blank" rel="noopener"&gt;https://www.latexlive.com/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="latex-公式手册"&gt;Latex 公式手册&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;转载自: &lt;a href="https://blog.csdn.net/Yushan_Ji/article/details/134322574" target="_blank" rel="noreferrer nofollow"&gt;https://blog.csdn.net/Yushan_Ji/article/details/134322574&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;转载自: &lt;a href="https://blog.csdn.net/Yushan_Ji/article/details/134322574" target="_blank" rel="noopener"&gt;https://blog.csdn.net/Yushan_Ji/article/details/134322574&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id="基本符号"&gt;基本符号&lt;/h3&gt;
 &lt;hr&gt;
 &lt;h4 id="小写希腊字母"&gt;小写希腊字母&lt;/h4&gt;
@@ -120,28 +120,28 @@
 &lt;p&gt;大写希腊字母通常是小写希腊字母的 LATEX 语法第一个字母改为大写，见下表&lt;/p&gt;</description></item><item><title>Newnew</title><link>https://hugo-dead-simple.netlify.com/blog/newnew.html</link><pubDate>Thu, 04 Sep 2025 00:22:36 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/newnew.html</guid><description>&lt;p&gt;test git action webhook&lt;/p&gt;</description></item><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83.html</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83.html</guid><description>&lt;h2 id="自动deploy-blog-到github"&gt;自动deploy blog 到github&lt;/h2&gt;
 &lt;p&gt;参考&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2" target="_blank" rel="noreferrer nofollow"&gt;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;对应的视频教程: &lt;a href="https://www.bilibili.com/video/BV1bovfeaEtQ" target="_blank" rel="noreferrer nofollow"&gt;https://www.bilibili.com/video/BV1bovfeaEtQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener"&gt;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;对应的视频教程: &lt;a href="https://www.bilibili.com/video/BV1bovfeaEtQ" target="_blank" rel="noopener"&gt;https://www.bilibili.com/video/BV1bovfeaEtQ&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="另一个-可以-发布blog到vps服务器"&gt;另一个 可以 发布blog到vps服务器&lt;/h2&gt;
 &lt;p&gt;下面是新另外一个blog&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noreferrer nofollow"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noreferrer nofollow"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noopener"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;背景 我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;注意&lt;/p&gt;
 &lt;p&gt;本文最后更新于 2024-02-13，文中内容可能已过时。&lt;/p&gt;
-&lt;h2 id="背景"&gt;背景&lt;a href="#%e8%83%8c%e6%99%af" &gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="背景"&gt;背景&lt;a href="#%e8%83%8c%e6%99%af"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。鉴于此，我早就转向一款既美观又实用的静态博客平台——我选择了 Hugo，并选用了 FixIt 主题。恰逢过年，我拥有了许多碎片化的时间，这成为了我迁移博客的绝佳时机。&lt;/p&gt;
 &lt;p&gt;&lt;p class="imgp"&gt;
  &lt;img loading="lazy" src="https://blog.wjhwjhn.com/images/image-20240213122431630.png" alt="" /&gt;
 &lt;/p&gt;
 &lt;/p&gt;
-&lt;h2 id="问题和解决方案"&gt;问题和解决方案&lt;a href="#%e9%97%ae%e9%a2%98%e5%92%8c%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" &gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="问题和解决方案"&gt;问题和解决方案&lt;a href="#%e9%97%ae%e9%a2%98%e5%92%8c%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在迁移博客的过程中，我遇到了一系列问题。为了帮助同样面对这些挑战的读者，我在下面详细记录了我所面临的问题以及我采取的解决措施，希望这些经验能为您提供实际的帮助和指引。&lt;/p&gt;
 &lt;p&gt;警告&lt;/p&gt;
 &lt;p&gt;在迁移之前，请务必备份原有博客的文件和数据库数据，以防意外发生。&lt;/p&gt;
-&lt;h3 id="文章迁移"&gt;文章迁移&lt;a href="#%e6%96%87%e7%ab%a0%e8%bf%81%e7%a7%bb" &gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="文章迁移"&gt;文章迁移&lt;a href="#%e6%96%87%e7%ab%a0%e8%bf%81%e7%a7%bb"&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;文章内容：文章内容储存在 &lt;code&gt;typecho_contents&lt;/code&gt; 表的 &lt;code&gt;text&lt;/code&gt; 字段中，提取比较容易，只需要去除 &lt;code&gt;&amp;lt;!--markdown--&amp;gt;&lt;/code&gt; 标记即可，原先编写文章时就使用的是 markdown，所以直接创建文件即可，不过在这个过程中也遇到了不少问题
 &lt;ol&gt;
@@ -157,6 +157,6 @@
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id="评论和阅读量迁移"&gt;评论和阅读量迁移&lt;a href="#%e8%af%84%e8%ae%ba%e5%92%8c%e9%98%85%e8%af%bb%e9%87%8f%e8%bf%81%e7%a7%bb" &gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="评论和阅读量迁移"&gt;评论和阅读量迁移&lt;a href="#%e8%af%84%e8%ae%ba%e5%92%8c%e9%98%85%e8%af%bb%e9%87%8f%e8%bf%81%e7%a7%bb"&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;使用了 Twikoo 的评论系统，并解决了链接转换问题&lt;/p&gt;</description></item><item><title>Helloworld</title><link>https://hugo-dead-simple.netlify.com/blog/helloworld.html</link><pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/helloworld.html</guid><description>&lt;h2 id="hello-world"&gt;hello world&lt;/h2&gt;
-&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noreferrer nofollow"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noopener"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -2,7 +2,7 @@
 &lt;p&gt;如果实现类似的sql的 join 功能呢?&lt;/p&gt;
 &lt;p&gt;查看官方文档&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.mongodb.com/zh-cn/docs/manual/reference/operator/aggregation/lookup/" target="_blank" rel="noreferrer nofollow"&gt;$lookup（聚合）— MongoDB 手册 v8.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.mongodb.com/zh-cn/docs/manual/reference/operator/aggregation/lookup/" target="_blank" rel="noopener"&gt;$lookup（聚合）— MongoDB 手册 v8.0&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="ask"&gt;ask&lt;/h2&gt;
 &lt;ul&gt;
@@ -32,7 +32,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="使用-lookup-进行联表查询"&gt;使用 &lt;code&gt;$lookup&lt;/code&gt; 进行联表查询&lt;/h3&gt;
-&lt;p&gt;你可以使用聚合框架（&lt;code&gt;aggregate()&lt;/code&gt;）结合 &lt;code&gt;$lookup&lt;/code&gt; 来连接 &lt;code&gt;comment&lt;/code&gt; 和 &lt;code&gt;user&lt;/code&gt; 集合，并将每个评论对应的用户信息合并到评论数据中。&lt;/p&gt;</description></item><item><title>MongoDB - 在数组上查询</title><link>https://hugo-dead-simple.netlify.com/mongodb/find_on_array.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/find_on_array.html</guid><description>&lt;p&gt;&lt;a href="https://www.mongodb.com/zh-cn/docs/manual/tutorial/query-arrays/#additional-query-tutorials" target="_blank" rel="noreferrer nofollow"&gt;查询数组 - MongoDB 手册 v8.0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;你可以使用聚合框架（&lt;code&gt;aggregate()&lt;/code&gt;）结合 &lt;code&gt;$lookup&lt;/code&gt; 来连接 &lt;code&gt;comment&lt;/code&gt; 和 &lt;code&gt;user&lt;/code&gt; 集合，并将每个评论对应的用户信息合并到评论数据中。&lt;/p&gt;</description></item><item><title>MongoDB - 在数组上查询</title><link>https://hugo-dead-simple.netlify.com/mongodb/find_on_array.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/find_on_array.html</guid><description>&lt;p&gt;&lt;a href="https://www.mongodb.com/zh-cn/docs/manual/tutorial/query-arrays/#additional-query-tutorials" target="_blank" rel="noopener"&gt;查询数组 - MongoDB 手册 v8.0&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;$ne&lt;/code&gt;操作在数组的查询与我想的不一样&lt;/p&gt;
 &lt;p&gt;如果你希望能够匹配数组中有部分元素与 &amp;ldquo;red&amp;rdquo; 不匹配的文档，可以使用 $elemMatch 来精确匹配数组中的单个元素：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;newdb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
