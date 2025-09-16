@@ -53,32 +53,13 @@
 用于网络上不同主机的进程间通信&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;我的理解: socket就是对前面学习的tcp/ip的代码封装,但是位于系统的内核,也就是说提供给用户的一组API,用于网络通信.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[!WARNING]
-socket 这里理解成&amp;quot;插座&amp;quot;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;mindmap
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; root((socket需要的属性))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; 地址: sockaddr_in
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; sin_addr
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; sin_port
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; sin_family
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="ipv4-socket-地址结构体"&gt;ipv4 socket 地址结构体&lt;/h2&gt;
-&lt;p&gt;ipv4 socket地址结构体,在头文件&lt;code&gt;netinet/in.h&lt;/code&gt;中定义。 &lt;code&gt;sockaddr_in&lt;/code&gt;结构体定义如下：&lt;/p&gt;
-&lt;p&gt;使用&lt;code&gt;man 7 ip&lt;/code&gt;命令查看&lt;code&gt;sockaddr_in&lt;/code&gt;结构体的定义：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;sa_family_t&lt;/span&gt; &lt;span class="n"&gt;sin_family&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 地址族，ipv4 就是AF_INET
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="kt"&gt;in_port_t&lt;/span&gt; &lt;span class="n"&gt;sin_port&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 端口号 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt; &lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// IP地址
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;sin_zero&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// 未使用,注意这个在man 7 ip中没有说明
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;//暗示程序员不需要知道这个??
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;//当成上面的普通的来用?
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;sin_family&lt;/code&gt;字段表示地址族,socket在设计的时候还可以用于其它的协议,不仅是tcp/ip,比如还有&lt;code&gt;unix&lt;/code&gt;域，对于IPv4地址，该值为&lt;code&gt;AF_INET&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sin_port&lt;/code&gt;字段表示端口号，使用网络字节序（big-endian）存储。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sin_addr&lt;/code&gt;字段表示IP地址，使用&lt;code&gt;struct in_addr&lt;/code&gt;结构体表示。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;struct in_addr&lt;/code&gt;结构体定义如下：&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</guid><description>&lt;h2 id="线程安全的对象生命周期管理"&gt;线程安全的对象生命周期管理&lt;/h2&gt;
+
+ &lt;div class="admonition warning"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;&lt;path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;Warning&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;socket 这里理解成&amp;quot;插座&amp;quot;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter1.html</guid><description>&lt;h2 id="线程安全的对象生命周期管理"&gt;线程安全的对象生命周期管理&lt;/h2&gt;
 &lt;p&gt;在多线种的情况下,编写一个线程安全的类尤为困难.这里想要使用&lt;code&gt;share_ptr&lt;/code&gt;来完全这些问题.&lt;/p&gt;
 &lt;p&gt;1.1.2 MutexLock与MutexLockGuard&lt;/p&gt;
 &lt;blockquote&gt;
