@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Sep 2025 02:13:09 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="起因"&gt;起因&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Sep 2025 02:16:47 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
 &lt;p&gt;最近在使用archlinux,发现网络延迟很高,但是其他设备正常,于是开始排查问题.&lt;/p&gt;
-&lt;h2 id="问题排查"&gt;问题排查&lt;/h2&gt;
+&lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Wi-Fi 省电模式 (Power Save Management): 这是 最可疑的软件层面原因。Linux 内核为了节省电力，可能会让 Wi-Fi 网卡频繁进入休眠和唤醒状态，导致响应延迟急剧增加。&lt;/p&gt;&lt;/blockquote&gt;
@@ -10,7 +10,7 @@
 &lt;p&gt;临时解决&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo iwconfig &amp;lt;your wlan-name&amp;gt; power off
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ping值,恢复正常&lt;/p&gt;
-&lt;h2 id="解决方案"&gt;解决方案&lt;/h2&gt;
+&lt;h2 id="3-解决方案"&gt;3. 解决方案&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo vim /etc/NetworkManager/conf.d/wifi-powersave.conf
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加以下内容：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;[&lt;/span&gt;connection&lt;span class="o"&gt;]&lt;/span&gt;
