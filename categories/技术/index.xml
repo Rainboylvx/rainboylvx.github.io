@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/categories/%E6%8A%80%E6%9C%AF.html</link><description>Recent content in 技术 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 14 Oct 2025 14:33:36 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>解决M1下lldb不能调试的问题</title><link>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="问题描述"&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;在使用 Apple M1 芯片的 Mac 通过 SSH 远程连接时，尝试使用 LLDB 进行调试时遇到以下错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;lldb error: process exited with status -1 &lt;span class="o"&gt;(&lt;/span&gt;this is a non-interactive debug session, cannot get permission to debug processes.&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个问题通常出现在以下场景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过 SSH 远程连接到 M1 Mac&lt;/li&gt;
+&lt;li&gt;在终端复用器（如 tmux、zellij）中使用 LLDB&lt;/li&gt;
+&lt;li&gt;尝试调试非当前用户拥有的进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="解决方案"&gt;解决方案&lt;/h2&gt;
+&lt;p&gt;这个问题的原因是 macOS 的安全机制限制了非交互式会话中的调试权限。解决方法很简单：&lt;/p&gt;
+&lt;h3 id="1-启用开发者工具安全权限"&gt;1. 启用开发者工具安全权限&lt;/h3&gt;
+&lt;p&gt;在终端中执行以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo DevToolsSecurity -enable
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会启用开发者工具的安全设置，允许 LLDB 在非交互式会话中获取调试权限。&lt;/p&gt;
+&lt;h3 id="2-验证配置"&gt;2. 验证配置&lt;/h3&gt;
+&lt;p&gt;执行以下命令验证配置是否成功：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;DevToolsSecurity --status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果显示 &amp;ldquo;Developer tools security is ENABLED.&amp;rdquo; 则表示配置成功。&lt;/p&gt;
+&lt;h2 id="适用场景"&gt;适用场景&lt;/h2&gt;
+&lt;p&gt;这个解决方案适用于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Apple M1/M2/M3 芯片的 Mac&lt;/li&gt;
+&lt;li&gt;✅ 通过 SSH 远程连接调试&lt;/li&gt;
+&lt;li&gt;✅ 在 tmux、zellij 等终端复用器中调试&lt;/li&gt;
+&lt;li&gt;✅ macOS Monterey 及以上版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="参考来源"&gt;参考来源&lt;/h2&gt;
+&lt;p&gt;这个解决方案来自 Stack Overflow 的相关讨论：&lt;a href="https://stackoverflow.com/questions/70748064/cant-debug-using-lldb-on-apple-m1-over-ssh" target="_blank" rel="noopener"&gt;Can&amp;rsquo;t debug using lldb on Apple M1 over SSH&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
