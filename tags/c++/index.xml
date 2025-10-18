@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C++ on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/c++.html</link><description>Recent content in C++ on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 18 Oct 2025 04:42:02 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
+&lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
+&lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么选择 Cairo？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;高质量输出&lt;/strong&gt;：无论是生成用于打印的 PDF，还是用于网页的 SVG，Cairo 都能确保图形边缘平滑、无锯齿。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多格式支持&lt;/strong&gt;：一次编写，多处渲染。Cairo 支持多种输出目标（称为 “Surface”），包括 PNG 图片、PDF、SVG、PostScript，甚至直接渲染到窗口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;跨平台&lt;/strong&gt;：作为业界标准之一，Cairo 在 Linux、macOS 和 Windows 上都能完美运行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的语言绑定&lt;/strong&gt;：虽然核心库用 C 语言编写，但它拥有 C++、Python、Rust、Go 等多种语言的绑定，让你可以在自己喜欢的开发环境中使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="安装与配置"&gt;安装与配置&lt;/h3&gt;
+&lt;p&gt;在开始之前，你需要安装 Cairo 的开发库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Linux (Ubuntu/Debian) 上：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo apt-get install libcairo2-dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;在 macOS 上 (使用 Homebrew)：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;brew install cairo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;在 Windows 上 (使用 vcpkg)：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;vcpkg install cairo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，你需要告诉编译器如何找到 Cairo 的头文件和库。&lt;code&gt;pkg-config&lt;/code&gt; 是一个能帮你自动完成这项工作的利器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这条命令会输出编译和链接所需的全部参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;g++ your_program.cpp -o your_program &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --cflags --libs cairo&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="cairo-的核心概念"&gt;Cairo 的核心概念&lt;/h3&gt;
+&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item></channel></rss>

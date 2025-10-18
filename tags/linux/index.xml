@@ -3,7 +3,8 @@
 &lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Wi-Fi 省电模式 (Power Save Management): 这是 最可疑的软件层面原因。Linux 内核为了节省电力，可能会让 Wi-Fi 网卡频繁进入休眠和唤醒状态，导致响应延迟急剧增加。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Wi-Fi 省电模式 (Power Save Management): 这是 最可疑的软件层面原因。Linux 内核为了节省电力，可能会让 Wi-Fi 网卡频繁进入休眠和唤醒状态，导致响应延迟急剧增加。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo pacman -S wireless_tools
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;iwconfig wlan0 &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;&amp;#34;Power Management&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果显示为 &lt;code&gt;Power Management:on&lt;/code&gt;，说明省电模式已开启。&lt;/p&gt;

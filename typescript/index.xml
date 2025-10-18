@@ -30,14 +30,17 @@
 &lt;/ul&gt;
 &lt;h2 id="2-typeof"&gt;2. &lt;strong&gt;&lt;code&gt;typeof&lt;/code&gt; 用于获取类型&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;typeof&lt;/code&gt; 还可以用来获取 &lt;strong&gt;类型的构造函数&lt;/strong&gt;，特别是在你需要引用某个类型或类型的构造函数时。这个用途通常与 &lt;code&gt;keyof&lt;/code&gt; 一起使用来限制某个值的类型。&lt;/p&gt;</description></item><item><title>typescript_program</title><link>https://hugo-dead-simple.netlify.com/typescript/typescript_program.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/typescript_program.html</guid><description>&lt;blockquote&gt;
-&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://chengjingchao.com/2022/01/01/TypeScript-%E7%BC%96%E7%A8%8B/" target="_blank" rel="noopener"&gt;chengjingchao.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://chengjingchao.com/2022/01/01/TypeScript-%E7%BC%96%E7%A8%8B/" target="_blank" rel="noopener"&gt;chengjingchao.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;第 1 章 导言使用 TypeScript 开发的程序更安全，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;第 1 章 导言使用 TypeScript 开发的程序更安全，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;发表于 2022-01-01 | 更新于: 2022-01-06&lt;/p&gt;
 &lt;p&gt;使用 TypeScript 开发的程序&lt;strong&gt;更安全&lt;/strong&gt;，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;
 &lt;p&gt;更安全是指&lt;strong&gt;类型安全&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;类型安全：借助类型避免程序做无效的事情（无效指的是运行时程序崩溃或未崩溃，但做的事情毫无意义&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;类型安全：借助类型避免程序做无效的事情（无效指的是运行时程序崩溃或未崩溃，但做的事情毫无意义&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;举个 🌰&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -66,7 +69,8 @@
 &lt;/ul&gt;
 &lt;p&gt;在做无效事情的时候，JavaScript 没有抛出异常，而是尽自己所能，避免抛出异常。&lt;/p&gt;
 &lt;p&gt;而 JavaScript 这种特性让代码中&lt;strong&gt;错误的产生与发现脱节&lt;/strong&gt;了。导致 bug 往往是由他人转告给你的。
-到真正运行时可能才会发现错误。&lt;/p&gt;</description></item><item><title>对象字面量</title><link>https://hugo-dead-simple.netlify.com/typescript/%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F.html</guid><description>&lt;p&gt;在 TypeScript 中，&lt;strong&gt;对象字面量&lt;/strong&gt;（Object Literal）是通过花括号 &lt;code&gt;{}&lt;/code&gt; 来创建一个对象，并可以直接为其添加属性和值。这与 JavaScript 中的对象字面量使用方式类似，但 TypeScript 为对象字面量提供了类型系统，可以通过类型注解来限制对象的结构。&lt;/p&gt;
+到真正运行时可能才会发现错误。&lt;/p&gt;
+&lt;p&gt;而 TypeScript 给出错误的时间点：在输入代码的过程中，代码编辑器会给出错误消息，来提醒你。&lt;/p&gt;</description></item><item><title>对象字面量</title><link>https://hugo-dead-simple.netlify.com/typescript/%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F.html</guid><description>&lt;p&gt;在 TypeScript 中，&lt;strong&gt;对象字面量&lt;/strong&gt;（Object Literal）是通过花括号 &lt;code&gt;{}&lt;/code&gt; 来创建一个对象，并可以直接为其添加属性和值。这与 JavaScript 中的对象字面量使用方式类似，但 TypeScript 为对象字面量提供了类型系统，可以通过类型注解来限制对象的结构。&lt;/p&gt;
 &lt;h3 id="1-基本的对象字面量"&gt;1. 基本的对象字面量&lt;/h3&gt;
 &lt;p&gt;对象字面量用于创建一个新的对象，可以直接指定其属性和值：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-typescript" data-lang="typescript"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;person&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;

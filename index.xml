@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/index.html</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/index.html</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
+&lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
+&lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么选择 Cairo？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;高质量输出&lt;/strong&gt;：无论是生成用于打印的 PDF，还是用于网页的 SVG，Cairo 都能确保图形边缘平滑、无锯齿。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多格式支持&lt;/strong&gt;：一次编写，多处渲染。Cairo 支持多种输出目标（称为 “Surface”），包括 PNG 图片、PDF、SVG、PostScript，甚至直接渲染到窗口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;跨平台&lt;/strong&gt;：作为业界标准之一，Cairo 在 Linux、macOS 和 Windows 上都能完美运行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的语言绑定&lt;/strong&gt;：虽然核心库用 C 语言编写，但它拥有 C++、Python、Rust、Go 等多种语言的绑定，让你可以在自己喜欢的开发环境中使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="安装与配置"&gt;安装与配置&lt;/h3&gt;
+&lt;p&gt;在开始之前，你需要安装 Cairo 的开发库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Linux (Ubuntu/Debian) 上：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo apt-get install libcairo2-dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;在 macOS 上 (使用 Homebrew)：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;brew install cairo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;在 Windows 上 (使用 vcpkg)：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;vcpkg install cairo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，你需要告诉编译器如何找到 Cairo 的头文件和库。&lt;code&gt;pkg-config&lt;/code&gt; 是一个能帮你自动完成这项工作的利器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这条命令会输出编译和链接所需的全部参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;g++ your_program.cpp -o your_program &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --cflags --libs cairo&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="cairo-的核心概念"&gt;Cairo 的核心概念&lt;/h3&gt;
+&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;为你的可执行文件进行代码签名&lt;/strong&gt; (这是 M1/M2/M3 芯片 Mac 的特殊要求)。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;在 lldb 内部使用正确的命令来重定向输入&lt;/strong&gt;。&lt;/li&gt;
@@ -190,7 +213,8 @@
 &lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Wi-Fi 省电模式 (Power Save Management): 这是 最可疑的软件层面原因。Linux 内核为了节省电力，可能会让 Wi-Fi 网卡频繁进入休眠和唤醒状态，导致响应延迟急剧增加。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Wi-Fi 省电模式 (Power Save Management): 这是 最可疑的软件层面原因。Linux 内核为了节省电力，可能会让 Wi-Fi 网卡频繁进入休眠和唤醒状态，导致响应延迟急剧增加。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo pacman -S wireless_tools
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;iwconfig wlan0 &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;&amp;#34;Power Management&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果显示为 &lt;code&gt;Power Management:on&lt;/code&gt;，说明省电模式已开启。&lt;/p&gt;
@@ -225,7 +249,8 @@
  &lt;div class="admonition-content"&gt;
  &lt;p&gt;&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mo&gt;&amp;lt;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;→&lt;/mo&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant="normal"&gt;∣&lt;/mi&gt;&lt;mo&gt;&amp;lt;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;|x - a | &amp;lt; 1 \rightarrow |x| - |a| &amp;lt; 1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mord mathnormal"&gt;x&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6444em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;1&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;→&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mord mathnormal"&gt;x&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord"&gt;∣&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6444em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 如何证明?&lt;/p&gt;</description></item><item><title>环形均分纸牌解析</title><link>https://hugo-dead-simple.netlify.com/books/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C%E8%A7%A3%E6%9E%90.html</link><pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C%E8%A7%A3%E6%9E%90.html</guid><description>&lt;h2 id="证明1-可链化"&gt;证明1 可链化&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;P: 必然存在某个最优解: 这个最优解中存在相邻的元素没有发生交换&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;P: 必然存在某个最优解: 这个最优解中存在相邻的元素没有发生交换&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这个命题的否命题:&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant="normal"&gt;¬&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;\neg p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.625em;vertical-align:-0.1944em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;¬&lt;/span&gt;&lt;span class="mord mathnormal"&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;: 存在某个数据,这个数据的所有最优解(&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant="normal"&gt;∀&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;\forall&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6944em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;∀&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;);任意两个相邻的元素都会发生交换,&lt;/p&gt;
 &lt;p&gt;我把这种任意两个相邻元素都发生交换的情况:我称之为:&lt;strong&gt;封闭&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;显然，我们要证明的就是&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant="normal"&gt;¬&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;\neg p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.625em;vertical-align:-0.1944em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;¬&lt;/span&gt;&lt;span class="mord mathnormal"&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;是不正确的,比较直觉的想法,就是使用反正法.&lt;/p&gt;
@@ -416,7 +441,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;/ol&gt;
 &lt;h2 id="latex-公式手册"&gt;Latex 公式手册&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;转载自: &lt;a href="https://blog.csdn.net/Yushan_Ji/article/details/134322574" target="_blank" rel="noopener"&gt;https://blog.csdn.net/Yushan_Ji/article/details/134322574&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;转载自: &lt;a href="https://blog.csdn.net/Yushan_Ji/article/details/134322574" target="_blank" rel="noopener"&gt;https://blog.csdn.net/Yushan_Ji/article/details/134322574&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="基本符号"&gt;基本符号&lt;/h3&gt;
 &lt;hr&gt;
 &lt;h4 id="小写希腊字母"&gt;小写希腊字母&lt;/h4&gt;
@@ -631,7 +657,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;/ol&gt;
 &lt;p&gt;达到了 grade A 且 scored 11. 首先,我们要理解这里的意思到底是什么意思?&lt;/p&gt;</description></item><item><title>MongoDB 练习 3</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</guid><description>&lt;h2 id="41"&gt;41&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;没有什么难度&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;restaurants&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;$and&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
@@ -645,7 +672,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;blockquote&gt;
 &lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American or Chinese.&lt;/p&gt;</description></item><item><title>MongoDB 练习 4</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</guid><description>&lt;h2 id="51"&gt;51&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Write a MongoDB query to find the average score for each restaurant.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Write a MongoDB query to find the average score for each restaurant.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;一个数组的平均值&lt;/p&gt;
 &lt;p&gt;这里我遇到的第一个 &lt;code&gt;aggregate&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;restaurants&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;aggregate&lt;/span&gt;&lt;span class="p"&gt;([{&lt;/span&gt;
@@ -709,14 +737,17 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;/ul&gt;
 &lt;h2 id="2-typeof"&gt;2. &lt;strong&gt;&lt;code&gt;typeof&lt;/code&gt; 用于获取类型&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;typeof&lt;/code&gt; 还可以用来获取 &lt;strong&gt;类型的构造函数&lt;/strong&gt;，特别是在你需要引用某个类型或类型的构造函数时。这个用途通常与 &lt;code&gt;keyof&lt;/code&gt; 一起使用来限制某个值的类型。&lt;/p&gt;</description></item><item><title>typescript_program</title><link>https://hugo-dead-simple.netlify.com/typescript/typescript_program.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/typescript/typescript_program.html</guid><description>&lt;blockquote&gt;
-&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://chengjingchao.com/2022/01/01/TypeScript-%E7%BC%96%E7%A8%8B/" target="_blank" rel="noopener"&gt;chengjingchao.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://chengjingchao.com/2022/01/01/TypeScript-%E7%BC%96%E7%A8%8B/" target="_blank" rel="noopener"&gt;chengjingchao.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;第 1 章 导言使用 TypeScript 开发的程序更安全，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;第 1 章 导言使用 TypeScript 开发的程序更安全，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;发表于 2022-01-01 | 更新于: 2022-01-06&lt;/p&gt;
 &lt;p&gt;使用 TypeScript 开发的程序&lt;strong&gt;更安全&lt;/strong&gt;，常见的错误都能检查出来，写出的代码还可以作为文档。&lt;/p&gt;
 &lt;p&gt;更安全是指&lt;strong&gt;类型安全&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;类型安全：借助类型避免程序做无效的事情（无效指的是运行时程序崩溃或未崩溃，但做的事情毫无意义&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;类型安全：借助类型避免程序做无效的事情（无效指的是运行时程序崩溃或未崩溃，但做的事情毫无意义&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;举个 🌰&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -745,7 +776,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;/ul&gt;
 &lt;p&gt;在做无效事情的时候，JavaScript 没有抛出异常，而是尽自己所能，避免抛出异常。&lt;/p&gt;
 &lt;p&gt;而 JavaScript 这种特性让代码中&lt;strong&gt;错误的产生与发现脱节&lt;/strong&gt;了。导致 bug 往往是由他人转告给你的。
-到真正运行时可能才会发现错误。&lt;/p&gt;</description></item><item><title>完美实现 Hugo 博客暗黑模式切换：从原理到实践</title><link>https://hugo-dead-simple.netlify.com/frontend/switch_light_drak_theme.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/frontend/switch_light_drak_theme.html</guid><description>&lt;p&gt;在当今的用户体验设计中，提供暗黑模式（Dark Mode）几乎已成为标配。它不仅能减少眼部疲劳，在低光环境下也更加舒适。本文将详细记录如何为一个 Hugo 网站（实际上适用于任何静态网站）添加一个功能完善、体验流畅的主题切换器。&lt;/p&gt;
+到真正运行时可能才会发现错误。&lt;/p&gt;
+&lt;p&gt;而 TypeScript 给出错误的时间点：在输入代码的过程中，代码编辑器会给出错误消息，来提醒你。&lt;/p&gt;</description></item><item><title>完美实现 Hugo 博客暗黑模式切换：从原理到实践</title><link>https://hugo-dead-simple.netlify.com/frontend/switch_light_drak_theme.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/frontend/switch_light_drak_theme.html</guid><description>&lt;p&gt;在当今的用户体验设计中，提供暗黑模式（Dark Mode）几乎已成为标配。它不仅能减少眼部疲劳，在低光环境下也更加舒适。本文将详细记录如何为一个 Hugo 网站（实际上适用于任何静态网站）添加一个功能完善、体验流畅的主题切换器。&lt;/p&gt;
 &lt;p&gt;我们将解决一个常见痛点：&lt;strong&gt;页面刷新时的“闪烁”问题&lt;/strong&gt;，并最终实现一个堪称完美的解决方案。&lt;/p&gt;
 &lt;h2 id="最终效果"&gt;最终效果&lt;/h2&gt;
 &lt;ul&gt;
@@ -890,9 +922,11 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;h2 id="另一个-可以-发布blog到vps服务器"&gt;另一个 可以 发布blog到vps服务器&lt;/h2&gt;
 &lt;p&gt;下面是新另外一个blog&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noopener"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文由 &lt;a href="http://ksria.com/simpread/" target="_blank" rel="noopener"&gt;简悦 SimpRead&lt;/a&gt; 转码， 原文地址 &lt;a href="https://blog.wjhwjhn.com/posts/7f5297a/" target="_blank" rel="noopener"&gt;blog.wjhwjhn.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;背景 我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;背景 我一直计划迁移我的博客，一方面是认为之前主题的代码展示能力不强，文章的信息密度低，不适宜于技术内容的展示；另一方面，我曾认为极为安全的 Typecho，在 2023 年 6 月爆出了 XSS 漏洞，这加剧了我迁移的紧迫性。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;注意&lt;/p&gt;
 &lt;p&gt;本文最后更新于 2024-02-13，文中内容可能已过时。&lt;/p&gt;
 &lt;h2 id="背景"&gt;背景&lt;a href="#%e8%83%8c%e6%99%af"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -942,7 +976,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;/ul&gt;
 &lt;h2 id="0x02-递推与递归"&gt;0x02 递推与递归&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;01序列: 子集枚举&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;01序列: 子集枚举&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;排列,全排列&lt;/li&gt;
 &lt;li&gt;Strange Towers of Hanoi&lt;/li&gt;
@@ -1357,11 +1392,14 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;p&gt;在多线种的情况下,编写一个线程安全的类尤为困难.这里想要使用&lt;code&gt;share_ptr&lt;/code&gt;来完全这些问题.&lt;/p&gt;
 &lt;p&gt;1.1.2 MutexLock与MutexLockGuard&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;这是一个简单的资源类，用RAII(RAII全称是“Resource Acquisition is Initialization”，直译过来是“资源获取即初始化”,也就是说在构造函数中申请分配资源，在析构函数中释放资源)手法封装互斥器的创建与销毁。在Linux下是pthread_mutex_t，默认是不可重入的（&amp;amp;2.1.1）。MutexLock一般是别的class的数据成员。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这是一个简单的资源类，用RAII(RAII全称是“Resource Acquisition is Initialization”，直译过来是“资源获取即初始化”,也就是说在构造函数中申请分配资源，在析构函数中释放资源)手法封装互斥器的创建与销毁。在Linux下是pthread_mutex_t，默认是不可重入的（&amp;amp;2.1.1）。MutexLock一般是别的class的数据成员。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;MutexLockGuard封装临界区的进入和退出，即加锁和解锁。MutexLockGuard一般是个栈上的对象，它的作用域刚好等于临界区域。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;MutexLockGuard封装临界区的进入和退出，即加锁和解锁。MutexLockGuard一般是个栈上的对象，它的作用域刚好等于临界区域。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;这两个class都不允许拷贝构造和赋值，使用原则见&amp;amp;2.1。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这两个class都不允许拷贝构造和赋值，使用原则见&amp;amp;2.1。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;1.1.3 一个线程安全的Counter示例&lt;/p&gt;
 &lt;p&gt;这里使用了神奇的&lt;code&gt;mutable&lt;/code&gt;关键字.&lt;/p&gt;
 &lt;p&gt;下面是相关的内容.&lt;/p&gt;
@@ -1375,7 +1413,8 @@ k(x_1) = \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1
 &lt;p&gt;1.3 销毁太难&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;成员函数用来保护临界区的互斥器本身必须是有效的。而析构函
-数破坏了这一假设，它会把mutex成员变量销毁掉。悲剧啊&lt;/p&gt;&lt;/blockquote&gt;
+数破坏了这一假设，它会把mutex成员变量销毁掉。悲剧啊&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;1.3.2 作为数据成员的 mutex 不能保护析构&lt;/p&gt;
 &lt;p&gt;原始指针有各种问题&lt;/p&gt;
 &lt;p&gt;1.4 线程安全的 Observer 有多难&lt;/p&gt;
@@ -1388,7 +1427,8 @@ A在析构,B的update,会产生未知情况.&lt;/p&gt;
 &lt;p&gt;1.8 应用到 Observer 上&lt;/p&gt;
 &lt;p&gt;既然通过 weak_ptr 能探查对象的生死，那么 Observer 模式的竞态条件就很容易解决，只要让 Observable 保存 weak_ptr&lt;Observer&gt; 即可&lt;/p&gt;
 &lt;p&gt;如何改成&lt;code&gt;shared_ptr&lt;/code&gt;,则对应的对象会一直存在.&lt;/p&gt;
-&lt;p&gt;1.9 再论 shared_ptr 的线程安全&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</guid><description>&lt;p&gt;1． 首要原则是尽量最低限度地共享对象， 减少需要同步的场合。
+&lt;p&gt;1.9 再论 shared_ptr 的线程安全&lt;/p&gt;
+&lt;p&gt;但是 shared_ptr 本身不是100% 线程安全的。它的引用计数本身是安全且无锁的，但对象的读写则不是&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/muduo/chapter2.html</guid><description>&lt;p&gt;1． 首要原则是尽量最低限度地共享对象， 减少需要同步的场合。
 一个对象能不暴露给别的线程就不要暴露； 如果要暴露， 优先考虑
 immutable对象； 实在不行才暴露可修改的对象， 并用同步措施来充分
 保护它。
@@ -1438,7 +1478,8 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 因此，在 cv.wait(lk); 调用时，lk 对应的互斥锁会被释放，允许其他线程在此期间执行临界区代码。当条件变量发出通知后，等待的线程会重新获得锁并继续执行。这是条件变量实现线程同步的核心机制。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_1.html</guid><description>&lt;h1 id="第一章-理解网络编程和socket"&gt;第一章 理解网络编程和socket&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;![INFO]
-网络编程就是编写程序使用两台连网的计算机相互交换数据.&lt;/p&gt;&lt;/blockquote&gt;
+网络编程就是编写程序使用两台连网的计算机相互交换数据.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这就是整个网络编程的全部内容.我觉得不需要去详细的理解TCP/IP的细节.&lt;/p&gt;
 &lt;p&gt;下面我按我的理解这一章的内容.&lt;/p&gt;
 &lt;p&gt;如果我们想到在电脑上创建一个server端的软件,用来接收其它电脑上另一个程序通过网络发来的信息,应该如何做呢? 应该按下面的流程来做&lt;/p&gt;
@@ -1492,7 +1533,9 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;myaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="第三步-激活监听listen"&gt;第三步: 激活监听,listen&lt;/h2&gt;
 &lt;p&gt;现在我们有了一个socket,并把它放到了合适的位置(bind),接下就能通信了吗?
-不能,还需要启用,激活它,就像家里弄了网络面板,网线,还需要网络公司给我们开通网络权限.&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</guid><description>&lt;p&gt;为了加大服务器同时处理用户的连接,有效的利用CPU&lt;/p&gt;
+不能,还需要启用,激活它,就像家里弄了网络面板,网线,还需要网络公司给我们开通网络权限.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;backlog&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;listen&lt;/code&gt;的其实是在&lt;code&gt;socket&lt;/code&gt;创建一个监听队列,队列大小为&lt;code&gt;backlog&lt;/code&gt;,每一个client请求连接后,就会加入到队列里,等待处理&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_10.html</guid><description>&lt;p&gt;为了加大服务器同时处理用户的连接,有效的利用CPU&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;多进程服务器: 创建多个进程提供服务&lt;/li&gt;
 &lt;li&gt;多路复用: 捆绑并统一管理IO对象提供服务&lt;/li&gt;
@@ -1703,9 +1746,11 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;不会发生超过输入缓冲大小的数据传输!&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;不会发生超过输入缓冲大小的数据传输!&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;write函数会在数据移到输出缓冲时返回.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;write函数会在数据移到输出缓冲时返回.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="1-tcp连接"&gt;1. TCP连接&lt;/h3&gt;
 &lt;p&gt;3次握手(three-way handshaking)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;[SYN] SEQ:1000 ACK:NULL
@@ -1731,14 +1776,21 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;p&gt;若向 shutdown 的第二个参数传递&lt;code&gt;SHUT_RD&lt;/code&gt;，则断开输入流，套接字无法接收数据。即使输入缓冲收到数据也会抹去，而且无法调用相关函数。如果向 shutdown 的第二个参数传递&lt;code&gt;SHUT_WR&lt;/code&gt;，则中断输出流，也就无法传输数据。若如果输出缓冲中还有未传输的数据，则将传递给目标主机。最后，若传递关键字&lt;code&gt;SHUT_RDWR&lt;/code&gt;，则同时中断 I/O 流。这相当于分 2 次调用 shutdown ，其中一次以&lt;code&gt;SHUT_RD&lt;/code&gt;为参数，另一次以&lt;code&gt;SHUT_WR&lt;/code&gt;为参数&lt;/p&gt;
 &lt;h2 id="3-为什么要半关闭连接"&gt;3. 为什么要半关闭连接&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;留下足够的时间,等所有的数据交换完不就行了,好像也没有必要使用半关闭.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;留下足够的时间,等所有的数据交换完不就行了,好像也没有必要使用半关闭.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;考虑以下情况：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;一旦客户端连接到服务器，服务器将约定的文件传输给客户端，客户端收到后发送字符串「Thank you」给服务器端。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;一旦客户端连接到服务器，服务器将约定的文件传输给客户端，客户端收到后发送字符串「Thank you」给服务器端。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;此处「Thank you」的传递是多余的，这只是用来模拟客户端断开连接前还有数据要传输的情况。此时程序的还嫌难度并不小，因为传输文件的服务器端只需连续传输文件数据即可，而客户端无法知道需要接收数据到何时。客户端也没办法无休止的调用输入函数，因为这有可能导致程序&lt;strong&gt;阻塞&lt;/strong&gt;。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;是否可以让服务器和客户端约定一个代表文件尾的字符？&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;这种方式也有问题，因为这意味这文件中不能有与约定字符相同的内容。为了解决该问题，服务端应最后向客户端传递 EOF 表示文件传输结束。客户端通过函数返回值接受 EOF ，这样可以避免与文件内容冲突。那么问题来了，服务端如何传递 EOF ？&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</guid><description>&lt;h2 id="第-8-章-域名及网络地址"&gt;第 8 章 域名及网络地址&lt;/h2&gt;
+&lt;p&gt;是否可以让服务器和客户端约定一个代表文件尾的字符？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这种方式也有问题，因为这意味这文件中不能有与约定字符相同的内容。为了解决该问题，服务端应最后向客户端传递 EOF 表示文件传输结束。客户端通过函数返回值接受 EOF ，这样可以避免与文件内容冲突。那么问题来了，服务端如何传递 EOF ？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;断开输出流时向主机传输 EOF。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当然，调用 close 函数的同时关闭 I/O 流，这样也会向对方发送 EOF 。但此时无法再接受对方传输的数据。换言之，若调用 close 函数关闭流，就无法接受客户端最后发送的字符串「Thank you」。这时需要调用 shutdown 函数，只关闭服务器的输出流。这样既可以发送 EOF ，同时又保留了输入流。下面实现收发文件的服务器端/客户端。&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/linux_tcp_program/tcpip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/chapter_8.html</guid><description>&lt;h2 id="第-8-章-域名及网络地址"&gt;第 8 章 域名及网络地址&lt;/h2&gt;
 &lt;p&gt;本章代码，在&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noopener"&gt;TCP-IP-NetworkNote&lt;/a&gt;中可以找到。&lt;/p&gt;
 &lt;h3 id="81-域名系统"&gt;8.1 域名系统&lt;/h3&gt;
 &lt;p&gt;DNS 是对IP地址和域名进行相互转换的系统，其核心是 DNS 服务器&lt;/p&gt;

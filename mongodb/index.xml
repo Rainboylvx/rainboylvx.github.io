@@ -127,7 +127,8 @@
 &lt;/ol&gt;
 &lt;p&gt;达到了 grade A 且 scored 11. 首先,我们要理解这里的意思到底是什么意思?&lt;/p&gt;</description></item><item><title>MongoDB 练习 3</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise3.html</guid><description>&lt;h2 id="41"&gt;41&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;没有什么难度&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;restaurants&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;$and&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
@@ -141,7 +142,8 @@
 &lt;blockquote&gt;
 &lt;p&gt;Write a MongoDB query to find the restaurants that have a grade with a score of 2 and a grade with a score of 6 and are located in the borough of Manhattan or Brooklyn, and their cuisine is not American or Chinese.&lt;/p&gt;</description></item><item><title>MongoDB 练习 4</title><link>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/exercise4.html</guid><description>&lt;h2 id="51"&gt;51&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Write a MongoDB query to find the average score for each restaurant.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Write a MongoDB query to find the average score for each restaurant.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;一个数组的平均值&lt;/p&gt;
 &lt;p&gt;这里我遇到的第一个 &lt;code&gt;aggregate&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;restaurants&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;aggregate&lt;/span&gt;&lt;span class="p"&gt;([{&lt;/span&gt;
