@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bug Fix on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/bug-fix.html</link><description>Recent content in Bug Fix on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Sep 2025 02:16:47 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/bug-fix/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bug Fix on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/bug-fix.html</link><description>Recent content in Bug Fix on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/bug-fix/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
 &lt;p&gt;最近在使用archlinux,发现网络延迟很高,但是其他设备正常,于是开始排查问题.&lt;/p&gt;
 &lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
@@ -23,4 +23,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;EOF&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后重启 NetworkManager：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo systemctl restart NetworkManager
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="参考"&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/jcberthon/ea8cfe278998968ba7c5a95344bc8b55" target="_blank" rel="noopener"&gt;NetworkManager Wi-Fi powersaving configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Power_management#NetworkManager" target="_blank" rel="noopener"&gt;Arch Linux Wi-Fi Power Management&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

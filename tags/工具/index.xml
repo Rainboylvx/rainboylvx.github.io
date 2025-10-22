@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工具 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E5%B7%A5%E5%85%B7.html</link><description>Recent content in 工具 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 06 Oct 2025 07:12:50 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工具 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E5%B7%A5%E5%85%B7.html</link><description>Recent content in 工具 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>zellij使用入门</title><link>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</link><pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</guid><description>&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zellij.dev/" target="_blank" rel="noopener"&gt;官网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;起因: 我不想再使用tmux ,因为它配置起来很麻烦, 而且快捷键也需要大量的定制才能用得顺手. 在寻找替代品的过程中, 我发现了 Zellij, 一个现代的终端多路复用器, 它开箱即用, 功能强大且易于上手.&lt;/p&gt;
+&lt;h2 id="什么是-zellij"&gt;什么是 Zellij?&lt;/h2&gt;
+&lt;p&gt;Zellij 是一个为开发者、运维工程师和所有终端爱好者设计的终端工作区. 它内置了布局系统、标签页和强大的命令窗格, 让你可以在一个窗口中轻松管理多个终端会话. 与 &lt;code&gt;tmux&lt;/code&gt; 类似, 即使你断开 SSH 连接, 你的终端会话也会保持运行.&lt;/p&gt;
+&lt;h2 id="安装"&gt;安装&lt;/h2&gt;
+&lt;p&gt;在 macOS 上, 你可以使用 Homebrew 轻松安装:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;brew install zellij
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于其他操作系统, 请参考&lt;a href="https://zellij.dev/documentation/installation.html" target="_blank" rel="noopener"&gt;官方安装文档&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="快速入门"&gt;快速入门&lt;/h2&gt;
+&lt;h3 id="启动和退出"&gt;启动和退出&lt;/h3&gt;
+&lt;p&gt;直接在终端中输入 &lt;code&gt;zellij&lt;/code&gt; 即可启动一个新的会话:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你会看到 Zellij 的界面, 底部有一条状态栏, 显示了当前的模式和一些有用的提示.&lt;/p&gt;
+&lt;p&gt;要退出 Zellij, 你可以:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在所有窗格中输入 &lt;code&gt;exit&lt;/code&gt; 来关闭它们.&lt;/li&gt;
+&lt;li&gt;使用快捷键 &lt;code&gt;Ctrl + q&lt;/code&gt;, 然后按 &lt;code&gt;y&lt;/code&gt; 确认.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="分离-detach-和恢复-attach-会话"&gt;分离 (Detach) 和恢复 (Attach) 会话&lt;/h3&gt;
+&lt;p&gt;这是终端多路复用器的核心功能. 你可以在一个会话中工作, 然后安全地断开它, 让程序在后台继续运行.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;分离会话&lt;/strong&gt;: 在会话中按下 &lt;code&gt;Ctrl + o&lt;/code&gt;, 然后按 &lt;code&gt;d&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列出所有会话&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij list-sessions
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;恢复会话&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij attach &amp;lt;SESSION_NAME&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="基本操作"&gt;基本操作&lt;/h2&gt;
+&lt;p&gt;Zellij 的一大优点是其用户友好的快捷键. 当你按下 &lt;code&gt;Ctrl&lt;/code&gt; 组合键时, 底部栏会提示你接下来可以按哪些键.&lt;/p&gt;</description></item><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
 &lt;h2 id="前缀键-prefix"&gt;前缀键 (Prefix)&lt;/h2&gt;
 &lt;p&gt;所有 &lt;code&gt;tmux&lt;/code&gt; 命令都需要先按下一个前缀键。你的配置中&lt;strong&gt;保留了默认的前缀键&lt;/strong&gt;。&lt;/p&gt;
 &lt;ul&gt;

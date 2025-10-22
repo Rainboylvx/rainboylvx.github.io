@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 18 Oct 2025 04:42:02 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
 &lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
 &lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
@@ -21,7 +21,18 @@
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这条命令会输出编译和链接所需的全部参数&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;g++ your_program.cpp -o your_program &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --cflags --libs cairo&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="cairo-的核心概念"&gt;Cairo 的核心概念&lt;/h3&gt;
-&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
+&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item><item><title>x64dbg快捷键</title><link>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;-号键 回退
+Ctrl+A 分析
+Ctrl+HOME 转到函数头
+Alt+K 查堆栈历史
+Ctrl+Shift+↑↓ 堆栈中
+调试跟踪记录中
+输出的日志窗口中
+坐招的顶上附近
+行为点附近
+Ctrl+F12的调用返回处
+初始化阶段的代码中
+任何可以&amp;quot;借用&amp;quot;的一切方式和手段&lt;/p&gt;</description></item><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;为你的可执行文件进行代码签名&lt;/strong&gt; (这是 M1/M2/M3 芯片 Mac 的特殊要求)。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;在 lldb 内部使用正确的命令来重定向输入&lt;/strong&gt;。&lt;/li&gt;
@@ -80,7 +91,39 @@
 &lt;li&gt;✅ macOS Monterey 及以上版本&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="参考来源"&gt;参考来源&lt;/h2&gt;
-&lt;p&gt;这个解决方案来自 Stack Overflow 的相关讨论：&lt;a href="https://stackoverflow.com/questions/70748064/cant-debug-using-lldb-on-apple-m1-over-ssh" target="_blank" rel="noopener"&gt;Can&amp;rsquo;t debug using lldb on Apple M1 over SSH&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
+&lt;p&gt;这个解决方案来自 Stack Overflow 的相关讨论：&lt;a href="https://stackoverflow.com/questions/70748064/cant-debug-using-lldb-on-apple-m1-over-ssh" target="_blank" rel="noopener"&gt;Can&amp;rsquo;t debug using lldb on Apple M1 over SSH&lt;/a&gt;&lt;/p&gt;</description></item><item><title>zellij使用入门</title><link>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</link><pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</guid><description>&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zellij.dev/" target="_blank" rel="noopener"&gt;官网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;起因: 我不想再使用tmux ,因为它配置起来很麻烦, 而且快捷键也需要大量的定制才能用得顺手. 在寻找替代品的过程中, 我发现了 Zellij, 一个现代的终端多路复用器, 它开箱即用, 功能强大且易于上手.&lt;/p&gt;
+&lt;h2 id="什么是-zellij"&gt;什么是 Zellij?&lt;/h2&gt;
+&lt;p&gt;Zellij 是一个为开发者、运维工程师和所有终端爱好者设计的终端工作区. 它内置了布局系统、标签页和强大的命令窗格, 让你可以在一个窗口中轻松管理多个终端会话. 与 &lt;code&gt;tmux&lt;/code&gt; 类似, 即使你断开 SSH 连接, 你的终端会话也会保持运行.&lt;/p&gt;
+&lt;h2 id="安装"&gt;安装&lt;/h2&gt;
+&lt;p&gt;在 macOS 上, 你可以使用 Homebrew 轻松安装:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;brew install zellij
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于其他操作系统, 请参考&lt;a href="https://zellij.dev/documentation/installation.html" target="_blank" rel="noopener"&gt;官方安装文档&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="快速入门"&gt;快速入门&lt;/h2&gt;
+&lt;h3 id="启动和退出"&gt;启动和退出&lt;/h3&gt;
+&lt;p&gt;直接在终端中输入 &lt;code&gt;zellij&lt;/code&gt; 即可启动一个新的会话:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你会看到 Zellij 的界面, 底部有一条状态栏, 显示了当前的模式和一些有用的提示.&lt;/p&gt;
+&lt;p&gt;要退出 Zellij, 你可以:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在所有窗格中输入 &lt;code&gt;exit&lt;/code&gt; 来关闭它们.&lt;/li&gt;
+&lt;li&gt;使用快捷键 &lt;code&gt;Ctrl + q&lt;/code&gt;, 然后按 &lt;code&gt;y&lt;/code&gt; 确认.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="分离-detach-和恢复-attach-会话"&gt;分离 (Detach) 和恢复 (Attach) 会话&lt;/h3&gt;
+&lt;p&gt;这是终端多路复用器的核心功能. 你可以在一个会话中工作, 然后安全地断开它, 让程序在后台继续运行.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;分离会话&lt;/strong&gt;: 在会话中按下 &lt;code&gt;Ctrl + o&lt;/code&gt;, 然后按 &lt;code&gt;d&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列出所有会话&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij list-sessions
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;恢复会话&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;zellij attach &amp;lt;SESSION_NAME&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="基本操作"&gt;基本操作&lt;/h2&gt;
+&lt;p&gt;Zellij 的一大优点是其用户友好的快捷键. 当你按下 &lt;code&gt;Ctrl&lt;/code&gt; 组合键时, 底部栏会提示你接下来可以按哪些键.&lt;/p&gt;</description></item><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
 &lt;h2 id="前缀键-prefix"&gt;前缀键 (Prefix)&lt;/h2&gt;
 &lt;p&gt;所有 &lt;code&gt;tmux&lt;/code&gt; 命令都需要先按下一个前缀键。你的配置中&lt;strong&gt;保留了默认的前缀键&lt;/strong&gt;。&lt;/p&gt;
 &lt;ul&gt;
@@ -233,7 +276,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;EOF&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后重启 NetworkManager：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;sudo systemctl restart NetworkManager
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Github无法推送</title><link>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</link><pubDate>Tue, 09 Sep 2025 12:55:26 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</guid><description>&lt;p&gt;2025-09-09,我发现我的电脑 git 无法推送,&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="参考"&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/jcberthon/ea8cfe278998968ba7c5a95344bc8b55" target="_blank" rel="noopener"&gt;NetworkManager Wi-Fi powersaving configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Power_management#NetworkManager" target="_blank" rel="noopener"&gt;Arch Linux Wi-Fi Power Management&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>vscode-markdown不能使用snippets的问题</title><link>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98.html</link><pubDate>Fri, 19 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98.html</guid><description>&lt;p&gt;打开用户的setting.json，&lt;/p&gt;
+&lt;p&gt;加入下面的配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt; // markdown不显示代码块的问题
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;	&amp;#34;[markdown]&amp;#34;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;		&amp;#34;editor.quickSuggestions&amp;#34;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;				&amp;#34;other&amp;#34;: &amp;#34;on&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;	},
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不生效的原因：&lt;/p&gt;
+&lt;p&gt;这个&amp;quot;other&amp;quot;项的配置，默认值是&amp;rsquo;off'&lt;/p&gt;</description></item><item><title>Github无法推送</title><link>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</link><pubDate>Tue, 09 Sep 2025 12:55:26 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</guid><description>&lt;p&gt;2025-09-09,我发现我的电脑 git 无法推送,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;ssh -vvv -T git@github.com 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卡死&lt;/p&gt;
 &lt;p&gt;神奇的是,并不是因为https无法推送,而是ssh无法推送,这是我第一次遇到这种情况.&lt;/p&gt;
@@ -397,4 +453,30 @@
 &lt;/ol&gt;
 &lt;h3 id="评论和阅读量迁移"&gt;评论和阅读量迁移&lt;a href="#%e8%af%84%e8%ae%ba%e5%92%8c%e9%98%85%e8%af%bb%e9%87%8f%e8%bf%81%e7%a7%bb"&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;使用了 Twikoo 的评论系统，并解决了链接转换问题&lt;/p&gt;</description></item><item><title>Helloworld</title><link>https://hugo-dead-simple.netlify.com/blog/helloworld.html</link><pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/helloworld.html</guid><description>&lt;h2 id="hello-world"&gt;hello world&lt;/h2&gt;
-&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noopener"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noopener"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</guid><description>&lt;p&gt;&lt;code&gt;ret&lt;/code&gt; 与 &lt;code&gt;ret 10&lt;/code&gt;之间的区别&lt;/p&gt;
+&lt;p&gt;当然可以。&lt;code&gt;ret&lt;/code&gt; 和 &lt;code&gt;ret 10&lt;/code&gt; 都是函数返回指令，但它们之间有一个非常重要且根本的区别。&lt;/p&gt;
+&lt;p&gt;最核心的区别在于&lt;strong&gt;由谁来负责清理函数调用时压入栈的参数&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="ret-常规返回"&gt;&lt;code&gt;ret&lt;/code&gt; (常规返回)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;动作：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从栈顶弹出一个地址，放入指令指针寄存器 (&lt;code&gt;EIP&lt;/code&gt; 或 &lt;code&gt;RIP&lt;/code&gt;) 中。&lt;/li&gt;
+&lt;li&gt;CPU 跳转到该地址继续执行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;参数清理：&lt;/strong&gt;
+&lt;code&gt;ret&lt;/code&gt; 指令本身&lt;strong&gt;不负责&lt;/strong&gt;清理调用者压入栈的参数。它假定**调用者（Caller）**会在函数返回后自己清理栈。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对应的调用约定：&lt;/strong&gt;
+这种方式通常与 &lt;code&gt;__cdecl&lt;/code&gt; 调用约定相关，这是 C 和 C++ 语言默认的调用约定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;; ----- 调用者的代码 (Caller) -----
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;push arg2 ; 压入第2个参数 (4字节)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;push arg1 ; 压入第1个参数 (4字节)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;call MyFunction ; 调用函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;add esp, 8 ; &amp;lt;--- 由调用者负责清理 2 * 4 = 8 字节的参数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;; ----- 被调用函数 MyFunction 的代码 (Callee) -----
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;MyFunction:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; ; ... 函数体 ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; ret ; &amp;lt;--- 简单返回，不关心参数
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;优点：&lt;/strong&gt;
+因为它不关心参数数量，所以支持&lt;strong&gt;可变参数函数&lt;/strong&gt;，比如 &lt;code&gt;printf(format, ...)&lt;/code&gt;。被调用的 &lt;code&gt;printf&lt;/code&gt; 函数不知道有多少个参数，所以它无法清理，必须由调用者来完成。&lt;/p&gt;</description></item></channel></rss>
