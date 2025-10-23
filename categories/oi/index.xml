@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oi on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/categories/oi.html</link><description>Recent content in Oi on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/categories/oi/index.xml" rel="self" type="application/rss+xml"/><item><title>bookmark</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</guid><description>&lt;p&gt;当然，为代码行添加标记（通常称为“书签”或“Bookmarks”）以便快速导航是一个非常常见的需求。Neovim 不仅有强大的内置标记功能，还有许多优秀的插件可以极大地增强这一体验。&lt;/p&gt;
+&lt;h3 id="1-neovim-的内置标记-built-in-marks"&gt;1 Neovim 的内置标记 (Built-in Marks)&lt;/h3&gt;
+&lt;p&gt;首先，你需要了解 Neovim 自带的、无需任何插件的标记功能。它非常强大和快速。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文件内标记 (Lowercase Marks):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;m{a-z}&lt;/code&gt;: 在当前光标行创建一个名为 &lt;code&gt;{char}&lt;/code&gt; 的标记。例如，&lt;code&gt;ma&lt;/code&gt; 会在当前行创建一个名为 &amp;lsquo;a&amp;rsquo; 的标记。这些标记只在当前文件中有效。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;`a&lt;/code&gt; 或 &lt;code&gt;'a&lt;/code&gt;: 跳转到标记 &amp;lsquo;a&amp;rsquo;。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;`a&lt;/code&gt; (反引号) 会跳转到标记所在行的&lt;strong&gt;确切光标位置&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;'a&lt;/code&gt; (单引号) 会跳转到标记所在行的&lt;strong&gt;行首&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全局标记 (Uppercase Marks):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;m{A-Z}&lt;/code&gt;: 创建一个全局标记。例如，&lt;code&gt;mA&lt;/code&gt;。这些标记在多个文件之间都有效（只要 Neovim 会话还在），并且会记录文件路径。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;`A&lt;/code&gt; 或 &lt;code&gt;'A&lt;/code&gt;: 从任何文件跳转到标记 &amp;lsquo;A&amp;rsquo; 所在的位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;查看所有标记:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入命令 &lt;code&gt;:marks&lt;/code&gt; 可以查看所有已设置的标记。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;优点:&lt;/strong&gt; 内置，速度极快，无需配置。
+&lt;strong&gt;缺点:&lt;/strong&gt; 标记是&lt;strong&gt;不可见&lt;/strong&gt;的，你必须记住你把哪个标记放在了哪里，或者通过 &lt;code&gt;:marks&lt;/code&gt; 命令查看。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="2-插件推荐"&gt;2 插件推荐&lt;/h3&gt;
+&lt;p&gt;为了解决内置标记不可见的问题，社区开发了许多插件，它们通常会在带有标记的行旁边添加一个“符号”或“图标”，并提供更友好的交互方式。&lt;/p&gt;
+&lt;h4 id="-首选推荐-marksnvim"&gt;👑 首选推荐: marks.nvim&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;链接:&lt;/strong&gt; &lt;a href="https://github.com/chentoast/marks.nvim" target="_blank" rel="noopener"&gt;chentoast/marks.nvim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这是一个现代化的 Neovim 插件，专门用于&lt;strong&gt;增强内置的 marks 功能&lt;/strong&gt;。它会让你的内置标记变得可见，并添加了许多方便的功能，是目前最优雅的解决方案之一。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特点:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;可视化:&lt;/strong&gt; 在行号列或符号列为你设置的标记添加图标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无缝集成:&lt;/strong&gt; 它操作的仍然是 Neovim 的原生 marks，所以你依然可以使用 &lt;code&gt;ma&lt;/code&gt; 和 &lt;code&gt;'a&lt;/code&gt; 等命令。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速导航:&lt;/strong&gt; 提供了在标记之间循环跳转的命令。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Telescope 集成:&lt;/strong&gt; 可以用 Telescope 模糊搜索并跳转到所有标记。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持久化:&lt;/strong&gt; 可以跨会话保存标记。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

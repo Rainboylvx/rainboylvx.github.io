@@ -1,0 +1,220 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=cache-control content="max-age=0"><meta http-equiv=cache-control content="no-cache"><meta http-equiv=expires content="0"><meta http-equiv=expires content="Tue, 01 Jan 1980 1:00:00 GMT"><meta http-equiv=pragma content="no-cache"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png }><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#1b1b1b"><meta name=description content="设计思想"><script>(function(){const e=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",e)})()</script><title>设计思想 | Rainboy's Blog</title><style>:root{--background:#ffffff}@media(prefers-color-scheme:dark){:root{--background:#1b1b1b}}html{background-color:var(--background)}body{background-color:var(--background)}</style><link rel=stylesheet type=text/css href=/style.min.4de9e3236bcb55312d0b2ff0fc62c694f607b9c0d95d0621f6c6dbacb7d6dbb5.css media=all><link rel=stylesheet href=/grid.css><link href="https://fonts.font.im/css?family=Roboto+Mono" rel=stylesheet><style>body,.heti,.heti--sans{font-family:roboto mono,monospace,times new roman,times,heti song,serif,apple color emoji,segoe ui emoji,segoe ui symbol}</style></head><body><nav><ul class=menu><li><a tabindex=-1 class=menu-link href=/><u>H</u>ome</a></li><li><a tabindex=-1 class=menu-link href=/tags><u>T</u>ags</a></li><li><span style=cursor:pointer id=theme-switcher class=menu-link type=button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-4 w-4"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg></span></li></ul></nav><div id=single-header><h1>设计思想</h1><div id=single-meta><span class=datesub>2025-09-09 00:00</span>
+<span id=tags>&nbsp;&nbsp;
+<span><a href=https://hugo-dead-simple.netlify.com/tags/index.html>#</a>
+</span>&nbsp;</span></div></div><aside class="hidden lg:block toc" id=tableOfContentContainer><nav id=TableOfContents><ul><li><ul><li><a href=#核心理念>核心理念</a></li><li><a href=#第一步设置模板和初始化脚本>第一步：设置模板和初始化脚本</a></li><li><a href=#第二步核心工作流脚本-编译运行对比>第二步：核心工作流脚本 (编译、运行、对比)</a></li><li><a href=#第三步neovim-集成-快捷键和插件>第三步：Neovim 集成 (快捷键和插件)</a></li><li><a href=#最终工作流程演示>最终工作流程演示</a></li></ul></li></ul></nav></aside><main class="heti heti--classic"><p>太棒了！这是一个非常经典且有价值的场景。为 Codeforces (或其他 competitive programming 平台) 打造一个高效的 Neovim 工作流，可以极大地提升你的解题速度和体验。</p><p>我们将围绕一系列<strong>精心设计的 Bash 脚本</strong>和 Neovim 配置，构建一个无缝的“编码-编译-测试-调试”循环。</p><h3 id=核心理念>核心理念</h3><p>你的工作目录将围绕<strong>一个问题一个文件夹</strong>的模式展开。例如：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>/home/user/codeforces/
+</span></span><span class=line><span class=ln> 2</span><span class=cl>├── 1800A/
+</span></span><span class=line><span class=ln> 3</span><span class=cl>│   ├── main.cpp
+</span></span><span class=line><span class=ln> 4</span><span class=cl>│   ├── input.txt
+</span></span><span class=line><span class=ln> 5</span><span class=cl>│   ├── answer.txt
+</span></span><span class=line><span class=ln> 6</span><span class=cl>│   └── .vscode/
+</span></span><span class=line><span class=ln> 7</span><span class=cl>│       └── launch.json  (用于 DAP 调试)
+</span></span><span class=line><span class=ln> 8</span><span class=cl>├── 1800B/
+</span></span><span class=line><span class=ln> 9</span><span class=cl>│   └── ...
+</span></span><span class=line><span class=ln>10</span><span class=cl>└── templates/
+</span></span><span class=line><span class=ln>11</span><span class=cl>    ├── default.cpp
+</span></span><span class=line><span class=ln>12</span><span class=cl>    ├── graph.cpp
+</span></span><span class=line><span class=ln>13</span><span class=cl>    └── math.cpp
+</span></span></code></pre></div><p>每个文件夹都是一个独立的工作区，包含代码、输入、标准输出和调试配置。</p><hr><h3 id=第一步设置模板和初始化脚本>第一步：设置模板和初始化脚本</h3><p>这是所有工作的起点。我们需要一个脚本来快速创建上述的目录结构。</p><h4 id=1-代码模板-codeforcestemplatesdefaultcpp>1. 代码模板 (<code>~/codeforces/templates/default.cpp</code>)</h4><p>首先，创建一个或多个你常用的代码模板。这是一个基础模板示例：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=ln> 1</span><span class=cl><span class=c1>// ~/codeforces/templates/default.cpp
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln> 3</span><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln> 4</span><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln> 5</span><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;algorithm&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln> 6</span><span class=cl><span class=cp></span><span class=c1>// ... 其他常用头文件
+</span></span></span><span class=line><span class=ln> 7</span><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=c1>// Fast I/O
+</span></span></span><span class=line><span class=ln> 9</span><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>fast_io</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>    <span class=n>std</span><span class=o>::</span><span class=n>ios_base</span><span class=o>::</span><span class=n>sync_with_stdio</span><span class=p>(</span><span class=nb>false</span><span class=p>);</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl>    <span class=n>std</span><span class=o>::</span><span class=n>cin</span><span class=p>.</span><span class=n>tie</span><span class=p>(</span><span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl>
+</span></span><span class=line><span class=ln>14</span><span class=cl><span class=c1>// 主解题函数
+</span></span></span><span class=line><span class=ln>15</span><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>solve</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl>    <span class=c1>// 在这里写你的代码
+</span></span></span><span class=line><span class=ln>17</span><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl>
+</span></span><span class=line><span class=ln>19</span><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl>    <span class=n>fast_io</span><span class=p>();</span>
+</span></span><span class=line><span class=ln>21</span><span class=cl>    <span class=kt>int</span> <span class=n>t</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl>    <span class=n>std</span><span class=o>::</span><span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>t</span><span class=p>;</span> <span class=c1>// 如果是多组测试用例
+</span></span></span><span class=line><span class=ln>23</span><span class=cl><span class=c1></span>    <span class=k>while</span> <span class=p>(</span><span class=n>t</span><span class=o>--</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>24</span><span class=cl>        <span class=n>solve</span><span class=p>();</span>
+</span></span><span class=line><span class=ln>25</span><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=ln>26</span><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>27</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h4 id=2-初始化脚本-cf-newsh>2. 初始化脚本 (<code>cf-new.sh</code>)</h4><p>在你的 <code>PATH</code> 环境变量能找到的地方（例如 <code>~/.local/bin/</code>）创建一个名为 <code>cf-new.sh</code> 的脚本。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl><span class=c1># cf-new.sh - 创建一个新的 Codeforces 问题目录</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=c1># 检查是否提供了问题名称</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl><span class=k>if</span> <span class=o>[</span> -z <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;Usage: </span><span class=nv>$0</span><span class=s2> &lt;problem_name&gt; [template_name]&#34;</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=nv>PROBLEM_NAME</span><span class=o>=</span><span class=nv>$1</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=nv>TEMPLATE_NAME</span><span class=o>=</span><span class=si>${</span><span class=nv>2</span><span class=k>:-</span><span class=nv>default</span><span class=si>}</span> <span class=c1># 如果没有提供模板名，则默认为 default</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=nv>BASE_DIR</span><span class=o>=</span><span class=s2>&#34;/home/user/codeforces&#34;</span> <span class=c1># !! 修改为你的 Codeforces 根目录</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl><span class=nv>TEMPLATE_PATH</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$BASE_DIR</span><span class=s2>/templates/</span><span class=si>${</span><span class=nv>TEMPLATE_NAME</span><span class=si>}</span><span class=s2>.cpp&#34;</span>
+</span></span><span class=line><span class=ln>15</span><span class=cl><span class=nv>PROBLEM_DIR</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$BASE_DIR</span><span class=s2>/</span><span class=nv>$PROBLEM_NAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl>
+</span></span><span class=line><span class=ln>17</span><span class=cl><span class=c1># 检查模板是否存在</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=k>if</span> <span class=o>[</span> ! -f <span class=s2>&#34;</span><span class=nv>$TEMPLATE_PATH</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln>19</span><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;Error: Template &#39;</span><span class=si>${</span><span class=nv>TEMPLATE_NAME</span><span class=si>}</span><span class=s2>.cpp&#39; not found at </span><span class=nv>$TEMPLATE_PATH</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=ln>21</span><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl>
+</span></span><span class=line><span class=ln>23</span><span class=cl><span class=c1># 创建问题目录</span>
+</span></span><span class=line><span class=ln>24</span><span class=cl>mkdir -p <span class=s2>&#34;</span><span class=nv>$PROBLEM_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>25</span><span class=cl><span class=nb>cd</span> <span class=s2>&#34;</span><span class=nv>$PROBLEM_DIR</span><span class=s2>&#34;</span> <span class=o>||</span> <span class=nb>exit</span>
+</span></span><span class=line><span class=ln>26</span><span class=cl>
+</span></span><span class=line><span class=ln>27</span><span class=cl><span class=c1># 复制模板文件并创建输入/输出文件</span>
+</span></span><span class=line><span class=ln>28</span><span class=cl>cp <span class=s2>&#34;</span><span class=nv>$TEMPLATE_PATH</span><span class=s2>&#34;</span> <span class=s2>&#34;main.cpp&#34;</span>
+</span></span><span class=line><span class=ln>29</span><span class=cl>touch <span class=s2>&#34;input.txt&#34;</span>
+</span></span><span class=line><span class=ln>30</span><span class=cl>touch <span class=s2>&#34;answer.txt&#34;</span>
+</span></span><span class=line><span class=ln>31</span><span class=cl>
+</span></span><span class=line><span class=ln>32</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Successfully created problem directory: </span><span class=nv>$PROBLEM_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>33</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Files created: main.cpp, input.txt, answer.txt&#34;</span>
+</span></span><span class=line><span class=ln>34</span><span class=cl>
+</span></span><span class=line><span class=ln>35</span><span class=cl><span class=c1># (可选) 自动用 nvim 打开</span>
+</span></span><span class=line><span class=ln>36</span><span class=cl>nvim main.cpp
+</span></span></code></pre></div><p><strong>如何使用它？</strong>
+打开终端，运行：
+<code>chmod +x ~/.local/bin/cf-new.sh</code> (只需运行一次，使其可执行)</p><p>现在，要开始解决 1800A 题，只需：
+<code>cf-new.sh 1800A</code></p><p>如果你想用图论模板：
+<code>cf-new.sh 1800C graph</code></p><hr><h3 id=第二步核心工作流脚本-编译运行对比>第二步：核心工作流脚本 (编译、运行、对比)</h3><p>在你的 <code>PATH</code> 下创建以下两个脚本。</p><h4 id=1-编译和运行脚本-cf-runsh>1. 编译和运行脚本 (<code>cf-run.sh</code>)</h4><p>这个脚本是你的主力。它会编译、运行、计时，并将输出重定向。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl><span class=c1># cf-run.sh - 编译并运行 C++ 文件，使用 input.txt 作为输入</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=nv>FILENAME</span><span class=o>=</span><span class=s2>&#34;main.cpp&#34;</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl><span class=nv>EXE_NAME</span><span class=o>=</span><span class=s2>&#34;main_debug&#34;</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl><span class=nv>INPUT_FILE</span><span class=o>=</span><span class=s2>&#34;input.txt&#34;</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=nv>OUTPUT_FILE</span><span class=o>=</span><span class=s2>&#34;my_output.txt&#34;</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>
+</span></span><span class=line><span class=ln>10</span><span class=cl><span class=c1># 编译代码</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=c1># -g: 生成调试信息</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=c1># -std=c++17: 使用 C++17 标准</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=c1># -Wall: 显示所有警告</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl><span class=c1># -fsanitize=address,undefined: (可选但强烈推荐) 检查内存和未定义行为</span>
+</span></span><span class=line><span class=ln>15</span><span class=cl>g++ -g -std<span class=o>=</span>c++17 -Wall -fsanitize<span class=o>=</span>address,undefined <span class=s2>&#34;</span><span class=nv>$FILENAME</span><span class=s2>&#34;</span> -o <span class=s2>&#34;</span><span class=nv>$EXE_NAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl>
+</span></span><span class=line><span class=ln>17</span><span class=cl><span class=c1># 检查编译是否成功</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -ne <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln>19</span><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;--- COMPILE ERROR ---&#34;</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=ln>21</span><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl>
+</span></span><span class=line><span class=ln>23</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;--- COMPILE SUCCESS ---&#34;</span>
+</span></span><span class=line><span class=ln>24</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;--- RUNNING ---&#34;</span>
+</span></span><span class=line><span class=ln>25</span><span class=cl>
+</span></span><span class=line><span class=ln>26</span><span class=cl><span class=c1># 运行并计时</span>
+</span></span><span class=line><span class=ln>27</span><span class=cl>/usr/bin/time -f <span class=s2>&#34;--- Execution Time: %es ---&#34;</span> ./<span class=s2>&#34;</span><span class=nv>$EXE_NAME</span><span class=s2>&#34;</span> &lt; <span class=s2>&#34;</span><span class=nv>$INPUT_FILE</span><span class=s2>&#34;</span> &gt; <span class=s2>&#34;</span><span class=nv>$OUTPUT_FILE</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>28</span><span class=cl>
+</span></span><span class=line><span class=ln>29</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;--- FINISHED ---&#34;</span>
+</span></span><span class=line><span class=ln>30</span><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Output is in </span><span class=nv>$OUTPUT_FILE</span><span class=s2>&#34;</span>
+</span></span></code></pre></div><p><strong><code>chmod +x ~/.local/bin/cf-run.sh</code></strong></p><h4 id=2-对比结果脚本-cf-diffsh>2. 对比结果脚本 (<code>cf-diff.sh</code>)</h4><p>这个脚本用于对比你的输出和标准答案。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl><span class=c1># cf-diff.sh - 对比 my_output.txt 和 answer.txt</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=nv>MY_OUT</span><span class=o>=</span><span class=s2>&#34;my_output.txt&#34;</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl><span class=nv>ANS_OUT</span><span class=o>=</span><span class=s2>&#34;answer.txt&#34;</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=k>if</span> <span class=o>[</span> ! -f <span class=s2>&#34;</span><span class=nv>$MY_OUT</span><span class=s2>&#34;</span> <span class=o>]</span> <span class=o>||</span> <span class=o>[</span> ! -f <span class=s2>&#34;</span><span class=nv>$ANS_OUT</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;Error: Make sure both </span><span class=nv>$MY_OUT</span><span class=s2> and </span><span class=nv>$ANS_OUT</span><span class=s2> exist.&#34;</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=c1># 使用 diff 命令，--color 选项可以在终端中高亮差异</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl>diff --color<span class=o>=</span>always -y --suppress-common-lines <span class=s2>&#34;</span><span class=nv>$MY_OUT</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$ANS_OUT</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>15</span><span class=cl>
+</span></span><span class=line><span class=ln>16</span><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;--- All Correct! ---&#34;</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=k>fi</span>
+</span></span></code></pre></div><p><strong><code>chmod +x ~/.local/bin/cf-diff.sh</code></strong></p><hr><h3 id=第三步neovim-集成-快捷键和插件>第三步：Neovim 集成 (快捷键和插件)</h3><p>现在我们将这些脚本和功能无缝集成到 Neovim 中。</p><h4 id=1-集成终端-toggletermnvim>1. 集成终端 (<code>toggleterm.nvim</code>)</h4><p>一个好的浮动终端对于查看编译结果和输出至关重要。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=ln> 1</span><span class=cl><span class=c1>-- lua/plugins/toggleterm.lua</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=kr>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=s1>&#39;akinsho/toggleterm.nvim&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  <span class=n>version</span> <span class=o>=</span> <span class=s2>&#34;*&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  <span class=n>opts</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>    <span class=n>direction</span> <span class=o>=</span> <span class=s1>&#39;float&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>    <span class=n>float_opts</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>      <span class=n>border</span> <span class=o>=</span> <span class=s1>&#39;curved&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h4 id=2-定义核心快捷键>2. 定义核心快捷键</h4><p>在你的 Neovim 配置中（例如 <code>init.lua</code> 或 <code>lua/keymaps.lua</code>），添加：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=ln> 1</span><span class=cl><span class=c1>-- 创建一个函数来打开浮动终端并执行命令</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=kr>function</span> <span class=nf>RunInToggleTerm</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=c1>-- 寻找一个名为 &#39;floatterm&#39; 的终端，如果没有就创建一个</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  <span class=kd>local</span> <span class=n>term</span> <span class=o>=</span> <span class=n>require</span><span class=p>(</span><span class=s1>&#39;toggleterm.terminal&#39;</span><span class=p>).</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;floatterm&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>term</span> <span class=kr>then</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>      <span class=n>term</span> <span class=o>=</span> <span class=n>require</span><span class=p>(</span><span class=s1>&#39;toggleterm.terminal&#39;</span><span class=p>).</span><span class=n>Terminal</span><span class=p>:</span><span class=n>new</span><span class=p>({</span> <span class=n>id</span> <span class=o>=</span> <span class=s1>&#39;floatterm&#39;</span><span class=p>,</span> <span class=n>hidden</span> <span class=o>=</span> <span class=kc>true</span> <span class=p>})</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  <span class=c1>-- 打开终端窗口并发送命令</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>  <span class=n>require</span><span class=p>(</span><span class=s1>&#39;toggleterm&#39;</span><span class=p>).</span><span class=n>toggle</span><span class=p>(</span><span class=n>term</span><span class=p>:</span><span class=n>id</span><span class=p>())</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl>  <span class=n>vim.cmd</span><span class=p>(</span><span class=s1>&#39;startinsert&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl>  <span class=n>vim.api</span><span class=p>.</span><span class=n>nvim_chan_send</span><span class=p>(</span><span class=n>term.job_id</span><span class=p>,</span> <span class=n>cmd</span> <span class=o>..</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl>
+</span></span><span class=line><span class=ln>15</span><span class=cl><span class=c1>-- 编译 &amp; 运行</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl><span class=n>vim.keymap</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=s1>&#39;n&#39;</span><span class=p>,</span> <span class=s1>&#39;&lt;leader&gt;r&#39;</span><span class=p>,</span> <span class=kr>function</span><span class=p>()</span> <span class=n>RunInToggleTerm</span><span class=p>(</span><span class=s1>&#39;cf-run.sh&#39;</span><span class=p>)</span> <span class=kr>end</span><span class=p>,</span> <span class=p>{</span> <span class=n>desc</span> <span class=o>=</span> <span class=s2>&#34;CF: Compile &amp; Run&#34;</span> <span class=p>})</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl>
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=c1>-- 对比结果</span>
+</span></span><span class=line><span class=ln>19</span><span class=cl><span class=n>vim.keymap</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=s1>&#39;n&#39;</span><span class=p>,</span> <span class=s1>&#39;&lt;leader&gt;d&#39;</span><span class=p>,</span> <span class=kr>function</span><span class=p>()</span> <span class=n>RunInToggleTerm</span><span class=p>(</span><span class=s1>&#39;cf-diff.sh&#39;</span><span class=p>)</span> <span class=kr>end</span><span class=p>,</span> <span class=p>{</span> <span class=n>desc</span> <span class=o>=</span> <span class=s2>&#34;CF: Diff Output&#34;</span> <span class=p>})</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl>
+</span></span><span class=line><span class=ln>21</span><span class=cl><span class=c1>-- 切换到终端（用于手动操作）</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl><span class=n>vim.keymap</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=s1>&#39;n&#39;</span><span class=p>,</span> <span class=s1>&#39;&lt;leader&gt;tt&#39;</span><span class=p>,</span> <span class=s1>&#39;&lt;cmd&gt;ToggleTerm&lt;cr&gt;&#39;</span><span class=p>,</span> <span class=p>{</span> <span class=n>desc</span> <span class=o>=</span> <span class=s2>&#34;Toggle Terminal&#34;</span> <span class=p>})</span>
+</span></span></code></pre></div><h4 id=3-dap-快速调试-launchjson>3. DAP 快速调试 (<code>launch.json</code>)</h4><p>为了让 <code>nvim-dap</code> 在这个工作流中发挥作用，我们需要一个能自动读取 <code>input.txt</code> 的 <code>launch.json</code> 文件。</p><p>你可以把这个文件放在你的 <code>templates</code> 目录下，让 <code>cf-new.sh</code> 自动创建 <code>.vscode</code> 目录并复制它。</p><p><strong><code>~/codeforces/templates/launch.json</code></strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=ln> 1</span><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  <span class=nt>&#34;version&#34;</span><span class=p>:</span> <span class=s2>&#34;0.2.0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=nt>&#34;configurations&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;(gdb) Launch&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;cppdbg&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>      <span class=nt>&#34;request&#34;</span><span class=p>:</span> <span class=s2>&#34;launch&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>      <span class=nt>&#34;program&#34;</span><span class=p>:</span> <span class=s2>&#34;${workspaceFolder}/main_debug&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>      <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[],</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>      <span class=nt>&#34;stopAtEntry&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl>      <span class=nt>&#34;cwd&#34;</span><span class=p>:</span> <span class=s2>&#34;${workspaceFolder}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl>      <span class=nt>&#34;environment&#34;</span><span class=p>:</span> <span class=p>[],</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl>      <span class=nt>&#34;externalConsole&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl>      <span class=nt>&#34;MIMode&#34;</span><span class=p>:</span> <span class=s2>&#34;gdb&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>15</span><span class=cl>      <span class=nt>&#34;miDebuggerPath&#34;</span><span class=p>:</span> <span class=s2>&#34;/usr/bin/gdb&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl>      <span class=nt>&#34;setupCommands&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl>          <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Enable pretty-printing for gdb&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>19</span><span class=cl>          <span class=nt>&#34;text&#34;</span><span class=p>:</span> <span class=s2>&#34;-enable-pretty-printing&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl>          <span class=nt>&#34;ignoreFailures&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=ln>21</span><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=ln>23</span><span class=cl>      <span class=c1>// 核心部分：将标准输入重定向到 input.txt
+</span></span></span><span class=line><span class=ln>24</span><span class=cl><span class=c1></span>      <span class=nt>&#34;pipeTransport&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>25</span><span class=cl>        <span class=nt>&#34;pipeCwd&#34;</span><span class=p>:</span> <span class=s2>&#34;${workspaceFolder}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>26</span><span class=cl>        <span class=nt>&#34;pipeProgram&#34;</span><span class=p>:</span> <span class=s2>&#34;bash&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>27</span><span class=cl>        <span class=nt>&#34;pipeArgs&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;-c&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=ln>28</span><span class=cl>        <span class=nt>&#34;debuggerPath&#34;</span><span class=p>:</span> <span class=s2>&#34;/usr/bin/gdb&#34;</span>
+</span></span><span class=line><span class=ln>29</span><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=ln>30</span><span class=cl>      <span class=nt>&#34;sourceFileMap&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>31</span><span class=cl>        <span class=nt>&#34;/build/glibc-SzIz7B/glibc-2.31&#34;</span><span class=p>:</span> <span class=s2>&#34;/usr/src/glibc&#34;</span>
+</span></span><span class=line><span class=ln>32</span><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=ln>33</span><span class=cl>      <span class=nt>&#34;preLaunchTask&#34;</span><span class=p>:</span> <span class=s2>&#34;C/C++: g++ build active file&#34;</span>
+</span></span><span class=line><span class=ln>34</span><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=ln>35</span><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=ln>36</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p><strong>修改 <code>cf-new.sh</code></strong>:
+在 <code>mkdir</code> 和 <code>cp</code> 之间加入：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl><span class=c1># ...</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>mkdir -p <span class=s2>&#34;</span><span class=nv>$PROBLEM_DIR</span><span class=s2>/.vscode&#34;</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=nb>cd</span> <span class=s2>&#34;</span><span class=nv>$PROBLEM_DIR</span><span class=s2>&#34;</span> <span class=o>||</span> <span class=nb>exit</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>
+</span></span><span class=line><span class=ln>5</span><span class=cl>cp <span class=s2>&#34;</span><span class=nv>$BASE_DIR</span><span class=s2>/templates/launch.json&#34;</span> <span class=s2>&#34;.vscode/launch.json&#34;</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=c1># ...</span>
+</span></span></code></pre></div><h4 id=4-competitive-programming-代码片段>4. Competitive Programming 代码片段</h4><p>使用 <code>LuaSnip</code>，你可以定义一些非常有用的片段。在你的 <code>luasnip</code> 配置文件中添加：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=ln> 1</span><span class=cl><span class=c1>-- 示例：快速 for 循环</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=n>s</span><span class=p>(</span><span class=s2>&#34;fori&#34;</span><span class=p>,</span> <span class=n>fmt</span><span class=p>(</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=s2>&#34;for (int {1} = 0; {1} &lt; {2}; ++{1}) {{</span><span class=se>\n\t</span><span class=s2>{3}</span><span class=se>\n</span><span class=s2>}}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  <span class=p>{</span> <span class=n>i</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=s2>&#34;i&#34;</span><span class=p>),</span> <span class=n>i</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=s2>&#34;n&#34;</span><span class=p>),</span> <span class=n>i</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span> <span class=p>}</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=p>)),</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl><span class=c1>-- 示例：读取一个 vector</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=n>s</span><span class=p>(</span><span class=s2>&#34;readv&#34;</span><span class=p>,</span> <span class=n>fmt</span><span class=p>(</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  <span class=s2>&#34;std::vector&lt;{1}&gt; {2}({3});</span><span class=se>\n</span><span class=s2>for (int i = 0; i &lt; {3}; ++i) {{</span><span class=se>\n\t</span><span class=s2>std::cin &gt;&gt; {2}[i];</span><span class=se>\n</span><span class=s2>}}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>  <span class=p>{</span> <span class=n>i</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=s2>&#34;int&#34;</span><span class=p>),</span> <span class=n>i</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=s2>&#34;v&#34;</span><span class=p>),</span> <span class=n>i</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=s2>&#34;n&#34;</span><span class=p>)</span> <span class=p>}</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=p>)),</span>
+</span></span></code></pre></div><hr><h3 id=最终工作流程演示>最终工作流程演示</h3><p>现在，你拥有了一个完整的“驾驶舱”。解决一道题的流程如下：</p><ol><li><strong>启动</strong>: <code>cf-new.sh 1800A</code>。Nvim 自动打开 <code>main.cpp</code>。</li><li><strong>编码</strong>:<ul><li>你开始编写 <code>solve()</code> 函数。</li><li>需要一个 for 循环？输入 <code>fori</code> 然后按 <code>&lt;Tab></code>。</li><li>需要读取一个 vector？输入 <code>readv</code> 然后按 <code>&lt;Tab></code>。</li></ul></li><li><strong>准备测试</strong>:<ul><li>从题目页面复制示例输入，粘贴到 <code>input.txt</code> 文件中。</li><li>复制示例输出，粘贴到 <code>answer.txt</code> 文件中。</li></ul></li><li><strong>快速测试</strong>:<ul><li>回到 <code>main.cpp</code>，按下 <code>&lt;leader>r</code>。</li><li>一个浮动终端弹出，显示编译和运行结果。</li></ul></li><li><strong>验证结果</strong>:<ul><li>按下 <code>&lt;leader>d</code>。</li><li>浮动终端会显示你的输出和标准答案的差异。如果完全正确，会提示 &ldquo;All Correct!"。</li></ul></li><li><strong>调试</strong>:<ul><li>如果结果错误，你可以在代码中设置断点（默认 <code>&lt;F9></code>）。</li><li>按下 <code>&lt;F5></code> 启动 DAP 调试会话。DAP 会自动使用 <code>input.txt</code> 作为输入，你可以在断点处检查变量，单步执行，就像在 IDE 中一样。</li></ul></li><li><strong>重复</strong>: 修复 bug 后，回到第 4 步，循环往复，直到通过所有示例。</li></ol><p>这个工作流将 Neovim 的速度、终端的强大功能和 IDE 的调试能力完美地结合在一起，专为 competitive programming 的高强度、快节奏环境而设计。</p></main><br><footer><div class=footer-info><p>Copyright &copy; 2025 Rainboy. All rights reserved.
+<span>| Last build: 2025-10-23 16:51:53</span></p></div><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script><script defer src=/js/theme-switcher.js></script></footer></body></html>

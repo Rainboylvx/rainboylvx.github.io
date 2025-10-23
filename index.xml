@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/index.html</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/index.html</link><description>Recent content in 首页 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://hugo-dead-simple.netlify.com/index.xml" rel="self" type="application/rss+xml"/><item><title>snacks源码解读</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/snacks%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.html</link><pubDate>Thu, 23 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/snacks%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.html</guid><description>&lt;h2 id="起因"&gt;起因&lt;/h2&gt;
+&lt;p&gt;发现了一个插件 &lt;code&gt;https://github.com/folke/snacks.nvim&lt;/code&gt; 发现非常适合我,但是在配置的过程中,我发现需要理解并阅读它的源代码,同时我也想知道如何使用lua语言写neovim的插件.&lt;/p&gt;</description></item><item><title>元表及元方法</title><link>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80.html</link><pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80.html</guid><description>&lt;h2 id="元表概念"&gt;元表概念&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Lua 中的每个值都可以有一个元表&lt;/strong&gt;。此元表是一个普通的 Lua 表，它定义了原始值在特定事件下的行为。您可以通过设置其元表中的特定字段来更改值的多个行为方面。例如，当非数字值是加法的操作数时，Lua 会在该值的元表的 __add 字段中查找一个函数。如果找到一个，Lua 会调用此函数来执行加法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;详细参见 &lt;a href="https://cloudwu.github.io/lua53doc/manual.html#2.4" target="_blank" rel="noopener"&gt;2.4 – 元表及元方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;举一个例子,类似于 c++的运算符重载,这里我们重载&lt;code&gt;+&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Lua" data-lang="Lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo.a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;smt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;__add&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a.a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 设定 foo 的元表,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 当你对非数字值做加操作时， Lua 会检查该值的元表中的 &amp;#34;__add&amp;#34; 域下的函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;setmetatable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;smt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string.format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;foo + 1 = %d&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="__index"&gt;__index&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;__index&lt;/code&gt;:&lt;/strong&gt; 索引 &lt;code&gt;table[key]&lt;/code&gt;。 当 &lt;code&gt;table&lt;/code&gt; 不是表或是表 &lt;code&gt;table&lt;/code&gt; 中不存在 &lt;code&gt;key&lt;/code&gt; 这个键时，这个事件被触发。 此时，会读出 &lt;code&gt;table&lt;/code&gt; 相应的元方法。
+尽管名字取成这样， 这个事件的元方法其实可以是一个函数也可以是一张表。 如果它是一个函数，则以 &lt;code&gt;table&lt;/code&gt; 和 &lt;code&gt;key&lt;/code&gt; 作为参数调用它。 如果它是一张表，最终的结果就是以 &lt;code&gt;key&lt;/code&gt; 取索引这张表的结果。 （这个索引过程是走常规的流程，而不是直接索引， 所以这次索引有可能引发另一次元方法。）&lt;/p&gt;</description></item><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
 &lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
 &lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
@@ -211,7 +236,27 @@ Ctrl+F12的调用返回处
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;em&gt;注意：所有新分割的面板都会在当前面板的路径下打开。&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Lua中的面向对象编程</title><link>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1.html</link><pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1.html</guid><description>&lt;p&gt;嗨！很高兴能和你一起探索Lua这门优雅且强大的语言。你可能知道，Lua天生并没有像Java或C++那样的内置类和对象系统。但别担心，这正是它的魅力所在！这门语言提供了极其灵活的元编程机制，让我们能够&lt;strong&gt;从零开始，亲手构建一个属于自己的面向对象（Object-Oriented Programming，简称OOP）世界&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：所有新分割的面板都会在当前面板的路径下打开。&lt;/em&gt;&lt;/p&gt;</description></item><item><title>LuaSnip</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/luasnip.html</link><pubDate>Thu, 02 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/luasnip.html</guid><description>&lt;ul&gt;
+&lt;li&gt;github : &lt;a href="https://github.com/L3MON4D3/LuaSnip" target="_blank" rel="noopener"&gt;https://github.com/L3MON4D3/LuaSnip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;文档 &lt;a href="https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md" target="_blank" rel="noopener"&gt;https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;中文文档: &lt;a href="https://zjp-cn.github.io/neovim0.6-blogs/nvim/luasnip/doc1.html" target="_blank" rel="noopener"&gt;https://zjp-cn.github.io/neovim0.6-blogs/nvim/luasnip/doc1.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;example lua snip : &lt;a href="https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua" target="_blank" rel="noopener"&gt;https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="基础"&gt;基础&lt;/h2&gt;
+&lt;p&gt;在 LuaSnip 中，代码片段由节点 (&lt;code&gt;nodes&lt;/code&gt;) 组成。节点分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;textNode&lt;/code&gt;：静态文本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;insertNode&lt;/code&gt;：可编辑的文本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;functionNode&lt;/code&gt;：函数节点，可从其他节点的内容生成的文本&lt;/li&gt;
+&lt;li&gt;其他节点
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choiceNode&lt;/code&gt;：在两个节点（或更多节点）之间进行选择&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;restoreNode&lt;/code&gt;：存储和恢复到节点的输入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dynamicNode&lt;/code&gt;：动态节点，基于输入生成的节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通常使用 &lt;code&gt;s(trigger:string, nodes:table)&lt;/code&gt; 形式的函数创建代码片段。&lt;/p&gt;</description></item><item><title>Lua中的面向对象编程</title><link>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1.html</link><pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/lua/lua%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1.html</guid><description>&lt;p&gt;嗨！很高兴能和你一起探索Lua这门优雅且强大的语言。你可能知道，Lua天生并没有像Java或C++那样的内置类和对象系统。但别担心，这正是它的魅力所在！这门语言提供了极其灵活的元编程机制，让我们能够&lt;strong&gt;从零开始，亲手构建一个属于自己的面向对象（Object-Oriented Programming，简称OOP）世界&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;这篇博客将带你深入理解Lua中实现OOP的几种核心思想，从最基础的&lt;strong&gt;表（table）和元表（metatable）&lt;/strong&gt;，到实用的继承和多态。准备好了吗？让我们开始吧！&lt;/p&gt;
 &lt;h2 id="核心概念表元表和__index"&gt;核心概念：表、元表和&lt;code&gt;__index&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;在Lua中，一切皆表。表是Lua中唯一的数据结构，它既可以是数组，也可以是哈希表。而实现OOP的关键，就在于如何利用&lt;strong&gt;元表&lt;/strong&gt;来赋予表新的行为。&lt;/p&gt;
@@ -262,7 +307,153 @@ Ctrl+F12的调用返回处
 &lt;li&gt;&lt;code&gt;__index&lt;/code&gt;指向了&lt;code&gt;Vector2&lt;/code&gt;自身，所以Lua在&lt;code&gt;Vector2&lt;/code&gt;中找到了&lt;code&gt;add&lt;/code&gt;方法并调用了它。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Vector2:add&lt;/code&gt;语法糖会把&lt;code&gt;v1&lt;/code&gt;作为&lt;code&gt;self&lt;/code&gt;参数传入，实现了方法调用。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;这种方式的优点是简单明了，容易理解。缺点是当你的类和继承关系变得复杂时，管理起来可能会有些混乱。&lt;/p&gt;</description></item><item><title>my-awesome-tools</title><link>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</guid><description>&lt;h2 id="1-linux-tool"&gt;1 Linux Tool&lt;/h2&gt;
+&lt;p&gt;这种方式的优点是简单明了，容易理解。缺点是当你的类和继承关系变得复杂时，管理起来可能会有些混乱。&lt;/p&gt;</description></item><item><title>snack-leaern</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/snack-learn.html</link><pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/snack-learn.html</guid><description>&lt;h2 id="step-1"&gt;step 1&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- learn/step1.lua
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 目标：理解选择器的最基本形态：输入一个列表，输出用户的选择。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 技术点：使用 Neovim 内置的 `vim.ui.select`。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 1. 定义我们要选择的数据
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fruits&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Apple&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Orange&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Banana&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Grape&amp;#34;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 2. 调用 `vim.ui.select`，它会弹出一个UI让用户选择
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 第一个参数是我们的数据列表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 第二个参数是一个配置表，我们在这里定义了提示符 `prompt`
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 第三个参数是一个回调函数(callback)，当用户做出选择后，这个函数会被执行
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vim&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ui&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fruits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Select a fruit:&amp;#34;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- `choice` 就是用户选择的项，如果用户按 &amp;lt;Esc&amp;gt; 取消，`choice` 会是 nil
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Picker was cancelled.&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;19&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;20&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;21&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;22&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;-- 3. 在命令行输出用户的选择
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;23&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;You selected: &amp;#34;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;24&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;25&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;26&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;27&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>nvim-dap</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/dap.html</link><pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/dap.html</guid><description>&lt;p&gt;&lt;a href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"&gt;https://github.com/mfussenegger/nvim-dap&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Debug Adapter Protocol client implementation for Neovim&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="安装"&gt;安装&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;return {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &amp;#34;mfussenegger/nvim-dap&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; config = function()
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; end
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="debug-adapter-installation"&gt;Debug Adapter installation&lt;/h2&gt;
+&lt;p&gt;我使用dap ui,按文档,我在linux下使用 &lt;a href="https://codeberg.org/mfussenegger/nvim-dap/wiki/C-C---Rust-%28gdb-via--vscode-cpptools%29" target="_blank" rel="noopener"&gt;vscode-cpptools&lt;/a&gt;,在 macos上使用
+&lt;a href="https://codeberg.org/mfussenegger/nvim-dap/wiki/C-C---Rust-%28via--codelldb%29" target="_blank" rel="noopener"&gt;codelldb&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="linux-下安装"&gt;linux 下安装&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;根据系统在&lt;a href="https://github.com/microsoft/vscode-cpptools/releases/tag/v1.27.7" target="_blank" rel="noopener"&gt;github cpp-tools releases&lt;/a&gt;下载对应系统的visx&lt;/li&gt;
+&lt;li&gt;Unpack it. .vsix is a zip file and you can use unzip to extract the contents.&lt;/li&gt;
+&lt;li&gt;Ensure &lt;code&gt;extension/debugAdapters/bin/OpenDebugAD7&lt;/code&gt; is executable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Adapter definition&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;local&lt;/span&gt; &lt;span class="n"&gt;dap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dap.adapters&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cppdbg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;cppdbg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;executable&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/absolute/path/to/cpptools/extension/debugAdapters/bin/OpenDebugAD7&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configuration
+The VSCode C/C++ documentation contains a full reference for all options supported by the debug adapter.&lt;/p&gt;</description></item><item><title>bookmark</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</guid><description>&lt;p&gt;当然，为代码行添加标记（通常称为“书签”或“Bookmarks”）以便快速导航是一个非常常见的需求。Neovim 不仅有强大的内置标记功能，还有许多优秀的插件可以极大地增强这一体验。&lt;/p&gt;
+&lt;h3 id="1-neovim-的内置标记-built-in-marks"&gt;1 Neovim 的内置标记 (Built-in Marks)&lt;/h3&gt;
+&lt;p&gt;首先，你需要了解 Neovim 自带的、无需任何插件的标记功能。它非常强大和快速。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文件内标记 (Lowercase Marks):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;m{a-z}&lt;/code&gt;: 在当前光标行创建一个名为 &lt;code&gt;{char}&lt;/code&gt; 的标记。例如，&lt;code&gt;ma&lt;/code&gt; 会在当前行创建一个名为 &amp;lsquo;a&amp;rsquo; 的标记。这些标记只在当前文件中有效。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;`a&lt;/code&gt; 或 &lt;code&gt;'a&lt;/code&gt;: 跳转到标记 &amp;lsquo;a&amp;rsquo;。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;`a&lt;/code&gt; (反引号) 会跳转到标记所在行的&lt;strong&gt;确切光标位置&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;'a&lt;/code&gt; (单引号) 会跳转到标记所在行的&lt;strong&gt;行首&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全局标记 (Uppercase Marks):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;m{A-Z}&lt;/code&gt;: 创建一个全局标记。例如，&lt;code&gt;mA&lt;/code&gt;。这些标记在多个文件之间都有效（只要 Neovim 会话还在），并且会记录文件路径。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;`A&lt;/code&gt; 或 &lt;code&gt;'A&lt;/code&gt;: 从任何文件跳转到标记 &amp;lsquo;A&amp;rsquo; 所在的位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;查看所有标记:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入命令 &lt;code&gt;:marks&lt;/code&gt; 可以查看所有已设置的标记。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;优点:&lt;/strong&gt; 内置，速度极快，无需配置。
+&lt;strong&gt;缺点:&lt;/strong&gt; 标记是&lt;strong&gt;不可见&lt;/strong&gt;的，你必须记住你把哪个标记放在了哪里，或者通过 &lt;code&gt;:marks&lt;/code&gt; 命令查看。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="2-插件推荐"&gt;2 插件推荐&lt;/h3&gt;
+&lt;p&gt;为了解决内置标记不可见的问题，社区开发了许多插件，它们通常会在带有标记的行旁边添加一个“符号”或“图标”，并提供更友好的交互方式。&lt;/p&gt;
+&lt;h4 id="-首选推荐-marksnvim"&gt;👑 首选推荐: marks.nvim&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;链接:&lt;/strong&gt; &lt;a href="https://github.com/chentoast/marks.nvim" target="_blank" rel="noopener"&gt;chentoast/marks.nvim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这是一个现代化的 Neovim 插件，专门用于&lt;strong&gt;增强内置的 marks 功能&lt;/strong&gt;。它会让你的内置标记变得可见，并添加了许多方便的功能，是目前最优雅的解决方案之一。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特点:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;可视化:&lt;/strong&gt; 在行号列或符号列为你设置的标记添加图标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无缝集成:&lt;/strong&gt; 它操作的仍然是 Neovim 的原生 marks，所以你依然可以使用 &lt;code&gt;ma&lt;/code&gt; 和 &lt;code&gt;'a&lt;/code&gt; 等命令。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速导航:&lt;/strong&gt; 提供了在标记之间循环跳转的命令。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Telescope 集成:&lt;/strong&gt; 可以用 Telescope 模糊搜索并跳转到所有标记。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持久化:&lt;/strong&gt; 可以跨会话保存标记。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>lsp-clang</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/lsp-clang.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/lsp-clang.html</guid><description>&lt;h2 id="lsp-作用"&gt;lsp 作用&lt;/h2&gt;
+&lt;p&gt;简单来说，&lt;code&gt;clangd&lt;/code&gt; 就像一个精通 C++ 的超级助手，它实时地分析你的代码，然后把分析结果通过 LSP（语言服务器协议）告诉 Neovim。Neovim 再根据这些信息，为你提供一系列强大的 IDE 功能。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;clangd&lt;/code&gt; 的核心作用就是：让 Neovim “理解” C++ 代码。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下面是它具体能为你做的事情，以及如何使用你在上一份配置中设置的快捷键来体验它们：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="1-智能代码补全-intelligent-code-completion"&gt;1. 智能代码补全 (Intelligent Code Completion)&lt;/h3&gt;
+&lt;p&gt;这是最直观的功能。当你输入代码时，&lt;code&gt;clangd&lt;/code&gt; 会根据上下文提供精确的补全建议。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;有什么用？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;减少输入&lt;/strong&gt;：不用再手动敲写完整的函数名、变量名。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;避免拼写错误&lt;/strong&gt;：从补全列表中选择可以确保名称正确无误。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API 探索&lt;/strong&gt;：当你输入一个对象和 &lt;code&gt;.&lt;/code&gt; 或 &lt;code&gt;-&amp;gt;&lt;/code&gt; 后，&lt;code&gt;clangd&lt;/code&gt; 会列出所有可用的成员函数和变量，帮助你快速了解一个类的功能，而无需去查阅文档。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如何体验？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要配合一个补全插件，比如 &lt;code&gt;nvim-cmp&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;当你输入代码时，补全窗口会自动弹出。例如，输入 &lt;code&gt;std::vector&amp;lt;int&amp;gt; v; v.&lt;/code&gt; 就会看到 &lt;code&gt;push_back&lt;/code&gt;, &lt;code&gt;size&lt;/code&gt;, &lt;code&gt;begin&lt;/code&gt; 等成员函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-实时诊断错误和警告-real-time-diagnostics"&gt;2. 实时诊断：错误和警告 (Real-time Diagnostics)&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;clangd&lt;/code&gt; 会在你编写代码的同时进行静态分析，实时地标记出语法错误、类型不匹配、潜在的 bug 和不符合规范的代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;有什么用？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;快速反馈循环&lt;/strong&gt;：你不需要等到编译代码时才发现一个简单的语法错误。错误会立即在你的编辑器中高亮出来，大大缩短了“编码-编译-调试”的周期。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提升代码质量&lt;/strong&gt;：它不仅能发现编译错误，还能通过 &lt;code&gt;clang-tidy&lt;/code&gt; 给出代码风格建议和潜在风险警告。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如何体验？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代码中的错误或警告下方会出现波浪线。&lt;/li&gt;
+&lt;li&gt;行号列会显示图标（例如  表示错误， 表示警告）。&lt;/li&gt;
+&lt;li&gt;将光标移动到有问题的代码上，使用快捷键 &lt;code&gt;&amp;lt;leader&amp;gt;e&lt;/code&gt; 可以浮窗显示详细的诊断信息。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;[d&lt;/code&gt; 和 &lt;code&gt;]d&lt;/code&gt; 可以在文件中的多个诊断点之间快速跳转。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-代码导航-code-navigation"&gt;3. 代码导航 (Code Navigation)&lt;/h3&gt;
+&lt;p&gt;在大型项目中，能够快速地在代码库中跳转是至关重要的。&lt;/p&gt;</description></item><item><title>my-awesome-tools</title><link>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</guid><description>&lt;h2 id="1-linux-tool"&gt;1 Linux Tool&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://linuxcommand.org/lc3_adv_dialog.php" target="_blank" rel="noopener"&gt;dialog&lt;/a&gt; - 用于在 shell 脚本中创建文本用户界面的工具，支持对话框、菜单、进度条等交互元素&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/charmbracelet/gum" target="_blank" rel="noopener"&gt;gum&lt;/a&gt;：一个由 Charmbracelet 开发的命令行工具，用于创建漂亮的交互式 Shell 脚本，支持输入、选择、确认等 UI 组件，适合增强终端用户体验。&lt;/li&gt;
@@ -302,7 +493,174 @@ Ctrl+F12的调用返回处
 &lt;li&gt;&lt;a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools" target="_blank" rel="noopener"&gt;system-prompts-and-models-of-ai-tools&lt;/a&gt; - 收集各种 AI 工具的系统提示词和模型信息，包括 Cursor、Devin、Replit Agent 等&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank" rel="noopener"&gt;awesome-chatgpt-prompts&lt;/a&gt; - 精选的 ChatGPT 提示词集合，帮助用户更好地使用 ChatGPT 和其他大语言模型工具&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://prompts.chat/" target="_blank" rel="noopener"&gt;prompts.chat&lt;/a&gt; - 提供优质 AI 提示词的网站，包含各种场景下的实用提示词模板&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
+&lt;/ul&gt;</description></item><item><title>nvim-lsp-clangd</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd.html</guid><description>&lt;p&gt;在 Neovim 中不使用 &lt;code&gt;nvim-lspconfig&lt;/code&gt; 插件来手动配置 &lt;code&gt;clangd&lt;/code&gt; 是一个很好的学习 Neovim 内置 LSP API 的方式。这能让你更深入地理解 LSP 客户端是如何工作的。&lt;/p&gt;
+&lt;p&gt;下面是详细的步骤和一份完整的 Lua 配置示例。&lt;/p&gt;
+&lt;h3 id="核心思路"&gt;核心思路&lt;/h3&gt;
+&lt;p&gt;不使用 &lt;code&gt;nvim-lspconfig&lt;/code&gt; 的核心是直接调用 Neovim 的原生 LSP 函数 &lt;code&gt;vim.lsp.start()&lt;/code&gt;。这个函数负责启动一个 LSP 服务进程，并将其附加到当前的缓冲区。&lt;/p&gt;
+&lt;p&gt;主要步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;确保 &lt;code&gt;clangd&lt;/code&gt; 已安装&lt;/strong&gt;：Neovim 不会帮你安装 LSP 服务器，你需要自己通过系统包管理器安装。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定义 &lt;code&gt;on_attach&lt;/code&gt; 函数&lt;/strong&gt;：这个函数在 LSP 成功附加到一个缓冲区后执行。我们在这里设置快捷键、高亮等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定义 LSP 服务器配置&lt;/strong&gt;：创建一个配置表，告诉 Neovim 如何启动 &lt;code&gt;clangd&lt;/code&gt;（命令、根目录、文件类型等）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用 &lt;code&gt;autocmd&lt;/code&gt; 触发 LSP&lt;/strong&gt;：创建一个自动命令，在打开 C/C++ 文件时，调用 &lt;code&gt;vim.lsp.start()&lt;/code&gt; 来启动 &lt;code&gt;clangd&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id="步骤-1-安装-clangd"&gt;步骤 1: 安装 clangd&lt;/h3&gt;
+&lt;p&gt;首先，确保你的系统上已经安装了 &lt;code&gt;clangd&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;macOS (Homebrew):&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;brew install llvm
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Homebrew 安装的 llvm 可能需要手动链接，或者你可以在配置中指定完整路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu/Debian:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>outline</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline.html</guid><description>&lt;p&gt;好的，你正在寻找的这类插件通常被称为“符号大纲” (Symbol Outline) 或“符号树” (Symbol Tree)。它们利用 Neovim 的 LSP (Language Server Protocol) 功能来获取代码的结构信息。&lt;/p&gt;
+&lt;p&gt;对于 C++，你需要先确保你的 Neovim 已经配置好了 LSP，并且安装了 C++ 的语言服务器，最常用的是 &lt;code&gt;clangd&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这里有几个非常出色的插件可以完美实现你想要的功能，它们都非常接近 VS Code 的大纲视图。&lt;/p&gt;
+&lt;h3 id="-首选推荐-symbols-outlinenvim"&gt;👑 首选推荐: symbols-outline.nvim&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;链接:&lt;/strong&gt; &lt;a href="https://github.com/simrat39/symbols-outline.nvim" target="_blank" rel="noopener"&gt;simrat39/symbols-outline.nvim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这可能是最直接、最像 VS Code 大纲的插件。它提供一个侧边栏，用树状结构清晰地展示当前文件中的所有符号（类、函数、变量、宏等），并且点击即可跳转。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特点:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非常直观的树状视图。&lt;/li&gt;
+&lt;li&gt;自动随代码修改而更新。&lt;/li&gt;
+&lt;li&gt;支持丰富的图标 (需要 &lt;code&gt;nvim-web-devicons&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;高度可定制，可以调整位置、宽度等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;simrat39/symbols-outline.nvim&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;o&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;SymbolsOutline&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Toggle Outline&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;symbols-outline&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;上面的配置添加了一个快捷键 &lt;code&gt;&amp;lt;leader&amp;gt;o&lt;/code&gt; 来打开或关闭大纲侧边栏。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="-强大备选-aerialnvim"&gt;🚀 强大备选: aerial.nvim&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;链接:&lt;/strong&gt; &lt;a href="https://github.com/stevearc/aerial.nvim" target="_blank" rel="noopener"&gt;stevearc/aerial.nvim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Aerial 是另一个功能极其强大的大纲插件。它不仅能显示符号，还能与 &lt;code&gt;nvim-navic&lt;/code&gt; (一个在顶部显示当前代码上下文的插件) 等工具集成，提供更丰富的导航体验。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特点:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持多种后端（LSP, Treesitter），信息更全面。&lt;/li&gt;
+&lt;li&gt;UI 高度可定制，可以作为侧边栏或浮动窗口。&lt;/li&gt;
+&lt;li&gt;可以显示代码的层级结构，非常适合大型项目。&lt;/li&gt;
+&lt;li&gt;过滤和排序功能强大。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>vim交互</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/vim-interaction.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/vim-interaction.html</guid><description>&lt;p&gt;Interaction&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://neovim.io/doc/user/lua.html#vim.ui.input%28%29" target="_blank" rel="noopener"&gt;https://neovim.io/doc/user/lua.html#vim.ui.input()&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;当然有！这是一个非常好的问题，也是 Neovim 区别于传统 Vim 的一大优势。Neovim 提供了多种创建和管理“对话框”或交互式 UI 的方式，从简单的命令行输入到功能强大的浮动窗口应有尽有。&lt;/p&gt;
+&lt;p&gt;由于 Neovim 是一个终端应用（TUI），它的“对话框”通常以&lt;strong&gt;浮动窗口&lt;/strong&gt;或&lt;strong&gt;命令行提示&lt;/strong&gt;的形式出现。&lt;/p&gt;
+&lt;p&gt;下面我将为你介绍三种由浅入深、最主流的实现方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;标准 API (&lt;code&gt;vim.ui&lt;/code&gt;)&lt;/strong&gt;: 最简单、最标准的交互方式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;美化插件 (&lt;code&gt;dressing.nvim&lt;/code&gt;)&lt;/strong&gt;: 让标准 API 的对话框变得非常漂亮。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UI 库 (&lt;code&gt;nui.nvim&lt;/code&gt;)&lt;/strong&gt;: 完全从零开始构建你自己的、复杂的对话框。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id="方式一使用标准-vimui-api"&gt;方式一：使用标准 &lt;code&gt;vim.ui&lt;/code&gt; API&lt;/h3&gt;
+&lt;p&gt;Neovim 提供了一套标准的、可被插件覆盖的 UI 接口：&lt;code&gt;vim.ui.input()&lt;/code&gt; 和 &lt;code&gt;vim.ui.select()&lt;/code&gt;。这是编写交互功能的&lt;strong&gt;首选方式&lt;/strong&gt;，因为它具有最好的兼容性。&lt;/p&gt;
+&lt;h4 id="1-vimuiinput---获取用户文本输入"&gt;1. &lt;code&gt;vim.ui.input()&lt;/code&gt; - 获取用户文本输入&lt;/h4&gt;
+&lt;p&gt;这个函数会弹出一个提示，让用户输入一段文本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt; 创建一个命令，询问你的名字，然后打印欢迎信息。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 你可以把这个函数放在你的任意配置文件中&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;AskNameAndGreet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vim.ui&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt; &lt;span class="n"&gt;prompt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;What is your name? &amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vim.notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hello, &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;..&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;..&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vim.log&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;levels.INFO&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vim.notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Greeting cancelled.&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vim.log&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;levels.WARN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;-- 创建一个用户命令来调用这个函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vim.api&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nvim_create_user_command&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Greet&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AskNameAndGreet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;如何使用：&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>which-key</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key.html</guid><description>&lt;h2 id="1-使用-which-key-最佳实践"&gt;1. 使用 which-key 最佳实践&lt;/h2&gt;
+&lt;p&gt;当然，使用 &lt;code&gt;which-key.nvim&lt;/code&gt; 的目标不仅仅是“显示按键”，更是为了构建一个&lt;strong&gt;可发现、有逻辑、易于记忆&lt;/strong&gt;的键位系统。以下是一些被广泛认可的最佳实践：&lt;/p&gt;
+&lt;h3 id="11-合理组织你的按键-organize-your-keys-logically"&gt;1.1. 合理组织你的按键 (Organize Your Keys Logically)&lt;/h3&gt;
+&lt;p&gt;这是最核心的一点。不要随意放置键位，要用分组和助记符来构建你的配置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;使用助记符 (Mnemonics):&lt;/strong&gt; 键位的首字母应该和它执行的动作相关联。这使得记忆成本大大降低。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;leader&amp;gt;f&lt;/code&gt; -&amp;gt; &lt;strong&gt;F&lt;/strong&gt;ind (查找)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;leader&amp;gt;g&lt;/code&gt; -&amp;gt; &lt;strong&gt;G&lt;/strong&gt;it (Git 相关)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;leader&amp;gt;b&lt;/code&gt; -&amp;gt; &lt;strong&gt;B&lt;/strong&gt;uffers (缓冲区)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;leader&amp;gt;p&lt;/code&gt; -&amp;gt; &lt;strong&gt;P&lt;/strong&gt;roject (项目)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;leader&amp;gt;t&lt;/code&gt; -&amp;gt; &lt;strong&gt;T&lt;/strong&gt;oggle (切换) or &lt;strong&gt;T&lt;/strong&gt;erminal (终端)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;创建嵌套分组:&lt;/strong&gt; &lt;code&gt;which-key&lt;/code&gt; 最强大的功能就是分组。将相关的功能组织在一起。&lt;/p&gt;
+&lt;p&gt;一个典型的 Git 分组示例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;g&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Git&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;-- 这个分组的图标&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;icon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;gs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;Telescope git_status&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Status&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;gc&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;Telescope git_commits&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Commits&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;gb&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;Telescope git_branches&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Branches&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;gp&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;Git push&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Push&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;leader&amp;gt;gl&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;cmd&amp;gt;Git pull&amp;lt;cr&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Pull&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当你按下 &lt;code&gt;&amp;lt;leader&amp;gt;g&lt;/code&gt; 后，&lt;code&gt;which-key&lt;/code&gt; 会弹出一个标题为 &amp;ldquo;Git&amp;rdquo; 的菜单，里面列出了 Status, Commits, Branches 等选项，非常清晰。&lt;/p&gt;</description></item><item><title>设计思想</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3.html</guid><description>&lt;p&gt;太棒了！这是一个非常经典且有价值的场景。为 Codeforces (或其他 competitive programming 平台) 打造一个高效的 Neovim 工作流，可以极大地提升你的解题速度和体验。&lt;/p&gt;
+&lt;p&gt;我们将围绕一系列&lt;strong&gt;精心设计的 Bash 脚本&lt;/strong&gt;和 Neovim 配置，构建一个无缝的“编码-编译-测试-调试”循环。&lt;/p&gt;
+&lt;h3 id="核心理念"&gt;核心理念&lt;/h3&gt;
+&lt;p&gt;你的工作目录将围绕&lt;strong&gt;一个问题一个文件夹&lt;/strong&gt;的模式展开。例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;/home/user/codeforces/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;├── 1800A/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;│ ├── main.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;│ ├── input.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;│ ├── answer.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;│ └── .vscode/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;│ └── launch.json (用于 DAP 调试)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;├── 1800B/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;│ └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;└── templates/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; ├── default.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt; ├── graph.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt; └── math.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;每个文件夹都是一个独立的工作区，包含代码、输入、标准输出和调试配置。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="第一步设置模板和初始化脚本"&gt;第一步：设置模板和初始化脚本&lt;/h3&gt;
+&lt;p&gt;这是所有工作的起点。我们需要一个脚本来快速创建上述的目录结构。&lt;/p&gt;
+&lt;h4 id="1-代码模板-codeforcestemplatesdefaultcpp"&gt;1. 代码模板 (&lt;code&gt;~/codeforces/templates/default.cpp&lt;/code&gt;)&lt;/h4&gt;
+&lt;p&gt;首先，创建一个或多个你常用的代码模板。这是一个基础模板示例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// ~/codeforces/templates/default.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="c1"&gt;// ... 其他常用头文件
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// Fast I/O
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;fast_io&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ios_base&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;sync_with_stdio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 主解题函数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 在这里写你的代码
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;19&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;20&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fast_io&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;21&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;22&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 如果是多组测试用例
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;23&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;24&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;25&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;26&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;27&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="2-初始化脚本-cf-newsh"&gt;2. 初始化脚本 (&lt;code&gt;cf-new.sh&lt;/code&gt;)&lt;/h4&gt;
+&lt;p&gt;在你的 &lt;code&gt;PATH&lt;/code&gt; 环境变量能找到的地方（例如 &lt;code&gt;~/.local/bin/&lt;/code&gt;）创建一个名为 &lt;code&gt;cf-new.sh&lt;/code&gt; 的脚本。&lt;/p&gt;</description></item><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
 &lt;p&gt;最近在使用archlinux,发现网络延迟很高,但是其他设备正常,于是开始排查问题.&lt;/p&gt;
 &lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
@@ -331,7 +689,7 @@ Ctrl+F12的调用返回处
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://gist.github.com/jcberthon/ea8cfe278998968ba7c5a95344bc8b55" target="_blank" rel="noopener"&gt;NetworkManager Wi-Fi powersaving configuration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Power_management#NetworkManager" target="_blank" rel="noopener"&gt;Arch Linux Wi-Fi Power Management&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>配置一个适合oi的nvim</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi.html</link><pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
+&lt;/ul&gt;</description></item><item><title>配置一个适合oi的nvim</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/readme.html</link><pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/readme.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
 &lt;p&gt;我的大部分代码编写已经转到vscode,只有写 OJ代码的使用的是vim(因为快). 现在我准备配置一个专用的nvim,精简一下配置.&lt;/p&gt;
 &lt;h2 id="2-lazynvim"&gt;2. lazy.nvim&lt;/h2&gt;
 &lt;p&gt;这里我们使用&lt;a href="https://lazy.folke.io/" target="_blank" rel="noopener"&gt;lazy.nvim&lt;/a&gt; 作为我们的插件管理器,因为国内的环境，我们配置一下github下载proxy&lt;/p&gt;
@@ -2182,40 +2540,44 @@ lock vs. mutex。&lt;/p&gt;</description></item><item><title/><link>https://hugo
 &lt;h2 id="学习资源"&gt;学习资源&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/riba2534/TCP-IP-NetworkNote" target="_blank" rel="noopener"&gt;riba2534TCP-IP-NetworkNote 📘《TCPIP网络编程》(韩-尹圣雨)学习笔记&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/mongodb/readme.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/readme.html</guid><description/></item><item><title/><link>https://hugo-dead-simple.netlify.com/program_language/lua/%E5%85%83%E8%A1%A8%E5%8F%8A%E5%85%83%E6%96%B9%E6%B3%95.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/lua/%E5%85%83%E8%A1%A8%E5%8F%8A%E5%85%83%E6%96%B9%E6%B3%95.html</guid><description>&lt;blockquote&gt;
-&lt;p&gt;Lua 中的每个值都可以有一个 元表。 这个 元表 就是一个普通的 Lua 表， 它用于定义原始值在特定操作下的行为&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;举一个例子,类似于 c++的运算符重载,这里我们重载&lt;code&gt;+&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Lua" data-lang="Lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo.a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;smt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;__add&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a.a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;setmetatable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;smt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string.format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;foo + 1 = %d&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="__index"&gt;__index&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;__index&lt;/code&gt;:&lt;/strong&gt; 索引 &lt;code&gt;table[key]&lt;/code&gt;。 当 &lt;code&gt;table&lt;/code&gt; 不是表或是表 &lt;code&gt;table&lt;/code&gt; 中不存在 &lt;code&gt;key&lt;/code&gt; 这个键时，这个事件被触发。 此时，会读出 &lt;code&gt;table&lt;/code&gt; 相应的元方法。
-尽管名字取成这样， 这个事件的元方法其实可以是一个函数也可以是一张表。 如果它是一个函数，则以 &lt;code&gt;table&lt;/code&gt; 和 &lt;code&gt;key&lt;/code&gt; 作为参数调用它。 如果它是一张表，最终的结果就是以 &lt;code&gt;key&lt;/code&gt; 取索引这张表的结果。 （这个索引过程是走常规的流程，而不是直接索引， 所以这次索引有可能引发另一次元方法。）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo.a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;smt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;__index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="n"&gt;string.format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;not found key : %s&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;setmetatable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;smt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;mykey&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="__newindex"&gt;__newindex&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;__newindex&lt;/code&gt;:&lt;/strong&gt; 索引赋值 &lt;code&gt;table[key] = value&lt;/code&gt; 。 和索引事件类似，它发生在 &lt;code&gt;table&lt;/code&gt; 不是表或是表 &lt;code&gt;table&lt;/code&gt; 中不存在 &lt;code&gt;key&lt;/code&gt; 这个键的时候。 此时，会读出 &lt;code&gt;table&lt;/code&gt; 相应的元方法。&lt;/p&gt;</description></item><item><title>Search Results</title><link>https://hugo-dead-simple.netlify.com/search.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/search.html</guid><description/></item></channel></rss>
+&lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/mongodb/readme.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/mongodb/readme.html</guid><description/></item><item><title/><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/buffline.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/buffline.html</guid><description>&lt;p&gt;&lt;code&gt;:h bufferline-configuration&lt;/code&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/nvim-dap.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/nvim-dap.html</guid><description>&lt;think&gt;
+Here's a thinking process that could lead to the detailed `nvim-dap` guide:
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Deconstruct the User&amp;rsquo;s Request:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core Question:&lt;/strong&gt; &amp;ldquo;How do I use the nvim-dap plugin?&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implicit Needs:&lt;/strong&gt; This is a broad question. A good answer needs to cover several aspects, not just one command. It implies the user wants to set up a debugging environment in Neovim. I need to break this down into a logical, step-by-step process.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audience:&lt;/strong&gt; The user has been asking about LSP and completion. They are comfortable with &lt;code&gt;lazy.nvim&lt;/code&gt; and editing Lua configs. They are likely a C++ developer, given the &lt;code&gt;clangd&lt;/code&gt; context. So, I should use C++ as the primary example.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Structure the Answer - The &amp;ldquo;Hero&amp;rsquo;s Journey&amp;rdquo; of Debugging Setup:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/snack-picker.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/snack-picker.html</guid><description>&lt;p&gt;rainboylvx: 读取整个项目,教会我这个nvim插件项目的源码, 每次分析一个文件(按代码文件的直接的调用逻辑),询问用户是否理解后,在分析下一个代码文件&lt;/p&gt;
+&lt;p&gt;Workspace: 正在收集工作区信息好的，我们开始分析这个项目。我将从你当前打开的文件开始，按照代码的调用逻辑逐一分析，并在分析完每个文件后询问你是否理解。&lt;/p&gt;
+&lt;p&gt;我们从入口文件 &lt;code&gt;lua/snacks/picker/init.lua&lt;/code&gt; 开始。&lt;/p&gt;
+&lt;p&gt;这个文件是 &lt;code&gt;snacks.picker&lt;/code&gt; 模块的核心。它的主要作用是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;作为模块的入口&lt;/strong&gt;：通过 &lt;code&gt;setmetatable&lt;/code&gt;，它实现了一个巧妙的加载机制。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__call&lt;/code&gt; 元方法允许你像函数一样调用这个模块（例如 &lt;code&gt;require(&amp;quot;snacks.picker&amp;quot;)(opts)&lt;/code&gt;），这实际上会执行 &lt;code&gt;M.pick&lt;/code&gt; 函数。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__index&lt;/code&gt; 元方法实现了子模块的&lt;strong&gt;懒加载&lt;/strong&gt;。当你访问 &lt;code&gt;picker.actions&lt;/code&gt; 或 &lt;code&gt;picker.config&lt;/code&gt; 这样的子模块时，它会自动 &lt;code&gt;require&lt;/code&gt; 对应的文件（如 &lt;code&gt;snacks.picker.actions&lt;/code&gt;），这提高了启动性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;创建选择器 (Picker)&lt;/strong&gt;：核心功能由 &lt;code&gt;M.pick&lt;/code&gt; 函数提供。
+&lt;ul&gt;
+&lt;li&gt;这个函数是创建新选择器 UI 的主要方式。&lt;/li&gt;
+&lt;li&gt;它处理不同的参数组合，例如可以只传入配置表，也可以同时传入数据源名称和配置。&lt;/li&gt;
+&lt;li&gt;如果调用时没有提供数据源 (source)、条目 (&lt;code&gt;items&lt;/code&gt;) 或查找器 (&lt;code&gt;finder&lt;/code&gt;)，它会默认打开一个展示所有可用选择器的选择器。&lt;/li&gt;
+&lt;li&gt;最关键的一行是 &lt;code&gt;require(&amp;quot;snacks.picker.core.picker&amp;quot;).new(opts)&lt;/code&gt;，这表明实际的选择器对象是在 picker.lua 文件中创建和管理的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集成 &lt;code&gt;vim.ui.select&lt;/code&gt;&lt;/strong&gt;：通过 &lt;code&gt;M.select&lt;/code&gt; 函数，它提供了一个可以替代 Neovim 内置 &lt;code&gt;vim.ui.select&lt;/code&gt; 的实现，这个实现来自于 select.lua 文件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提供辅助功能&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;M.get&lt;/code&gt; 用于获取当前活动的选择器实例。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;M.setup&lt;/code&gt; 用于在启动时应用配置，比如用当前插件的 UI 替换 &lt;code&gt;vim.ui.select&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总结来说，init.lua 是一个高度封装的入口，它将功能委托给其他模块，并为用户提供了一个简洁的 API。其最重要的依赖是 picker.lua，因为选择器的创建和生命周期管理都在那里实现。&lt;/p&gt;
+&lt;p&gt;以上是关于 init.lua 文件的分析。你理解了吗？如果理解了，我们接下来就分析它最重要的依赖文件 picker.lua。&lt;/p&gt;</description></item><item><title>Search Results</title><link>https://hugo-dead-simple.netlify.com/search.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/search.html</guid><description/></item></channel></rss>
