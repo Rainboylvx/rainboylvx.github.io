@@ -2,7 +2,7 @@
 <span id=tags>&nbsp;&nbsp;
 <span><a href=https://hugo-dead-simple.netlify.com/tags/index.html>#</a>
 </span>&nbsp;</span></div></div><aside class="hidden lg:block toc" id=tableOfContentContainer><nav id=TableOfContents><ul><li><a href=#起因>起因</a></li><li><a href=#准备>准备</a></li></ul></nav></aside><main class="heti heti--classic"><h2 id=起因>起因</h2><p>发现了一个插件 <code>https://github.com/folke/snacks.nvim</code> 发现非常适合我,但是在配置的过程中,我发现需要理解并阅读它的源代码,同时我也想知道如何使用lua语言写neovim的插件.</p><h2 id=准备>准备</h2><p>根据 <a href=https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME target=_blank rel=noopener>nvim-doc NVIM_APPNAME</a>,我们可以配置出一个单独的专门使用的配置,和我们的主nvim 配置,进行分离</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=c1># 1. 创建一个用于学习的根目录 (可以放在任何你喜欢的地方)</span>
-</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=nv>configPath</span><span class=o>=</span><span class=s2>&#34;~/.config/snacks-learn&#34;</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=nv>configPath</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$HOME</span><span class=s2>/.config/snacks-learn&#34;</span>
 </span></span><span class=line><span class=ln> 3</span><span class=cl>mkdir -p <span class=nv>$configPath</span>
 </span></span><span class=line><span class=ln> 4</span><span class=cl>
 </span></span><span class=line><span class=ln> 5</span><span class=cl><span class=c1># 2. 创建 lazy.vim 需要的配置、数据和状态目录</span>
@@ -17,132 +17,101 @@
 </span></span><span class=line><span class=ln>2</span><span class=cl><span class=c1># 告诉 Neovim 使用 &#39;snacks-learn&#39; 作为配置名</span>
 </span></span><span class=line><span class=ln>3</span><span class=cl><span class=c1># 它会自动查找 $HOME/.config/snacks-learn/init.lua</span>
 </span></span><span class=line><span class=ln>4</span><span class=cl><span class=nv>NVIM_APPNAME</span><span class=o>=</span>snacks-learn nvim
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=ln>  1</span><span class=cl><span class=c1>-- ~/.config/snacks-learn/init.lua</span>
-</span></span><span class=line><span class=ln>  2</span><span class=cl>
-</span></span><span class=line><span class=ln>  3</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln>  4</span><span class=cl><span class=c1>-- 1. 设置 Neovim 的数据、配置、状态等路径</span>
-</span></span><span class=line><span class=ln>  5</span><span class=cl><span class=c1>--    使其完全隔离在我们的 ~/snacks-learn 目录中</span>
-</span></span><span class=line><span class=ln>  6</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln>  7</span><span class=cl><span class=c1>-- 注意：我们将在启动 nvim 时使用 NVIM_APP_NAME=snacks-learn 环境变量,</span>
-</span></span><span class=line><span class=ln>  8</span><span class=cl><span class=c1>-- Neovim 会自动将 stdpath(&#39;config&#39;) 指向 ~/snacks-learn/config/nvim</span>
-</span></span><span class=line><span class=ln>  9</span><span class=cl><span class=c1>-- 我们需要手动设置其他路径，以确保完全隔离</span>
-</span></span><span class=line><span class=ln> 10</span><span class=cl>
-</span></span><span class=line><span class=ln> 11</span><span class=cl><span class=kd>local</span> <span class=n>path</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>stdpath</span><span class=p>(</span><span class=s2>&#34;config&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=ln> 12</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_DATA_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/data&#34;</span>
-</span></span><span class=line><span class=ln> 13</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_STATE_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/state&#34;</span>
-</span></span><span class=line><span class=ln> 14</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_CACHE_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/cache&#34;</span>
-</span></span><span class=line><span class=ln> 15</span><span class=cl>
-</span></span><span class=line><span class=ln> 16</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 17</span><span class=cl><span class=c1>-- 2. 基本的 Neovim 设置 (QoL)</span>
-</span></span><span class=line><span class=ln> 18</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 19</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>number</span> <span class=o>=</span> <span class=kc>true</span>         <span class=c1>-- 显示行号</span>
-</span></span><span class=line><span class=ln> 20</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>relativenumber</span> <span class=o>=</span> <span class=kc>true</span> <span class=c1>-- 显示相对行号</span>
-</span></span><span class=line><span class=ln> 21</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>termguicolors</span> <span class=o>=</span> <span class=kc>true</span>  <span class=c1>-- 启用真彩色</span>
-</span></span><span class=line><span class=ln> 22</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>mouse</span> <span class=o>=</span> <span class=s2>&#34;a&#34;</span>           <span class=c1>-- 启用鼠标</span>
-</span></span><span class=line><span class=ln> 23</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>clipboard</span> <span class=o>=</span> <span class=s2>&#34;unnamedplus&#34;</span> <span class=c1>-- 使用系统剪贴板</span>
-</span></span><span class=line><span class=ln> 24</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>swapfile</span> <span class=o>=</span> <span class=kc>false</span>      <span class=c1>-- 关闭交换文件</span>
-</span></span><span class=line><span class=ln> 25</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>backup</span> <span class=o>=</span> <span class=kc>false</span>        <span class=c1>-- 关闭备份</span>
-</span></span><span class=line><span class=ln> 26</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>writebackup</span> <span class=o>=</span> <span class=kc>false</span>
-</span></span><span class=line><span class=ln> 27</span><span class=cl>
-</span></span><span class=line><span class=ln> 28</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 29</span><span class=cl><span class=c1>-- 3. lazy.vim 插件管理器 - 引导程序</span>
-</span></span><span class=line><span class=ln> 30</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 31</span><span class=cl><span class=c1>-- local lazypath = vim.fn.stdpath(&#34;data&#34;) .. &#34;/lazy/lazy.nvim&#34;</span>
-</span></span><span class=line><span class=ln> 32</span><span class=cl>
-</span></span><span class=line><span class=ln> 33</span><span class=cl><span class=c1>-- 这里没用使用stdpath(&#34;data&#34;) 而是使用了stdpath(&#34;config&#34;),方便我们查看</span>
-</span></span><span class=line><span class=ln> 34</span><span class=cl><span class=kd>local</span> <span class=n>lazypath</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>stdpath</span><span class=p>(</span><span class=s2>&#34;config&#34;</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/lazy/lazy.nvim&#34;</span>
-</span></span><span class=line><span class=ln> 35</span><span class=cl><span class=kr>if</span> <span class=ow>not</span> <span class=n>vim.loop</span><span class=p>.</span><span class=n>fs_stat</span><span class=p>(</span><span class=n>lazypath</span><span class=p>)</span> <span class=kr>then</span>
-</span></span><span class=line><span class=ln> 36</span><span class=cl>  <span class=n>print</span><span class=p>(</span><span class=s2>&#34;正在克隆 lazy.nvim...&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=ln> 37</span><span class=cl>  <span class=n>vim.fn</span><span class=p>.</span><span class=n>system</span><span class=p>({</span>
-</span></span><span class=line><span class=ln> 38</span><span class=cl>    <span class=s2>&#34;git&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 39</span><span class=cl>    <span class=s2>&#34;clone&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 40</span><span class=cl>    <span class=s2>&#34;--filter=blob:none&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 41</span><span class=cl>    <span class=s2>&#34;https://gh-proxy.com/https://github.com/folke/lazy.nvim.git&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 42</span><span class=cl>    <span class=s2>&#34;--branch=stable&#34;</span><span class=p>,</span> <span class=c1>-- latest stable release</span>
-</span></span><span class=line><span class=ln> 43</span><span class=cl>    <span class=n>lazypath</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 44</span><span class=cl>  <span class=p>})</span>
-</span></span><span class=line><span class=ln> 45</span><span class=cl><span class=kr>end</span>
-</span></span><span class=line><span class=ln> 46</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>rtp</span><span class=p>:</span><span class=n>prepend</span><span class=p>(</span><span class=n>lazypath</span><span class=p>)</span>
-</span></span><span class=line><span class=ln> 47</span><span class=cl>
-</span></span><span class=line><span class=ln> 48</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 49</span><span class=cl><span class=c1>-- 4. lazy.vim 插件设置</span>
-</span></span><span class=line><span class=ln> 50</span><span class=cl><span class=c1>-- =============================================================================</span>
-</span></span><span class=line><span class=ln> 51</span><span class=cl><span class=n>require</span><span class=p>(</span><span class=s2>&#34;lazy&#34;</span><span class=p>).</span><span class=n>setup</span><span class=p>({</span>
-</span></span><span class=line><span class=ln> 52</span><span class=cl>  <span class=c1>-- 这是我们要学习的插件：snacks.nvim</span>
-</span></span><span class=line><span class=ln> 53</span><span class=cl>  <span class=p>{</span>
-</span></span><span class=line><span class=ln> 54</span><span class=cl>    <span class=c1>-- 核心：使用 `dir` 关键字指向你本地克隆的路径</span>
-</span></span><span class=line><span class=ln> 55</span><span class=cl>    <span class=c1>-- !! 你需要修改这个路径为你克隆 `snacks.nvim` 的实际路径 !!</span>
-</span></span><span class=line><span class=ln> 56</span><span class=cl>    <span class=n>dir</span> <span class=o>=</span> <span class=n>os.getenv</span><span class=p>(</span><span class=s2>&#34;HOME&#34;</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/.config/snacks-learn/snacks.nvim&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 57</span><span class=cl>
-</span></span><span class=line><span class=ln> 58</span><span class=cl>    <span class=c1>-- `name` 是可选的，但当使用 `dir` 时，它有助于 lazy.nvim 识别插件</span>
-</span></span><span class=line><span class=ln> 59</span><span class=cl>    <span class=n>name</span> <span class=o>=</span> <span class=s2>&#34;snacks.nvim&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 60</span><span class=cl>
-</span></span><span class=line><span class=ln> 61</span><span class=cl>    <span class=c1>-- snacks.nvim 的依赖项</span>
-</span></span><span class=line><span class=ln> 62</span><span class=cl>    <span class=c1>-- lazy.nvim 会自动从 GitHub 下载这些依赖</span>
-</span></span><span class=line><span class=ln> 63</span><span class=cl>    <span class=n>dependencies</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln> 64</span><span class=cl>      <span class=s2>&#34;nvim-tree/nvim-web-devicons&#34;</span><span class=p>,</span> <span class=c1>-- (可选) 用于显示图标</span>
-</span></span><span class=line><span class=ln> 65</span><span class=cl>      <span class=s2>&#34;rcarriga/nvim-notify&#34;</span><span class=p>,</span>        <span class=c1>-- (可选) 用于显示通知</span>
-</span></span><span class=line><span class=ln> 66</span><span class=cl>    <span class=p>},</span>
-</span></span><span class=line><span class=ln> 67</span><span class=cl>
-</span></span><span class=line><span class=ln> 68</span><span class=cl>    <span class=c1>-- `opts` 表格用于配置 snacks.nvim</span>
-</span></span><span class=line><span class=ln> 69</span><span class=cl>    <span class=c1>-- 你可以在这里打开/关闭/配置 snacks 的各个模块</span>
-</span></span><span class=line><span class=ln> 70</span><span class=cl>    <span class=n>opts</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln> 71</span><span class=cl>      <span class=c1>-- 模块白名单，只加载你感兴趣的</span>
-</span></span><span class=line><span class=ln> 72</span><span class=cl>      <span class=c1>-- 留空 (opts = {}) 来加载所有模块</span>
-</span></span><span class=line><span class=ln> 73</span><span class=cl>      <span class=n>modules</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln> 74</span><span class=cl>        <span class=s2>&#34;cursor&#34;</span><span class=p>,</span>    <span class=c1>-- 高亮光标所在行</span>
-</span></span><span class=line><span class=ln> 75</span><span class=cl>        <span class=s2>&#34;indent&#34;</span><span class=p>,</span>    <span class=c1>-- 缩进线</span>
-</span></span><span class=line><span class=ln> 76</span><span class=cl>        <span class=s2>&#34;navic&#34;</span><span class=p>,</span>     <span class=c1>-- (需要 nvim-navic 插件)</span>
-</span></span><span class=line><span class=ln> 77</span><span class=cl>        <span class=s2>&#34;notify&#34;</span><span class=p>,</span>    <span class=c1>-- (需要 nvim-notify 插件)</span>
-</span></span><span class=line><span class=ln> 78</span><span class=cl>        <span class=s2>&#34;regex&#34;</span><span class=p>,</span>     <span class=c1>-- 正则表达式预览</span>
-</span></span><span class=line><span class=ln> 79</span><span class=cl>        <span class=s2>&#34;scrollbar&#34;</span><span class=p>,</span> <span class=c1>-- 滚动条</span>
-</span></span><span class=line><span class=ln> 80</span><span class=cl>        <span class=s2>&#34;search&#34;</span><span class=p>,</span>    <span class=c1>-- 搜索高亮</span>
-</span></span><span class=line><span class=ln> 81</span><span class=cl>      <span class=p>},</span>
-</span></span><span class=line><span class=ln> 82</span><span class=cl>
-</span></span><span class=line><span class=ln> 83</span><span class=cl>      <span class=c1>-- ==================</span>
-</span></span><span class=line><span class=ln> 84</span><span class=cl>      <span class=c1>-- 模块的具体配置示例</span>
-</span></span><span class=line><span class=ln> 85</span><span class=cl>      <span class=c1>-- ==================</span>
-</span></span><span class=line><span class=ln> 86</span><span class=cl>
-</span></span><span class=line><span class=ln> 87</span><span class=cl>      <span class=c1>-- 启用滚动条</span>
-</span></span><span class=line><span class=ln> 88</span><span class=cl>      <span class=n>scrollbar</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln> 89</span><span class=cl>        <span class=n>enabled</span> <span class=o>=</span> <span class=kc>true</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 90</span><span class=cl>      <span class=p>},</span>
-</span></span><span class=line><span class=ln> 91</span><span class=cl>
-</span></span><span class=line><span class=ln> 92</span><span class=cl>      <span class=c1>-- 启用缩进线</span>
-</span></span><span class=line><span class=ln> 93</span><span class=cl>      <span class=n>indent</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln> 94</span><span class=cl>        <span class=n>enabled</span> <span class=o>=</span> <span class=kc>true</span><span class=p>,</span>
-</span></span><span class=line><span class=ln> 95</span><span class=cl>        <span class=c1>-- 你可以尝试 &#34;conveal&#34; 或 &#34;list&#34; 策略</span>
-</span></span><span class=line><span class=ln> 96</span><span class=cl>        <span class=c1>-- strategy = &#34;conceal&#34;,</span>
-</span></span><span class=line><span class=ln> 97</span><span class=cl>      <span class=p>},</span>
-</span></span><span class=line><span class=ln> 98</span><span class=cl>
-</span></span><span class=line><span class=ln> 99</span><span class=cl>      <span class=c1>-- 启用光标行高亮</span>
-</span></span><span class=line><span class=ln>100</span><span class=cl>      <span class=n>cursor</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=ln>101</span><span class=cl>        <span class=n>enabled</span> <span class=o>=</span> <span class=kc>true</span><span class=p>,</span>
-</span></span><span class=line><span class=ln>102</span><span class=cl>      <span class=p>},</span>
-</span></span><span class=line><span class=ln>103</span><span class=cl>    <span class=p>},</span>
-</span></span><span class=line><span class=ln>104</span><span class=cl>
-</span></span><span class=line><span class=ln>105</span><span class=cl>    <span class=c1>-- `config` 函数会在插件加载后运行</span>
-</span></span><span class=line><span class=ln>106</span><span class=cl>    <span class=c1>-- `snacks.nvim` 会自动调用 `setup(opts)`，所以这里通常是空的</span>
-</span></span><span class=line><span class=ln>107</span><span class=cl>    <span class=c1>-- 但你可以用它来添加额外的键位绑定等</span>
-</span></span><span class=line><span class=ln>108</span><span class=cl>    <span class=n>config</span> <span class=o>=</span> <span class=kr>function</span><span class=p>(</span><span class=n>_</span><span class=p>,</span> <span class=n>opts</span><span class=p>)</span>
-</span></span><span class=line><span class=ln>109</span><span class=cl>      <span class=n>require</span><span class=p>(</span><span class=s2>&#34;snacks&#34;</span><span class=p>).</span><span class=n>setup</span><span class=p>(</span><span class=n>opts</span><span class=p>)</span>
-</span></span><span class=line><span class=ln>110</span><span class=cl>
-</span></span><span class=line><span class=ln>111</span><span class=cl>      <span class=c1>-- 示例：添加一个键位绑定来切换缩进线</span>
-</span></span><span class=line><span class=ln>112</span><span class=cl>      <span class=n>vim.keymap</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=s2>&#34;n&#34;</span><span class=p>,</span> <span class=s2>&#34;&lt;leader&gt;ti&#34;</span><span class=p>,</span> <span class=kr>function</span><span class=p>()</span>
-</span></span><span class=line><span class=ln>113</span><span class=cl>        <span class=kd>local</span> <span class=n>indent</span> <span class=o>=</span> <span class=n>require</span><span class=p>(</span><span class=s2>&#34;snacks.indent&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=ln>114</span><span class=cl>        <span class=n>indent.toggle</span><span class=p>()</span>
-</span></span><span class=line><span class=ln>115</span><span class=cl>        <span class=n>print</span><span class=p>(</span><span class=s2>&#34;缩进线: &#34;</span> <span class=o>..</span> <span class=p>(</span><span class=n>indent.is_enabled</span><span class=p>()</span> <span class=ow>and</span> <span class=s2>&#34;ON&#34;</span> <span class=ow>or</span> <span class=s2>&#34;OFF&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=ln>116</span><span class=cl>      <span class=kr>end</span><span class=p>,</span> <span class=p>{</span> <span class=n>desc</span> <span class=o>=</span> <span class=s2>&#34;[T]oggle [I]ndent guides (Snacks)&#34;</span> <span class=p>})</span>
-</span></span><span class=line><span class=ln>117</span><span class=cl>    <span class=kr>end</span><span class=p>,</span>
-</span></span><span class=line><span class=ln>118</span><span class=cl>  <span class=p>},</span>
-</span></span><span class=line><span class=ln>119</span><span class=cl>
-</span></span><span class=line><span class=ln>120</span><span class=cl>  <span class=c1>-- snacks.nvim 的依赖项 (lazy.nvim 会自动处理)</span>
-</span></span><span class=line><span class=ln>121</span><span class=cl>  <span class=c1>-- 我们不需要在这里再次列出 &#34;nvim-tree/nvim-web-devicons&#34; 和 &#34;rcarriga/nvim-notify&#34;</span>
-</span></span><span class=line><span class=ln>122</span><span class=cl>  <span class=c1>-- 因为它们已经在 snacks.nvim 的 `dependencies` 中了。</span>
-</span></span><span class=line><span class=ln>123</span><span class=cl>
-</span></span><span class=line><span class=ln>124</span><span class=cl>  <span class=c1>-- (可选) 添加一个主题，让界面更好看</span>
-</span></span><span class=line><span class=ln>125</span><span class=cl>  <span class=p>{</span> <span class=s2>&#34;folke/tokyonight.nvim&#34;</span> <span class=p>},</span>
-</span></span><span class=line><span class=ln>126</span><span class=cl>
-</span></span><span class=line><span class=ln>127</span><span class=cl><span class=p>})</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=ln> 1</span><span class=cl><span class=c1>-- ~/.config/snacks-learn/init.lua</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl><span class=c1>-- 1. 设置 Neovim 的数据、配置、状态等路径</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=c1>--    使其完全隔离在我们的 ~/snacks-learn 目录中</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl><span class=c1>-- 注意：我们将在启动 nvim 时使用 NVIM_APP_NAME=snacks-learn 环境变量,</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=c1>-- Neovim 会自动将 stdpath(&#39;config&#39;) 指向 ~/snacks-learn/config/nvim</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl><span class=c1>-- 我们需要手动设置其他路径，以确保完全隔离</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=kd>local</span> <span class=n>path</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>stdpath</span><span class=p>(</span><span class=s2>&#34;config&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_DATA_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/data&#34;</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_STATE_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/state&#34;</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl><span class=n>vim.env</span><span class=p>.</span><span class=n>XDG_CACHE_HOME</span> <span class=o>=</span> <span class=n>path</span> <span class=o>..</span> <span class=s2>&#34;/cache&#34;</span>
+</span></span><span class=line><span class=ln>15</span><span class=cl>
+</span></span><span class=line><span class=ln>16</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl><span class=c1>-- 2. 基本的 Neovim 设置 (QoL)</span>
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>19</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>number</span> <span class=o>=</span> <span class=kc>true</span>         <span class=c1>-- 显示行号</span>
+</span></span><span class=line><span class=ln>20</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>relativenumber</span> <span class=o>=</span> <span class=kc>true</span> <span class=c1>-- 显示相对行号</span>
+</span></span><span class=line><span class=ln>21</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>termguicolors</span> <span class=o>=</span> <span class=kc>true</span>  <span class=c1>-- 启用真彩色</span>
+</span></span><span class=line><span class=ln>22</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>mouse</span> <span class=o>=</span> <span class=s2>&#34;a&#34;</span>           <span class=c1>-- 启用鼠标</span>
+</span></span><span class=line><span class=ln>23</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>clipboard</span> <span class=o>=</span> <span class=s2>&#34;unnamedplus&#34;</span> <span class=c1>-- 使用系统剪贴板</span>
+</span></span><span class=line><span class=ln>24</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>swapfile</span> <span class=o>=</span> <span class=kc>false</span>      <span class=c1>-- 关闭交换文件</span>
+</span></span><span class=line><span class=ln>25</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>backup</span> <span class=o>=</span> <span class=kc>false</span>        <span class=c1>-- 关闭备份</span>
+</span></span><span class=line><span class=ln>26</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>writebackup</span> <span class=o>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=ln>27</span><span class=cl>
+</span></span><span class=line><span class=ln>28</span><span class=cl><span class=c1>-- 设置 leader 键为空格</span>
+</span></span><span class=line><span class=ln>29</span><span class=cl><span class=n>vim.g</span><span class=p>.</span><span class=n>mapleader</span> <span class=o>=</span> <span class=s2>&#34; &#34;</span>
+</span></span><span class=line><span class=ln>30</span><span class=cl><span class=n>vim.g</span><span class=p>.</span><span class=n>maplocalleader</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=se>\\</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=ln>31</span><span class=cl>
+</span></span><span class=line><span class=ln>32</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>33</span><span class=cl><span class=c1>-- 3. lazy.vim 插件管理器 - 引导程序</span>
+</span></span><span class=line><span class=ln>34</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>35</span><span class=cl><span class=c1>-- local lazypath = vim.fn.stdpath(&#34;data&#34;) .. &#34;/lazy/lazy.nvim&#34;</span>
+</span></span><span class=line><span class=ln>36</span><span class=cl>
+</span></span><span class=line><span class=ln>37</span><span class=cl><span class=c1>-- 这里没用使用stdpath(&#34;data&#34;) 而是使用了stdpath(&#34;config&#34;),方便我们查看</span>
+</span></span><span class=line><span class=ln>38</span><span class=cl><span class=kd>local</span> <span class=n>lazypath</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>stdpath</span><span class=p>(</span><span class=s2>&#34;config&#34;</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/lazy/lazy.nvim&#34;</span>
+</span></span><span class=line><span class=ln>39</span><span class=cl><span class=kr>if</span> <span class=ow>not</span> <span class=n>vim.loop</span><span class=p>.</span><span class=n>fs_stat</span><span class=p>(</span><span class=n>lazypath</span><span class=p>)</span> <span class=kr>then</span>
+</span></span><span class=line><span class=ln>40</span><span class=cl>  <span class=n>print</span><span class=p>(</span><span class=s2>&#34;正在克隆 lazy.nvim...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>41</span><span class=cl>  <span class=n>vim.fn</span><span class=p>.</span><span class=n>system</span><span class=p>({</span>
+</span></span><span class=line><span class=ln>42</span><span class=cl>    <span class=s2>&#34;git&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>43</span><span class=cl>    <span class=s2>&#34;clone&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>44</span><span class=cl>    <span class=s2>&#34;--filter=blob:none&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>45</span><span class=cl>    <span class=s2>&#34;https://gh-proxy.com/https://github.com/folke/lazy.nvim.git&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>46</span><span class=cl>    <span class=s2>&#34;--branch=stable&#34;</span><span class=p>,</span> <span class=c1>-- latest stable release</span>
+</span></span><span class=line><span class=ln>47</span><span class=cl>    <span class=n>lazypath</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>48</span><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=ln>49</span><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=ln>50</span><span class=cl><span class=n>vim.opt</span><span class=p>.</span><span class=n>rtp</span><span class=p>:</span><span class=n>prepend</span><span class=p>(</span><span class=n>lazypath</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>51</span><span class=cl>
+</span></span><span class=line><span class=ln>52</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>53</span><span class=cl><span class=c1>-- 4. lazy.vim 插件设置</span>
+</span></span><span class=line><span class=ln>54</span><span class=cl><span class=c1>-- =============================================================================</span>
+</span></span><span class=line><span class=ln>55</span><span class=cl><span class=n>require</span><span class=p>(</span><span class=s2>&#34;lazy&#34;</span><span class=p>).</span><span class=n>setup</span><span class=p>({</span>
+</span></span><span class=line><span class=ln>56</span><span class=cl>  <span class=c1>-- 这是我们要学习的插件：snacks.nvim</span>
+</span></span><span class=line><span class=ln>57</span><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=ln>58</span><span class=cl>    <span class=c1>-- 核心：使用 `dir` 关键字指向你本地克隆的路径</span>
+</span></span><span class=line><span class=ln>59</span><span class=cl>    <span class=c1>-- !! 你需要修改这个路径为你克隆 `snacks.nvim` 的实际路径 !!</span>
+</span></span><span class=line><span class=ln>60</span><span class=cl>    <span class=n>dir</span> <span class=o>=</span> <span class=n>os.getenv</span><span class=p>(</span><span class=s2>&#34;HOME&#34;</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/.config/snacks-learn/snacks.nvim&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>61</span><span class=cl>
+</span></span><span class=line><span class=ln>62</span><span class=cl>    <span class=c1>-- `name` 是可选的，但当使用 `dir` 时，它有助于 lazy.nvim 识别插件</span>
+</span></span><span class=line><span class=ln>63</span><span class=cl>    <span class=n>name</span> <span class=o>=</span> <span class=s2>&#34;snacks.nvim&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>64</span><span class=cl>
+</span></span><span class=line><span class=ln>65</span><span class=cl>    <span class=c1>-- snacks.nvim 的依赖项</span>
+</span></span><span class=line><span class=ln>66</span><span class=cl>    <span class=c1>-- lazy.nvim 会自动从 GitHub 下载这些依赖</span>
+</span></span><span class=line><span class=ln>67</span><span class=cl>    <span class=n>dependencies</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>68</span><span class=cl>      <span class=s2>&#34;nvim-tree/nvim-web-devicons&#34;</span><span class=p>,</span> <span class=c1>-- (可选) 用于显示图标</span>
+</span></span><span class=line><span class=ln>69</span><span class=cl>      <span class=s2>&#34;rcarriga/nvim-notify&#34;</span><span class=p>,</span>        <span class=c1>-- (可选) 用于显示通知</span>
+</span></span><span class=line><span class=ln>70</span><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=ln>71</span><span class=cl>
+</span></span><span class=line><span class=ln>72</span><span class=cl>    <span class=c1>-- `opts` 表格用于配置 snacks.nvim</span>
+</span></span><span class=line><span class=ln>73</span><span class=cl>    <span class=c1>-- 你可以在这里打开/关闭/配置 snacks 的各个模块</span>
+</span></span><span class=line><span class=ln>74</span><span class=cl>    <span class=n>opts</span> <span class=o>=</span> <span class=p>{</span> <span class=p>},</span>
+</span></span><span class=line><span class=ln>75</span><span class=cl>
+</span></span><span class=line><span class=ln>76</span><span class=cl>    <span class=c1>-- `config` 函数会在插件加载后运行</span>
+</span></span><span class=line><span class=ln>77</span><span class=cl>    <span class=c1>-- `snacks.nvim` 会自动调用 `setup(opts)`，所以这里通常是空的</span>
+</span></span><span class=line><span class=ln>78</span><span class=cl>    <span class=c1>-- 但你可以用它来添加额外的键位绑定等</span>
+</span></span><span class=line><span class=ln>79</span><span class=cl>    <span class=n>config</span> <span class=o>=</span> <span class=kr>function</span><span class=p>(</span><span class=n>_</span><span class=p>,</span> <span class=n>opts</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>80</span><span class=cl>      <span class=n>require</span><span class=p>(</span><span class=s2>&#34;snacks&#34;</span><span class=p>).</span><span class=n>setup</span><span class=p>(</span><span class=n>opts</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>81</span><span class=cl>
+</span></span><span class=line><span class=ln>82</span><span class=cl>      <span class=c1>-- 示例：添加一个键位绑定来切换缩进线</span>
+</span></span><span class=line><span class=ln>83</span><span class=cl>      <span class=n>vim.keymap</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=s2>&#34;n&#34;</span><span class=p>,</span> <span class=s2>&#34;&lt;leader&gt;f&#34;</span><span class=p>,</span> <span class=kr>function</span><span class=p>()</span>
+</span></span><span class=line><span class=ln>84</span><span class=cl>        <span class=n>Snacks.picker</span><span class=p>.</span><span class=n>files</span><span class=p>()</span>
+</span></span><span class=line><span class=ln>85</span><span class=cl>      <span class=kr>end</span><span class=p>,</span> <span class=p>{</span> <span class=n>desc</span> <span class=o>=</span> <span class=s2>&#34;snacks files&#34;</span> <span class=p>})</span>
+</span></span><span class=line><span class=ln>86</span><span class=cl>    <span class=kr>end</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>87</span><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=ln>88</span><span class=cl>
+</span></span><span class=line><span class=ln>89</span><span class=cl>  <span class=c1>-- snacks.nvim 的依赖项 (lazy.nvim 会自动处理)</span>
+</span></span><span class=line><span class=ln>90</span><span class=cl>  <span class=c1>-- 我们不需要在这里再次列出 &#34;nvim-tree/nvim-web-devicons&#34; 和 &#34;rcarriga/nvim-notify&#34;</span>
+</span></span><span class=line><span class=ln>91</span><span class=cl>  <span class=c1>-- 因为它们已经在 snacks.nvim 的 `dependencies` 中了。</span>
+</span></span><span class=line><span class=ln>92</span><span class=cl>
+</span></span><span class=line><span class=ln>93</span><span class=cl>  <span class=c1>-- (可选) 添加一个主题，让界面更好看</span>
+</span></span><span class=line><span class=ln>94</span><span class=cl>  <span class=p>{</span> <span class=s2>&#34;folke/tokyonight.nvim&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=ln>95</span><span class=cl>
+</span></span><span class=line><span class=ln>96</span><span class=cl><span class=p>})</span>
 </span></span></code></pre></div></main><br><footer><div class=footer-info><p>Copyright &copy; 2025 Rainboy. All rights reserved.
-<span>| Last build: 2025-10-24 15:51:58</span></p></div><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script><script defer src=/js/theme-switcher.js></script></footer></body></html>
+<span>| Last build: 2025-10-26 19:41:27</span></p></div><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script><script defer src=/js/theme-switcher.js></script></footer></body></html>
