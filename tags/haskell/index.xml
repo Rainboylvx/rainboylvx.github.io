@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Haskell on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/haskell.html</link><description>Recent content in Haskell on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Nov 2025 14:54:15 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/haskell/index.xml" rel="self" type="application/rss+xml"/><item><title>制造我们自己的类型和类型类</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_8.html</link><pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/chapter_8.html</guid><description>&lt;h2 id="chapter_8-制造我们自己的类型和类型类"&gt;chapter_8 制造我们自己的类型和类型类&lt;/h2&gt;
+&lt;p&gt;本章是 Haskell 学习过程中的一个重要转折点。它标志着从“使用”语言特性转向“创造”语言特性。核心内容围绕两个方面：一是如何使用 &lt;code&gt;data&lt;/code&gt; 和 &lt;code&gt;type&lt;/code&gt; 关键字定义自己的数据结构，二是如何使用 &lt;code&gt;class&lt;/code&gt; 关键字定义自己的接口（即类型类），并用 &lt;code&gt;instance&lt;/code&gt; 来实现它。&lt;/p&gt;
+&lt;h3 id="1-自定义数据类型-data-types"&gt;1. 自定义数据类型 (Data Types)&lt;/h3&gt;
+&lt;p&gt;Haskell 提供了两种主要方式来创建新类型：&lt;code&gt;data&lt;/code&gt; 和 &lt;code&gt;type&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id="a-data-关键字创建全新的数据结构"&gt;a. &lt;code&gt;data&lt;/code&gt; 关键字：创建全新的数据结构&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;data&lt;/code&gt; 关键字用于定义一个全新的数据类型。这是本章的重点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;基本结构&lt;/strong&gt;：
+&lt;code&gt;data TypeName = ValueConstructor1 [ParamType1] | ValueConstructor2 [ParamType2] | ...&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;值构造函数 (Value Constructors)&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它们是 &lt;code&gt;data&lt;/code&gt; 声明中 &lt;code&gt;=&lt;/code&gt; 右侧的部分（如 &lt;code&gt;Circle&lt;/code&gt;, &lt;code&gt;Rectangle&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;它们本质上是函数，用于“构造”出该类型的一个值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键点&lt;/strong&gt;：类型名（&lt;code&gt;Shape&lt;/code&gt;）和值构造函数（&lt;code&gt;Circle&lt;/code&gt;）位于不同的命名空间。我们可以在函数签名中使用类型名，但在模式匹配或创建实例时使用值构造函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;示例分析&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;data&lt;/span&gt; &lt;span class="kt"&gt;Shape&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;Circle&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kt"&gt;Rectangle&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt; &lt;span class="kt"&gt;Float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Shape&lt;/code&gt; 是&lt;strong&gt;类型名&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Circle&lt;/code&gt; 和 &lt;code&gt;Rectangle&lt;/code&gt; 是&lt;strong&gt;值构造函数&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Circle&lt;/code&gt; 接受三个 &lt;code&gt;Float&lt;/code&gt; 参数（例如 x坐标, y坐标, 半径），并返回一个 &lt;code&gt;Shape&lt;/code&gt; 类型的值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; 符号读作“或”。所以 &lt;code&gt;Shape&lt;/code&gt; 类型的值，&lt;em&gt;要么&lt;/em&gt;是一个 &lt;code&gt;Circle&lt;/code&gt;，&lt;em&gt;要么&lt;/em&gt;是一个 &lt;code&gt;Rectangle&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;记录语法 (Record Syntax)&lt;/strong&gt;：
+当数据结构变得复杂时，使用记录语法可以自动生成用于访问字段的“getter”函数，使代码更清晰。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/ai.html</link><description>Recent content in AI on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Nov 2025 14:54:15 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>macM1配置haskell环境</title><link>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/macm1%E9%85%8D%E7%BD%AEhaskell%E7%8E%AF%E5%A2%83.html</link><pubDate>Mon, 03 Nov 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/books/learn_you_haskell/macm1%E9%85%8D%E7%BD%AEhaskell%E7%8E%AF%E5%A2%83.html</guid><description>&lt;p&gt;在 M1 芯片的 Mac 上配置 Haskell + VS Code 环境现在已经非常顺畅。Apple Silicon (M1/M2/M3) 得到了很好的支持。&lt;/p&gt;
+&lt;p&gt;这篇指南会带你走过最佳实践的路径，使用 &lt;code&gt;GHCup&lt;/code&gt; 来管理工具链，并使用 &lt;code&gt;Haskell Language Server (HLS)&lt;/code&gt; 来驱动 VS Code 获得智能提示。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-m1-mac--vs-code--haskell-环境配置指南"&gt;🛠️ M1 Mac + VS Code + Haskell 环境配置指南&lt;/h3&gt;
+&lt;p&gt;这是一个三步走的过程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;安装 GHCup&lt;/strong&gt;：这是目前推荐的 Haskell 工具链管理器（类似于 Rust 的 &lt;code&gt;rustup&lt;/code&gt; 或 Node.js 的 &lt;code&gt;nvm&lt;/code&gt;）。它会为你安装所有核心组件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置 VS Code&lt;/strong&gt;：安装官方的 Haskell 扩展。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;验证与创建项目&lt;/strong&gt;：创建一个 &amp;ldquo;Hello, World&amp;rdquo; 项目来确保一切正常工作。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id="步骤-1安装-haskell-工具链-ghcup"&gt;步骤 1：安装 Haskell 工具链 (GHCup)&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;GHCup&lt;/code&gt; 是关键。它会为你管理和安装：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GHC&lt;/strong&gt;：Haskell 的编译器。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cabal&lt;/strong&gt;：Haskell 的标准构建工具和包管理器。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HLS&lt;/strong&gt; (Haskell Language Server)：VS Code 赖以实现智能提示、错误检查和代码跳转的“大脑”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stack&lt;/strong&gt;（可选）：另一个流行的构建工具。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="11-安装-ghcup"&gt;1.1. 安装 GHCup&lt;/h4&gt;
+&lt;p&gt;打开你的终端 (Terminal)，运行以下命令：&lt;/p&gt;</description></item></channel></rss>
