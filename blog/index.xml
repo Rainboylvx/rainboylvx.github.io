@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 19 Nov 2025 05:29:26 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 24 Nov 2025 06:14:45 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
 &lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
 &lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
@@ -527,6 +527,19 @@ Ctrl+F12的调用返回处
 &lt;li&gt;先知+猎头+大G 狼骚扰(前) + 持续压制分矿 &lt;a href="https://www.bilibili.com/video/BV1us4y1y73o/" target="_blank" rel="noopener"&gt;https://www.bilibili.com/video/BV1us4y1y73o/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="火魔塔"&gt;火魔塔&lt;/h2&gt;
+&lt;p&gt;一，地洞防造塔，他造哪洞竖哪
+二，出牙签而不是大g !
+三：地洞射的远，注意摆放位置
+四：补农民，会缺木 !
+五：升尖刺防步兵 !
+六：二本补个兵营加大火力（不是，对面火魔塔压家如果单地洞开局orc真的有机会二本吗）
+七：二本研究水泥科技&lt;/p&gt;
+&lt;p&gt;卖回城&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新造地洞要前置,对手打地洞,你就打农民&lt;/li&gt;
+&lt;li&gt;牙签&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</guid><description>&lt;p&gt;&lt;code&gt;ret&lt;/code&gt; 与 &lt;code&gt;ret 10&lt;/code&gt;之间的区别&lt;/p&gt;
 &lt;p&gt;当然可以。&lt;code&gt;ret&lt;/code&gt; 和 &lt;code&gt;ret 10&lt;/code&gt; 都是函数返回指令，但它们之间有一个非常重要且根本的区别。&lt;/p&gt;
 &lt;p&gt;最核心的区别在于&lt;strong&gt;由谁来负责清理函数调用时压入栈的参数&lt;/strong&gt;。&lt;/p&gt;
