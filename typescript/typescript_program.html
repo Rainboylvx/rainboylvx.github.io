@@ -1,0 +1,374 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=cache-control content="max-age=0"><meta http-equiv=cache-control content="no-cache"><meta http-equiv=expires content="0"><meta http-equiv=expires content="Tue, 01 Jan 1980 1:00:00 GMT"><meta http-equiv=pragma content="no-cache"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png }><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#1b1b1b"><meta name=description content="typescript_program"><script>(function(){const e=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",e)})()</script><title>typescript_program | Rainboy's Blog</title><style>:root{--background:#ffffff}@media(prefers-color-scheme:dark){:root{--background:#1b1b1b}}html{background-color:var(--background)}body{background-color:var(--background)}</style><link rel=stylesheet type=text/css href=/style.min.4de9e3236bcb55312d0b2ff0fc62c694f607b9c0d95d0621f6c6dbacb7d6dbb5.css media=all><link rel=stylesheet href=/grid.css><link href="https://fonts.font.im/css?family=Roboto+Mono" rel=stylesheet><style>body,.heti,.heti--sans{font-family:roboto mono,monospace,times new roman,times,heti song,serif,apple color emoji,segoe ui emoji,segoe ui symbol}</style></head><body><nav><ul class=menu><li><a tabindex=-1 class=menu-link href=/><u>H</u>ome</a></li><li><a tabindex=-1 class=menu-link href=/tags><u>T</u>ags</a></li><li><span style=cursor:pointer id=theme-switcher class=menu-link type=button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-4 w-4"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg></span></li></ul></nav><div id=single-header><h1>typescript_program</h1><div id=single-meta><span class=datesub>2025-09-09 00:00</span></div></div><main class="heti heti--classic"><blockquote><p>本文由 <a href=http://ksria.com/simpread/ target=_blank rel=noopener>简悦 SimpRead</a> 转码， 原文地址 <a href=https://chengjingchao.com/2022/01/01/TypeScript-%E7%BC%96%E7%A8%8B/ target=_blank rel=noopener>chengjingchao.com</a></p></blockquote><blockquote><p>第 1 章 导言使用 TypeScript 开发的程序更安全，常见的错误都能检查出来，写出的代码还可以作为文档。</p></blockquote><p>发表于 2022-01-01 | 更新于: 2022-01-06</p><p>使用 TypeScript 开发的程序<strong>更安全</strong>，常见的错误都能检查出来，写出的代码还可以作为文档。</p><p>更安全是指<strong>类型安全</strong></p><blockquote><p>类型安全：借助类型避免程序做无效的事情（无效指的是运行时程序崩溃或未崩溃，但做的事情毫无意义</p></blockquote><p>举个 🌰</p><ul><li><p>数字乘以一个列表</p></li><li><p>接收数字的函数却传入了字符串</p></li><li><p>调用对象上不存在的方法</p></li><li><p>导入已经被移除的模块</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>3 + [] // &#34;3&#34;
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>let obj = {}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>obj.foo // undefined
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>function a(b) {
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  return b/2
+</span></span><span class=line><span class=ln>10</span><span class=cl>}
+</span></span><span class=line><span class=ln>11</span><span class=cl>a(&#39;z&#39;) // NaN
+</span></span></code></pre></div></li></ul><p>在做无效事情的时候，JavaScript 没有抛出异常，而是尽自己所能，避免抛出异常。</p><p>而 JavaScript 这种特性让代码中<strong>错误的产生与发现脱节</strong>了。导致 bug 往往是由他人转告给你的。
+到真正运行时可能才会发现错误。</p><p>而 TypeScript 给出错误的时间点：在输入代码的过程中，代码编辑器会给出错误消息，来提醒你。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>3 + [] // Error TS2365: Operator &#39;+&#39; cannot be applied to types &#39;3&#39; and &#39;never[]&#39;.
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>let obj = {}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>obj.foo // Error TS2339: Property &#39;foo&#39; does not exist on type &#39;{}&#39;
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>function (a: number) {
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  return b / 2
+</span></span><span class=line><span class=ln> 9</span><span class=cl>}
+</span></span><span class=line><span class=ln>10</span><span class=cl>a(&#39;z&#39;) // Error TS2345: Argument of type &#39;&#34;z&#34;&#39; is not assignable to parameter of type &#39;number&#39;.
+</span></span></code></pre></div><h2 id=编译器><a href=#%e7%bc%96%e8%af%91%e5%99%a8 title=编译器></a>编译器</h2><p>TypeScript 编译器（TSC）</p><p>通常运行程序的大致流程</p><ol><li>把程序解析为 AST</li><li>AST 编译成字节码</li><li>运行时计算字节码</li></ol><p>运行程序就是让运行时计算由编译器从源码解析得来的 AST 生成的字节码。</p><p>TypeScript 的特殊之处在于，不直接编译成字节码，而是编译成 JavaScript。然后再像往常一样，在浏览器 / NodeJS 中运行。</p><p>TypeScript 编译器生成 AST 之后，真正运行代码之前会对代码做类型检查。</p><blockquote><p>类型检查器：检查代码是否符合安全要求的特殊程序</p></blockquote><p>编译和运行 TypeScript (1-3 由 TSC 操作，4-6 由浏览器 / NodeJS 操作)</p><ol><li><p>TypeScript 源码 -> TypeScript AST</p></li><li><p>类型检查器检查 AST</p></li><li><p>TypeScript AST -> JavaScript 源码</p></li><li><p>JavaScript 源码 -> JavaScript AST</p></li><li><p>AST -> 字节码</p></li><li><p>运行时计算字节码</p></li></ol><p>类型只在类型检查这一步使用，TSC 把 TS 编译成 JS 时，不会考虑类型。可以确保可以随意改动、更新和改进程序中的类型，而无需担心会破坏应用的功能。</p><h2 id=类型系统><a href=#%e7%b1%bb%e5%9e%8b%e7%b3%bb%e7%bb%9f title=类型系统></a>类型系统</h2><blockquote><p>类型系统：类型检查器为程序分配类型时使用的一系列规则</p></blockquote><p>一般来说，类型系统有两种，各有利弊</p><ol><li>通过显式句法告诉编译器所有值的类型</li><li>自动推导值的类型</li></ol><p>JavaScript 在运行时推导类型
+TypeScript 身兼两种类型系统，可以显式注解类型，也可以自动推导多数类型。</p><p>显示声明类型需要使用注解。注解的形式 <code>value: type</code>，就像是告诉类型检查器，“嘿，看到这个 value 了吗？它的类型是 type。”</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// 显示注解
+</span></span><span class=line><span class=ln>2</span><span class=cl>let a: number = 1
+</span></span><span class=line><span class=ln>3</span><span class=cl>let b: string = &#39;hello&#39;
+</span></span><span class=line><span class=ln>4</span><span class=cl>let c: boolean[] = [true, false]
+</span></span><span class=line><span class=ln>5</span><span class=cl>
+</span></span><span class=line><span class=ln>6</span><span class=cl>// 自动推导
+</span></span><span class=line><span class=ln>7</span><span class=cl>let a = 1;
+</span></span><span class=line><span class=ln>8</span><span class=cl>let b = &#39;hello&#39;
+</span></span><span class=line><span class=ln>9</span><span class=cl>let c = [true, false]
+</span></span></code></pre></div><h3 id=typescript-vs-javascript><a href=#TypeScript-VS-JavaScript title="TypeScript VS JavaScript"></a>TypeScript VS JavaScript</h3><table><thead><tr><th>类型系统特性</th><th>JavaScript</th><th>TypeScript</th></tr></thead><tbody><tr><td>类型是如何绑定的？</td><td>动态</td><td>静态</td></tr><tr><td>是否自动转换类型？</td><td>是</td><td>否（多数时候）</td></tr><tr><td>何时检查类型？</td><td>运行时</td><td>编译时</td></tr><tr><td>何时报告错误？</td><td>运行时（多数时候）</td><td>编译时（多数时候）</td></tr></tbody></table><p>TypeScript 能做的是把纯 JavaScript 代码中那些运行时愈发和类型相关的错误提前到编译时报告。在代码编辑器中显示，输入代码后立即就有反馈。</p><p>类型是如何绑定的？
+JavaScript 动态绑定类型，必须运行程序才能知道类型。
+TypeScript 渐进式类型语言，在编译时知道所有类型</p><blockquote><p>类型：一系列值及对其执行的操作</p></blockquote><p>example</p><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>boolean</td><td>true、false</td><td>||、&&、!</td></tr><tr><td>number</td><td>所有数字</td><td>+、-、*、/、%、&&、? .toFixed()、.toString()</td></tr><tr><td>string</td><td>所有字符串</td><td>+、||、&& .concat()、.toUpperCase()</td></tr></tbody></table><p>对 T 类型的值来说，我们不仅知道值的类型是 T，还知道可以 / 不可以对该值做什么操作。
+类型检查器通过使用的类型和具体用法判断是否有效。</p><p>TypeScript 的类型层次结构<p class=imgp><img loading=lazy src=https://chengjingchao.com/img/typescript/type.jpeg alt></p></p><h2 id=类型术语><a href=#%e7%b1%bb%e5%9e%8b%e6%9c%af%e8%af%ad title=类型术语></a>类型术语</h2><ul><li><p>类型注解（可以理解为某种界限</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>function squareOf(n: number) {
+</span></span><span class=line><span class=ln>2</span><span class=cl>  return n * n;
+</span></span><span class=line><span class=ln>3</span><span class=cl>}
+</span></span><span class=line><span class=ln>4</span><span class=cl>squareOf(2); // 4
+</span></span></code></pre></div></li></ul><h2 id=类型浅谈><a href=#%e7%b1%bb%e5%9e%8b%e6%b5%85%e8%b0%88 title=类型浅谈></a>类型浅谈</h2><h3 id=any><a href=#any title=any></a>any</h3><p>在 TypeScript 中，编译时一切都要有类型，如果你和 TypeScript（类型检查器）无法确认类型是什么，默认为 any。这是兜底类型，应该尽量避免使用。</p><p>类型的定义（一系列值及可以对其执行的操作）any 包含所有值，而且可以对其做什么操作。any 类型的值就像常规的 JavaScript 一样，类型检查器完全发挥不了作用。</p><p>使用 any 需要显示注解。</p><p>tsconfig.json
+noImplicitAny: true;</p><p>noImplicitAny 隶属于 TSC 的 strict 标志家族，</p><h3 id=unknown><a href=#unknown title=unknown></a>unknown</h3><p>unknown 与 any 类似，也表示任何值。但是 TypeScript 会要求你在做检查，细化类型。</p><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>unknown</td><td></td><td><code>==</code>、<code>===</code>、<code>||</code>、<code>&&</code>、<code>?</code>、<code>!</code>、<code>typeof</code>、<code>instance of</code></td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// example
+</span></span><span class=line><span class=ln>2</span><span class=cl>let a: unknown = 30; // unknown
+</span></span><span class=line><span class=ln>3</span><span class=cl>let b = a === 123; // boolean
+</span></span><span class=line><span class=ln>4</span><span class=cl>let c = a + 10; // Error TS 2571: Object is of type &#39;unknown&#39;
+</span></span><span class=line><span class=ln>5</span><span class=cl>if (typeof a === &#39;number&#39;) {
+</span></span><span class=line><span class=ln>6</span><span class=cl>  let d = a + 10; // number
+</span></span><span class=line><span class=ln>7</span><span class=cl>}
+</span></span></code></pre></div><p>unknown 的用法</p><ol><li>TypeScript 不会把任何值推导为 unknown 类型，必须显示注解（a）</li><li>unknown 类型的值可以比较（b）</li><li>执行操作时不能假定 unknown 类型的值为某种特定类型（c），必须先向 TypeScript 证明一个值确实是某个类型（d）</li></ol><h3 id=boolean><a href=#boolean title=boolean></a>boolean</h3><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>boolean</td><td><code>true</code>、<code>false</code></td><td><code>==</code>、<code>===</code>、<code>||</code>、<code>&&</code>、<code>?</code></td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=o>//</span> <span class=n>example</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=n>let</span> <span class=n>a</span> <span class=o>=</span> <span class=bp>true</span>                <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=n>let</span> <span class=n>b</span> <span class=o>=</span> <span class=bp>false</span>               <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=k>const</span> <span class=n>c</span> <span class=o>=</span> <span class=bp>true</span>              <span class=o>//</span> <span class=bp>true</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>let</span> <span class=n>d</span><span class=p>:</span> <span class=n>boolean</span> <span class=o>=</span> <span class=bp>true</span>       <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=n>let</span> <span class=n>e</span><span class=p>:</span> <span class=bp>true</span> <span class=o>=</span> <span class=bp>true</span>          <span class=o>//</span> <span class=bp>true</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=n>let</span> <span class=n>f</span><span class=p>:</span> <span class=bp>true</span> <span class=o>=</span> <span class=bp>false</span>         <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2322</span><span class=p>:</span> <span class=n>Type</span> <span class=s1>&#39;false&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>to</span> <span class=n>type</span> <span class=s1>&#39;true&#39;</span><span class=o>.</span>
+</span></span></code></pre></div><ol><li>TypeScript 推导出值的类型为 boolean（a 和 b）</li><li>使用 const，让 TypeScript 推导出值为某个具体的布尔值（c）</li><li>显式注解，声明值的类型为 boolean（d）</li><li>显式注解，声明值为某个具体的布尔值（e 和 f）。把类型设定为某个值，就限制了 e 和 f 在所有布尔值中只能取指定的那个值。这种特性被称为类型字面量。</li></ol><blockquote><p>类型字面量——仅表示一个值的类型</p></blockquote><p>变量 e f 是使用类型字面量显示注解了变量，变量 c 则是由 TypeScript 推导出一个字面量类型，因为使用的是 const。
+const 声明的基本类型的值，赋值之后无法修改，因此 TypeScript 推导出的是范围最窄的类型，所以 TypeScript 推导出的 c 的类型为 true，而不是 boolean。</p><h3 id=number><a href=#number title=number></a>number</h3><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>number</td><td>整数、浮点数、正数、负数、Infinity、NaN 等</td><td>算术运算 比较</td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=o>//</span> <span class=n>example</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=n>let</span> <span class=n>a</span> <span class=o>=</span> <span class=mi>1234</span>                  <span class=o>//</span> <span class=n>number</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=n>let</span> <span class=n>b</span> <span class=o>=</span> <span class=n>Infinity</span> <span class=o>*</span> <span class=mf>0.1</span>        <span class=o>//</span> <span class=n>number</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=k>const</span> <span class=n>c</span> <span class=o>=</span> <span class=mi>5678</span>                <span class=o>//</span> <span class=mi>5678</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>let</span> <span class=n>d</span> <span class=o>=</span> <span class=n>a</span> <span class=o>&lt;</span> <span class=n>b</span>                 <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=n>let</span> <span class=n>e</span><span class=p>:</span> <span class=n>number</span> <span class=o>=</span> <span class=mi>100</span>           <span class=o>//</span> <span class=n>number</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=n>let</span> <span class=n>f</span><span class=p>:</span> <span class=mf>26.218</span> <span class=o>=</span> <span class=mf>26.218</span>        <span class=o>//</span> <span class=mf>26.218</span>
+</span></span><span class=line><span class=ln>8</span><span class=cl><span class=n>let</span> <span class=n>g</span><span class=p>:</span> <span class=mf>26.218</span> <span class=o>=</span> <span class=mi>10</span>            <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2322</span><span class=p>:</span> <span class=n>Type</span> <span class=s1>&#39;10&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>to</span> <span class=n>type</span> <span class=s1>&#39;26.218&#39;</span>
+</span></span></code></pre></div><ol><li>TypeScript 推导出值的类型为 number（a 和 b）</li><li>使用 const，让 TypeScript 推导出值为某个具体的数字（c）</li><li>显式注解，声明值的类型为 number（e）</li><li>显式注解，声明值为某个具体的数字（f 和 g）</li></ol><p>tips：处理较长的数字时可以使用数字分隔符。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>let oneMillion = 1_000_ 000    // 等同于 1000000
+</span></span><span class=line><span class=ln>2</span><span class=cl>let twoMillion: 2_000_000 = 2_000_000
+</span></span></code></pre></div><h3 id=bigint><a href=#bigint title=bigint></a>bigint</h3><blockquote><p>是 JavaScript 和 TypeScript 新引入的类型，在处理较大的整数时，不用再担心舍入误差。</p></blockquote><p>number 类型表示的整数最大为 253，bigint 可以表示任意大的整数。</p><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>bigint</td><td>所有 BigInt 数</td><td>算术运算 比较</td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=o>//</span> <span class=n>example</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=n>let</span> <span class=n>a</span> <span class=o>=</span> <span class=mi>1234</span><span class=n>n</span>                  <span class=o>//</span> <span class=n>bigint</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=k>const</span> <span class=n>b</span> <span class=o>=</span> <span class=mi>5678</span><span class=n>n</span>                <span class=o>//</span> <span class=mi>5678</span><span class=n>n</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=n>let</span> <span class=n>c</span> <span class=o>=</span> <span class=n>a</span> <span class=o>+</span> <span class=n>b</span>                  <span class=o>//</span> <span class=n>bigint</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>let</span> <span class=n>d</span> <span class=o>=</span> <span class=n>a</span> <span class=o>&lt;</span> <span class=mi>1235</span>               <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=n>let</span> <span class=n>e</span> <span class=o>=</span> <span class=mf>88.5</span><span class=n>n</span>                  <span class=o>//</span> <span class=n>Error</span> <span class=n>TS1353</span><span class=p>:</span> <span class=n>A</span> <span class=n>bigint</span> <span class=n>literal</span> <span class=n>must</span> <span class=n>be</span> <span class=n>an</span> <span class=n>integer</span><span class=o>.</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=n>let</span> <span class=n>f</span><span class=p>:</span> <span class=n>bigint</span> <span class=o>=</span> <span class=mi>100</span><span class=n>n</span>           <span class=o>//</span> <span class=n>bigint</span>
+</span></span><span class=line><span class=ln>8</span><span class=cl><span class=n>let</span> <span class=n>g</span><span class=p>:</span> <span class=mi>100</span><span class=n>n</span> <span class=o>=</span> <span class=mi>100</span><span class=n>n</span>             <span class=o>//</span> <span class=mi>100</span><span class=n>n</span>
+</span></span><span class=line><span class=ln>9</span><span class=cl><span class=n>let</span> <span class=n>h</span><span class=p>:</span> <span class=n>bigint</span> <span class=o>=</span> <span class=mi>100</span>            <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2322</span><span class=p>:</span> <span class=n>Type</span> <span class=s1>&#39;100&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>ty</span> <span class=n>type</span> <span class=s1>&#39;bigint&#39;</span><span class=o>.</span>
+</span></span></code></pre></div><p>与 boolean 和 number 一样，声明 bigint 类型也有四种方式。尽量让 TypeScript 自动推导。</p><h3 id=string><a href=#string title=string></a>string</h3><table><thead><tr><th>类型</th><th>包含的值</th><th>可以执行的操作</th></tr></thead><tbody><tr><td>string</td><td>所有字符串</td><td>字符串可以进行的操作 例如 +、.slice()</td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=o>//</span> <span class=n>example</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=n>let</span> <span class=n>a</span> <span class=o>=</span> <span class=s1>&#39;hello&#39;</span>                 <span class=o>//</span> <span class=n>string</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=n>let</span> <span class=n>b</span> <span class=o>=</span> <span class=s1>&#39;billy&#39;</span>                 <span class=o>//</span> <span class=n>string</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=k>const</span> <span class=n>c</span> <span class=o>=</span> <span class=s1>&#39;!&#39;</span>                   <span class=o>//</span> <span class=o>!</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>let</span> <span class=n>d</span> <span class=o>=</span> <span class=n>a</span> <span class=o>+</span> <span class=s1>&#39; &#39;</span> <span class=o>+</span> <span class=n>b</span> <span class=o>+</span> <span class=n>c</span>         <span class=o>//</span> <span class=n>string</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=n>let</span> <span class=n>e</span><span class=p>:</span> <span class=n>string</span> <span class=o>=</span> <span class=s1>&#39;zoom&#39;</span>          <span class=o>//</span> <span class=n>string</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=n>let</span> <span class=n>f</span><span class=p>:</span> <span class=s1>&#39;john&#39;</span> <span class=o>=</span> <span class=s1>&#39;john&#39;</span>          <span class=o>//</span> <span class=n>john</span>
+</span></span><span class=line><span class=ln>8</span><span class=cl><span class=n>let</span> <span class=n>g</span><span class=p>:</span> <span class=s1>&#39;john&#39;</span> <span class=o>=</span> <span class=s1>&#39;zoe&#39;</span>           <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2322</span><span class=p>:</span> <span class=n>Type</span> <span class=s1>&#39;zoe&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>to</span> <span class=n>type</span> <span class=s1>&#39;john&#39;</span>
+</span></span></code></pre></div><p>同样也是尽量让 TypeScript 自动推导 string 类型。</p><h3 id=symbol><a href=#symbol title=symbol></a>symbol</h3><p>symbol 经常用于代替对象和映射的字符串健，防止被意外设置。
+symbol 的类型就是 symbol，每一个 symbol 都是唯一的，不与其他任何符号相等，即便再使用相同的名称创建一个 symbol 也是如此。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// example
+</span></span><span class=line><span class=ln>2</span><span class=cl>let a = Symbol(&#39;a&#39;)              // symbol
+</span></span><span class=line><span class=ln>3</span><span class=cl>let b: symbol = Symbol(&#39;b&#39;)      // symbol
+</span></span><span class=line><span class=ln>4</span><span class=cl>let c = a === b                  // boolean
+</span></span><span class=line><span class=ln>5</span><span class=cl>let d = a + &#39;x&#39;                  // Error TS2469: The &#39;+&#39; operator cannot be applied to type &#39;symbol&#39;.
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=o>//</span> <span class=n>example</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=k>const</span> <span class=n>e</span> <span class=o>=</span> <span class=n>Symbol</span><span class=p>(</span><span class=s1>&#39;e&#39;</span><span class=p>)</span>                  <span class=o>//</span> <span class=n>unique</span> <span class=n>symbol</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=k>const</span> <span class=n>f</span><span class=p>:</span> <span class=n>unique</span> <span class=n>symbol</span> <span class=o>=</span> <span class=n>Symbol</span><span class=p>(</span><span class=s1>&#39;f&#39;</span><span class=p>)</span>   <span class=o>//</span> <span class=n>unique</span> <span class=n>symbol</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=n>let</span> <span class=n>g</span><span class=p>:</span> <span class=n>unique</span> <span class=n>symbol</span> <span class=o>=</span> <span class=n>Symbol</span><span class=p>(</span><span class=s1>&#39;f&#39;</span><span class=p>)</span>     <span class=o>//</span> <span class=n>Error</span> <span class=n>TS1332</span><span class=p>:</span> <span class=n>A</span> <span class=n>variable</span> <span class=n>whose</span> <span class=n>type</span> <span class=n>is</span> <span class=n>a</span> <span class=s1>&#39;unique symbol&#39;</span> <span class=n>type</span> <span class=n>must</span> <span class=n>be</span> <span class=s1>&#39;const&#39;</span><span class=o>.</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>let</span> <span class=n>h</span> <span class=o>=</span> <span class=n>e</span> <span class=o>===</span> <span class=n>e</span>                        <span class=o>//</span> <span class=n>boolean</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=n>let</span> <span class=n>i</span> <span class=o>=</span> <span class=n>e</span> <span class=o>===</span> <span class=n>f</span>                        <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2367</span><span class=p>:</span> <span class=n>This</span> <span class=n>condition</span> <span class=n>will</span> <span class=n>always</span> <span class=k>return</span> <span class=s1>&#39;false&#39;</span> <span class=n>since</span> <span class=n>the</span> <span class=n>type</span> <span class=s1>&#39;unique symbol&#39;</span> <span class=ow>and</span> <span class=s1>&#39;unique symbol&#39;</span> <span class=n>have</span> <span class=n>no</span> <span class=n>overlap</span><span class=o>.</span>
+</span></span></code></pre></div><p>创建 symbol 的方式</p><ol><li>使用 const，TypeScript 会推导为 unique symbol 类型。</li><li>显式注解 const 变量的类型为 unique symbol</li><li>unique symbol 类型的值始终与自身相等</li><li>TypeScript 在编译时知道一个 unique symbol 绝对不会与另一个 unique symbol 相等</li></ol><p>unique symbol 与其他字面量类型其实是一样的。</p><h3 id=对象><a href=#%e5%af%b9%e8%b1%a1 title=对象></a>对象</h3><p>TypeScript 的对象类型表示对象的结构。</p><blockquote><p>结构化类型–一种编程设计风格，只关心对象有哪些属性，而不管属性使用什么名称（名义化类型）。在某些语言中也叫鸭子类型（即不以貌取人）</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// example
+</span></span><span class=line><span class=ln>2</span><span class=cl>let b: object = {
+</span></span><span class=line><span class=ln>3</span><span class=cl>  b: &#39;x&#39;
+</span></span><span class=line><span class=ln>4</span><span class=cl>}
+</span></span><span class=line><span class=ln>5</span><span class=cl>a.b // Error TS2339: Property &#39;b&#39; does not exist on type &#39;object&#39;.
+</span></span></code></pre></div><p>object 只能表示该值是一个 JavaScript 对象（而且不是 null）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>// 对象字面量
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>// 自动推导
+</span></span><span class=line><span class=ln> 4</span><span class=cl>let a = {
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  b: &#39;x&#39;
+</span></span><span class=line><span class=ln> 6</span><span class=cl>}
+</span></span><span class=line><span class=ln> 7</span><span class=cl>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>// or
+</span></span><span class=line><span class=ln> 9</span><span class=cl>let a: { b: string } = {
+</span></span><span class=line><span class=ln>10</span><span class=cl>  b: &#39;x&#39;
+</span></span><span class=line><span class=ln>11</span><span class=cl>}
+</span></span></code></pre></div><p>对象字面量句法的意思是，“这个东西的结构是这样过的。”</p><p>使用 const 声明对象不会导致 TypeScript 把推导的类型缩窄。与上面的基本类型不同。这是因为 JavaScript 对象是可变的，所以在 TypeScript 看来，创建对象之后你可能会更新对象的字段。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>let a: { b: number }
+</span></span><span class=line><span class=ln>2</span><span class=cl>b = {} // Error TS2741: Property &#39;b&#39; is missing in type &#39;{}&#39; but required in type &#39;{b: number}&#39;.
+</span></span><span class=line><span class=ln>3</span><span class=cl>
+</span></span><span class=line><span class=ln>4</span><span class=cl>b = {
+</span></span><span class=line><span class=ln>5</span><span class=cl>  a: 1,
+</span></span><span class=line><span class=ln>6</span><span class=cl>  b: 2
+</span></span><span class=line><span class=ln>7</span><span class=cl>} // Error TS2322: Type &#39;{b: number; c: number}&#39; is not assignable to type &#39;{b: number}&#39;. Object literal may only specify known properties, and &#39;c&#39; does not exist in type &#39;{b: number}&#39;.
+</span></span></code></pre></div><p>默认情况下，TypeScript 对对象的属性要求十分严格。如果声明对象有个类型为 number 的属性 b，TypeScript 将预期对象有且只有这个属性。缺少或者多了，TypeScript 都会报错。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=n>let</span> <span class=n>a</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=n>b</span><span class=p>:</span> <span class=n>number</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>  <span class=n>c</span><span class=err>?</span><span class=p>:</span> <span class=n>string</span>        <span class=o>//</span> <span class=err>可能有个类型为</span> <span class=n>string</span> <span class=err>的属性</span> <span class=n>c</span><span class=err>。其值可以为</span> <span class=n>undefined</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>  <span class=n>readonly</span> <span class=n>firstName</span><span class=p>:</span> <span class=n>string</span> <span class=o>//</span> <span class=err>为字段赋初始值后无法修改。类似于使用</span> <span class=k>const</span> <span class=err>声明对象的属性</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>  <span class=p>[</span><span class=n>key</span><span class=p>:</span> <span class=n>number</span><span class=p>]:</span> <span class=n>boolean</span> <span class=o>//</span> <span class=err>可能有任意多个数字属性，其值为布尔值</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><blockquote><p><code>[key: T]: U</code> 句法称为索引签名，通过这种方式告诉 TypeScript，指定的对象可能有更多的 key。这种句法的意思是，“在这个对象中，类型为 T 的健对应的值为 U 类型。”</p></blockquote><ul><li>索引签名 key 的类型 T 必须可赋值给 number 或 string。（JavaScript 对象的健为字符串；数组是特殊的对象，健为数字。）</li><li>key 的名称可以是任意词，不一定非的用 key</li></ul><p>对象字面量表示法有一个特例：空对象类型 <code>{}</code>。除 null 和 undefined 之外的任何类型都可以赋值给空对象类型，应该尽量避免使用。</p><p>在 TypeScript 中声明对象类型有四种方式</p><ol><li>对象字面量表示法 <code>{a: string}</code>，也称对象结构</li><li>空对象字面量表示法 <code>{}</code>。避免使用</li><li>object 类型。如果需要个对象，当对这个对象的字段没有要求，使用这种方式。</li><li>Object。避免使用</li></ol><p>对一个值，在类型允许的情况下，可以对其执行特定的操作。其实在类型自身上也可以执行一些操作。<br>类型别名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>type Age = number
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>type Person = {
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  name: string
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  age: Age
+</span></span><span class=line><span class=ln> 6</span><span class=cl>}
+</span></span><span class=line><span class=ln> 7</span><span class=cl>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>let driver: Person = {
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  name: &#39;Jack&#39;
+</span></span><span class=line><span class=ln>10</span><span class=cl>  age: 18
+</span></span><span class=line><span class=ln>11</span><span class=cl>}
+</span></span></code></pre></div><p>类型别名采用块级作用域。在同一作用于中不能重复声明相同类型。</p><p>并集和交集</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>type Cat = { name: string, purrs: boolean }
+</span></span><span class=line><span class=ln> 2</span><span class=cl>type Dog ={ name: string, barks: boolean, wags: boolean }
+</span></span><span class=line><span class=ln> 3</span><span class=cl>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>type CatOrDogOrBoth = Cat | Dog // 并集
+</span></span><span class=line><span class=ln> 5</span><span class=cl>type CatAndDog = Cat &amp; Dog // 交集
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>// CatOrDogOrBoth 可以是 Cat 类型的值，可以是 Dog 类型的值，还可以二者兼具。
+</span></span><span class=line><span class=ln> 8</span><span class=cl>// Cat
+</span></span><span class=line><span class=ln> 9</span><span class=cl>let a: CatOrDogOrBoth = {
+</span></span><span class=line><span class=ln>10</span><span class=cl>  name: &#39;Bonkers&#39;,
+</span></span><span class=line><span class=ln>11</span><span class=cl>  purrs: true
+</span></span><span class=line><span class=ln>12</span><span class=cl>}
+</span></span><span class=line><span class=ln>13</span><span class=cl>
+</span></span><span class=line><span class=ln>14</span><span class=cl>// Dog
+</span></span><span class=line><span class=ln>15</span><span class=cl>a = {
+</span></span><span class=line><span class=ln>16</span><span class=cl>  name: &#39;Domino&#39;,
+</span></span><span class=line><span class=ln>17</span><span class=cl>  barks: true,
+</span></span><span class=line><span class=ln>18</span><span class=cl>  wags: true
+</span></span><span class=line><span class=ln>19</span><span class=cl>}
+</span></span><span class=line><span class=ln>20</span><span class=cl>
+</span></span><span class=line><span class=ln>21</span><span class=cl>// 二者兼具
+</span></span><span class=line><span class=ln>22</span><span class=cl>a = {
+</span></span><span class=line><span class=ln>23</span><span class=cl>  name: &#39;Donkers&#39;,
+</span></span><span class=line><span class=ln>24</span><span class=cl>  barsk: true,
+</span></span><span class=line><span class=ln>25</span><span class=cl>  purrs: true,
+</span></span><span class=line><span class=ln>26</span><span class=cl>  wags: true
+</span></span><span class=line><span class=ln>27</span><span class=cl>}
+</span></span><span class=line><span class=ln>28</span><span class=cl>
+</span></span><span class=line><span class=ln>29</span><span class=cl>// CatAndDot
+</span></span><span class=line><span class=ln>30</span><span class=cl>let b: CatAndDog = {
+</span></span><span class=line><span class=ln>31</span><span class=cl>  name: &#39;Domino&#39;,
+</span></span><span class=line><span class=ln>32</span><span class=cl>  barks: true,
+</span></span><span class=line><span class=ln>33</span><span class=cl>  purrs: true,
+</span></span><span class=line><span class=ln>34</span><span class=cl>  wags: true
+</span></span><span class=line><span class=ln>35</span><span class=cl>}
+</span></span></code></pre></div><p>并集通常更常用</p><ul><li>函数返回值可能是一个字符串，也可能是 null。<code>string | null</code></li><li>混合类型的数组</li></ul><p>数组</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln> 1</span><span class=cl><span class=n>let</span> <span class=n>a</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]</span>                <span class=o>//</span> <span class=n>number</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl><span class=n>let</span> <span class=n>b</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=s1>&#39;b&#39;</span><span class=p>]</span>               <span class=o>//</span> <span class=n>string</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl><span class=n>let</span> <span class=n>c</span><span class=p>:</span> <span class=n>string</span><span class=p>[]</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;a&#39;</span><span class=p>]</span>          <span class=o>//</span> <span class=n>string</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl><span class=n>let</span> <span class=n>d</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;a&#39;</span><span class=p>]</span>                 <span class=o>//</span> <span class=p>(</span><span class=n>number</span> <span class=o>|</span> <span class=n>string</span><span class=p>)[]</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=k>const</span> <span class=n>e</span> <span class=o>=</span> <span class=p>[</span><span class=mi>2</span><span class=p>,</span> <span class=s1>&#39;b&#39;</span><span class=p>]</span>               <span class=o>//</span> <span class=p>(</span><span class=n>number</span> <span class=o>|</span> <span class=n>string</span><span class=p>)[]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl><span class=n>let</span> <span class=n>f</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;red&#39;</span><span class=p>]</span>                  <span class=o>//</span> <span class=n>string</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>
+</span></span><span class=line><span class=ln> 8</span><span class=cl><span class=n>f</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=s1>&#39;blue&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl><span class=n>f</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=bp>true</span><span class=p>)</span>                     <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2345</span><span class=p>:</span> <span class=n>Argument</span> <span class=n>of</span> <span class=n>type</span> <span class=s1>&#39;true&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>to</span> <span class=n>parameter</span> <span class=n>of</span> <span class=n>type</span> <span class=s1>&#39;string&#39;</span><span class=o>.</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=n>let</span> <span class=n>g</span> <span class=o>=</span> <span class=p>[]</span>                       <span class=o>//</span> <span class=n>any</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=n>g</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>                        <span class=o>//</span> <span class=n>number</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=n>g</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=s1>&#39;red&#39;</span><span class=p>)</span>                    <span class=o>//</span> <span class=p>(</span><span class=n>number</span> <span class=o>|</span> <span class=n>string</span><span class=p>)[]</span>
+</span></span><span class=line><span class=ln>14</span><span class=cl>
+</span></span><span class=line><span class=ln>15</span><span class=cl><span class=n>let</span> <span class=n>h</span><span class=p>:</span> <span class=n>number</span><span class=p>[]</span> <span class=o>=</span> <span class=p>[]</span>             <span class=o>//</span> <span class=n>number</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln>16</span><span class=cl><span class=n>h</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>                        <span class=o>//</span> <span class=n>number</span><span class=p>[]</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl><span class=n>h</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=s1>&#39;red&#39;</span><span class=p>)</span>                    <span class=o>//</span> <span class=n>Error</span> <span class=n>TS2345</span><span class=p>:</span> <span class=n>Argument</span> <span class=n>of</span> <span class=n>type</span> <span class=s1>&#39;&#34;red&#34;&#39;</span> <span class=n>is</span> <span class=ow>not</span> <span class=n>assignable</span> <span class=n>to</span> <span class=n>parameter</span> <span class=n>of</span> <span class=n>type</span> <span class=s1>&#39;number&#39;</span><span class=o>.</span>
+</span></span></code></pre></div><p>TypeScript 支持两种注解数组类型的句法</p><ol><li>T[]</li><li>Array</li></ol><p>一般情况下，数组应该保持同质。</p><p>元祖</p><blockquote><p>array 的子类型，长度固定，各索引位上的值具有固定的已知类型。</p></blockquote><p>声明元组时必须显式注解类型。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>let a: [number] = 1
+</span></span><span class=line><span class=ln>2</span><span class=cl>let b: [string, string, number] = [&#39;jack&#39;, &#39;boy&#39;, 1963]
+</span></span><span class=line><span class=ln>3</span><span class=cl>b = [&#39;tom&#39;, &#39;boy&#39;, &#39;li&#39;, 1926] // Error TS2322: Type &#39;string&#39; is not assignable to type &#39;number&#39;.
+</span></span></code></pre></div><p>元组也支持可选元素</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>let trainFares: [number, number?][] = [
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  [3.75],
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  [8.25, 7.70],
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  [10.60],
+</span></span><span class=line><span class=ln> 5</span><span class=cl>]
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>// 等价于
+</span></span><span class=line><span class=ln> 8</span><span class=cl>let moreTrainFares: ([number, number] | [number])[] = [
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  // ...
+</span></span><span class=line><span class=ln>10</span><span class=cl>]
+</span></span></code></pre></div><p>元组也支持剩余元素，即为元组定义最小长度</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// 字符串列表，至少有一个元素
+</span></span><span class=line><span class=ln>2</span><span class=cl>let friends: [string, ...string[]] = [&#39;Sara&#39;, &#39;Tali&#39;, &#39;Chloe&#39;, &#39;Claire&#39;]
+</span></span><span class=line><span class=ln>3</span><span class=cl>
+</span></span><span class=line><span class=ln>4</span><span class=cl>// 元素类型不同的列表
+</span></span><span class=line><span class=ln>5</span><span class=cl>let list: [number, boolean, ...string[]] = [1, false, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</span></span></code></pre></div><p>只读数组和元祖</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>let as: readonly number[] = [1, 2, 3]     // readonly number[]
+</span></span><span class=line><span class=ln> 2</span><span class=cl>let bs: readonly number[] = as.concat(4)  // readonly number[]
+</span></span><span class=line><span class=ln> 3</span><span class=cl>let three = bs[2]                         // number
+</span></span><span class=line><span class=ln> 4</span><span class=cl>as[4] = 5                                 // Error TS2542: Index signature in type &#39;readonly number[]&#39; only permits reading.
+</span></span><span class=line><span class=ln> 5</span><span class=cl>as.push(6)                                // Error TS2339: Property &#39;push&#39; does not exist on type &#39;readonly number[]&#39;.
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>// Readonly 和 ReadonlyArray 句法
+</span></span><span class=line><span class=ln> 8</span><span class=cl>type A = readonly string[]                // readonly string[]
+</span></span><span class=line><span class=ln> 9</span><span class=cl>type B = ReadonlyArray&lt;string&gt;            // readonly string[]
+</span></span><span class=line><span class=ln>10</span><span class=cl>type C = Readonly&lt;string[]&gt;               // readonly string[]
+</span></span><span class=line><span class=ln>11</span><span class=cl>
+</span></span><span class=line><span class=ln>12</span><span class=cl>type D = readonly [number, string]        // readonly [number, string]
+</span></span><span class=line><span class=ln>13</span><span class=cl>type E = Readonly&lt;[number, string]&gt;       // readonly [number, string]
+</span></span></code></pre></div><p>null、undefined、void 和 never
+| 类型 | 含义 |
+| — | — |
+| null | 缺少值 |
+| undefined | 尚未赋值的变量 |
+| void | 没有 return 语句的函数 |
+| never | 永不返回的函数 |</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>// 返回 never 的函数
+</span></span><span class=line><span class=ln> 2</span><span class=cl>function d() {
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  throw TypeError(&#39;I always error&#39;)
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>function e() {
+</span></span><span class=line><span class=ln> 7</span><span class=cl>  while (true) {
+</span></span><span class=line><span class=ln> 8</span><span class=cl>    doSomething()
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  }
+</span></span><span class=line><span class=ln>10</span><span class=cl>}
+</span></span></code></pre></div><p>never 是所有类型的子类型，可以赋值给其他任何类型。</p><p>枚举</p><blockquote><p>枚举的作用是列举类型中包含的各个值。是一种无序数据结构，把键映射到值上。</p></blockquote><p>枚举可以理解为编译时键固定的对象，访问键时，TypeScript 将检查指定的键是否存在。</p><p>枚举分为两种</p><ol><li>字符串到字符串之间的映射</li><li>字符串到数字之间的映射</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=k>enum</span> <span class=n>Language</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=n>English</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>  <span class=n>Spaish</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>  <span class=n>Russian</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><blockquote><p>按约定，枚举名称为大写单数形式。枚举中的键也大写。</p></blockquote><p>TypeScript 可以自动为枚举中的各个成员推导对应的数字，也可以手动设置。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=k>enum</span> <span class=n>Language</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=n>English</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>  <span class=n>Spanish</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>  <span class=n>Russian</span> <span class=o>=</span> <span class=mi>2</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>枚举中的值访问方式和对象一样</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>let myFirstLanguage = Language.Russian
+</span></span><span class=line><span class=ln>2</span><span class=cl>let mySecondLanguage = Language[&#39;English&#39;]
+</span></span></code></pre></div><p>一个枚举可以分成几次声明，TypeScript 将自动把各部分合并在一起</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=ln>1</span><span class=cl><span class=k>enum</span> <span class=n>Language</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=n>English</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>  <span class=n>Spanish</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=k>enum</span> <span class=n>Language</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl>  <span class=n>Russian</span> <span class=o>=</span> <span class=mi>2</span>
+</span></span><span class=line><span class=ln>8</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>meiju</p><h3 id=小结><a href=#%e5%b0%8f%e7%bb%93 title=小结></a>小结</h3><table><thead><tr><th>类型</th><th>子类型</th></tr></thead><tbody><tr><td>boolean</td><td>Boolean 字面量</td></tr><tr><td>bigint</td><td>BigInt 字面量</td></tr><tr><td>number</td><td>Number 字面量</td></tr><tr><td>string</td><td>String 字面量</td></tr><tr><td>symbol</td><td>unique symbol</td></tr><tr><td>object</td><td>Object 字面量</td></tr><tr><td>数组</td><td>元组</td></tr><tr><td>enum</td><td>const enum</td></tr></tbody></table><h2 id=声明和调用函数><a href=#%e5%a3%b0%e6%98%8e%e5%92%8c%e8%b0%83%e7%94%a8%e5%87%bd%e6%95%b0 title=声明和调用函数></a>声明和调用函数</h2><p>在 JavaScript 中，函数是一等对象。这意味着，可以向对象那样使用函数</p><ol><li>可以赋值给变量</li><li>可以作为参数传给其他函数</li><li>可以作为函数的返回值</li><li>可以赋值给对象和原型</li><li>可以赋予属性</li><li>可以读取属性</li></ol><p>TypeScript 通常会显示注解函数的参数</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>function add(a: number, b: number) {
+</span></span><span class=line><span class=ln>2</span><span class=cl>  return a + b
+</span></span><span class=line><span class=ln>3</span><span class=cl>}
+</span></span></code></pre></div><p>返回类型能推导出来，不过也可以显示注解</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>function add(a: number, b: number): number {
+</span></span><span class=line><span class=ln>2</span><span class=cl>  return a + b
+</span></span><span class=line><span class=ln>3</span><span class=cl>}
+</span></span></code></pre></div><p>TypeScript 中声明函数</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>// 具名函数
+</span></span><span class=line><span class=ln> 2</span><span class=cl>function greet(name: string) {
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  return &#39;hello &#39; + name
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>// 函数表达式
+</span></span><span class=line><span class=ln> 7</span><span class=cl>let greet2 = function(name: string) {
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  retunr &#39;hello &#39; + name
+</span></span><span class=line><span class=ln> 9</span><span class=cl>}
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl>// 箭头函数表达式
+</span></span><span class=line><span class=ln>12</span><span class=cl>let greet3 = (name: string) =&gt; {
+</span></span><span class=line><span class=ln>13</span><span class=cl>  return &#39;hello &#39; + name
+</span></span><span class=line><span class=ln>14</span><span class=cl>}
+</span></span><span class=line><span class=ln>15</span><span class=cl>
+</span></span><span class=line><span class=ln>16</span><span class=cl>// 箭头函数表达式简写
+</span></span><span class=line><span class=ln>17</span><span class=cl>let greet4 = (name: string) =&gt; &#39;hello &#39; + name
+</span></span><span class=line><span class=ln>18</span><span class=cl>
+</span></span><span class=line><span class=ln>19</span><span class=cl>// 函数构造方法
+</span></span><span class=line><span class=ln>20</span><span class=cl>let greet5 = new Function(&#39;name&#39;, &#39;return &#34;hello &#34; + name&#39;)
+</span></span></code></pre></div><p>除了函数构造方法，其他几种句法在 TypeScript 中都可以放心使用，能够保证类型安全。通常需要注解参数的类型，而返回类型不要求必须注解。
+在调用函数时，TypeScript 将检查传入的实参是否于函数形参类型兼容。</p><h3 id=可选参数和默认参数><a href=#%e5%8f%af%e9%80%89%e5%8f%82%e6%95%b0%e5%92%8c%e9%bb%98%e8%ae%a4%e5%8f%82%e6%95%b0 title=可选参数和默认参数></a>可选参数和默认参数</h3><p>可选参数必须在末尾</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>function log(message: string, userId?: string) {
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  let time = new Date().toLocaleTimeString()
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  console.log(time, message, userId || &#39;Not signed in&#39;)
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>log(&#39;Page loded&#39;)
+</span></span><span class=line><span class=ln> 7</span><span class=cl>log(&#39;User signed in&#39;, &#39;da763be&#39;)
+</span></span><span class=line><span class=ln> 8</span><span class=cl>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>// 默认值参数（类似可选参数功能
+</span></span><span class=line><span class=ln>10</span><span class=cl>function log(message: string, userId = &#39;Not signed in&#39;) { // userId 会自动推导类型
+</span></span><span class=line><span class=ln>11</span><span class=cl>  let time = new Date().toLocaleTimeString()
+</span></span><span class=line><span class=ln>12</span><span class=cl>  console.log(time, message, userId)
+</span></span><span class=line><span class=ln>13</span><span class=cl>}
+</span></span><span class=line><span class=ln>14</span><span class=cl>
+</span></span><span class=line><span class=ln>15</span><span class=cl>// 显式注解默认参数类型
+</span></span><span class=line><span class=ln>16</span><span class=cl>type Context = {
+</span></span><span class=line><span class=ln>17</span><span class=cl>  appId?: string
+</span></span><span class=line><span class=ln>18</span><span class=cl>  userId?: string
+</span></span><span class=line><span class=ln>19</span><span class=cl>}
+</span></span><span class=line><span class=ln>20</span><span class=cl>
+</span></span><span class=line><span class=ln>21</span><span class=cl>function log(message: string, context: Context = {}) {
+</span></span><span class=line><span class=ln>22</span><span class=cl>  let time = new Date().toLocaleTimeString()
+</span></span><span class=line><span class=ln>23</span><span class=cl>  console.log(time, message, context.userId)
+</span></span><span class=line><span class=ln>24</span><span class=cl>}
+</span></span></code></pre></div><p>默认参数更常用，默认参数可以自动类型推导。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback></code></pre></div><h2 id=多态>多态</h2><p>上面都是讲的具体类型的用法和用途</p><ul><li>boolean</li><li>string</li><li>Date[]</li><li>{a: number} | {b: string}</li><li>(numbers: number[]) => number</li></ul><p>使用具体类型的前提是<strong>类型已知</strong></p><p>如果事先不知道需要什么类型
+不想限制函数只能接受某个类型</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=ln> 1</span><span class=cl><span class=c1>// example
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=kd>function</span> <span class=nx>filter</span><span class=p>(</span><span class=nx>array</span><span class=p>,</span> <span class=nx>f</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=kd>let</span> <span class=nx>result</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>array</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>    <span class=kd>let</span> <span class=nx>item</span> <span class=o>=</span> <span class=nx>array</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>f</span><span class=p>(</span><span class=nx>item</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>      <span class=nx>result</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>item</span><span class=p>)</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>  <span class=k>return</span> <span class=nx>result</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=nx>filtre</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>],</span> <span class=p>(</span><span class=nx>item</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>item</span> <span class=o>&lt;</span> <span class=mi>3</span><span class=p>)</span> <span class=c1>// [1, 2]
+</span></span></span></code></pre></div><p>例子中，数组元素的类型可以为 number，不过 filter 函数的作用应该更一般，可以筛选数字数组、字符串数字、对象数组等。
+下面通过重载描述下函数签名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>type Filter = {
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  (array: number[], f: (item: number) =&gt; boolean): number[]
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  (array: string[], f: (item: string) =&gt; boolean): string[]
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>// 加上对象类型
+</span></span><span class=line><span class=ln> 7</span><span class=cl>type Filter = {
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  (array: number[], f: (item: number) =&gt; boolean): number[]
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  (array: object[], f: (item: object) =&gt; boolean): object[]
+</span></span><span class=line><span class=ln>10</span><span class=cl>}
+</span></span></code></pre></div><p>object 无法描述对象的结构，访问数组中元素属性就会报错。
+为了解决这种问题，就有了泛形参数</p><blockquote><p>泛型参数——在类型层面施加约束的占位类型，也称多态类型参数，简称泛形</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>// example
+</span></span><span class=line><span class=ln>2</span><span class=cl>type Filter = {
+</span></span><span class=line><span class=ln>3</span><span class=cl>  &lt;T&gt;(array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln>4</span><span class=cl>}
+</span></span></code></pre></div><p>这么做的意思是 Filter 使用了一个泛形参数 T，事先不知道具体类型是什么，调用的时候根据传入的参数推导 T 的类型。</p><p>知识点</p><ul><li>泛形使用尖括号声明，可以把尖括号理解为 type 关键字，只不过声明的是泛形。</li><li>尖括号位置限制泛形作用域尖括号中可以声明任意多个以逗号分隔</li><li>T 就是一个类型名称（类似变量名称），可以使用任意名称，通常会使用 T U V W</li><li>泛形可以理解为一种约束，把泛形 T 所在位置的类型约束为 T 类型</li></ul><h3 id=什么时候绑定泛型><a href=#%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e7%bb%91%e5%ae%9a%e6%b3%9b%e5%9e%8b title=什么时候绑定泛型></a>什么时候绑定泛型</h3><p>声明泛形的位置不仅限定泛形作用域，还决定什么时候为泛形绑定具体的值</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>// 1 在调用签名中声明
+</span></span><span class=line><span class=ln> 2</span><span class=cl>type Filter = {
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  &lt;T&gt;(array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>// 调用函数时为 T 绑定具体类型
+</span></span><span class=line><span class=ln> 6</span><span class=cl>let filter: Filter = (array, f) =&gt; {
+</span></span><span class=line><span class=ln> 7</span><span class=cl>  // ...
+</span></span><span class=line><span class=ln> 8</span><span class=cl>}
+</span></span><span class=line><span class=ln> 9</span><span class=cl>
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl>// 2 在类型别名 Filter 中
+</span></span><span class=line><span class=ln>12</span><span class=cl>type Filter&lt;T&gt; = {
+</span></span><span class=line><span class=ln>13</span><span class=cl>  (array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln>14</span><span class=cl>}
+</span></span><span class=line><span class=ln>15</span><span class=cl>// 使用 Filter 时显式绑定具体类型
+</span></span><span class=line><span class=ln>16</span><span class=cl>let filter: Filter&lt;number&gt; = (array, f) =&gt; {
+</span></span><span class=line><span class=ln>17</span><span class=cl>  // ...
+</span></span><span class=line><span class=ln>18</span><span class=cl>}
+</span></span></code></pre></div><h3 id=可以在什么地方声明泛形><a href=#%e5%8f%af%e4%bb%a5%e5%9c%a8%e4%bb%80%e4%b9%88%e5%9c%b0%e6%96%b9%e5%a3%b0%e6%98%8e%e6%b3%9b%e5%bd%a2 title=可以在什么地方声明泛形></a>可以在什么地方声明泛形</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>// 1
+</span></span><span class=line><span class=ln> 2</span><span class=cl>type Filter = {
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  &lt;T&gt;(array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln> 4</span><span class=cl>}
+</span></span><span class=line><span class=ln> 5</span><span class=cl>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>// 2
+</span></span><span class=line><span class=ln> 7</span><span class=cl>type Filter&lt;T&gt; = {
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  (array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln> 9</span><span class=cl>}
+</span></span><span class=line><span class=ln>10</span><span class=cl>
+</span></span><span class=line><span class=ln>11</span><span class=cl>// 3 1 的简写
+</span></span><span class=line><span class=ln>12</span><span class=cl>type Filter = &lt;T&gt;(array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln>13</span><span class=cl>
+</span></span><span class=line><span class=ln>14</span><span class=cl>// 4 2 的简写
+</span></span><span class=line><span class=ln>15</span><span class=cl>type Filter&lt;T&gt;( = array: T[], f: (item: T): boolean): T[]
+</span></span><span class=line><span class=ln>16</span><span class=cl>
+</span></span><span class=line><span class=ln>17</span><span class=cl>// 5 具名函数调用签名，每次调用 filter 时绑定举腿类型
+</span></span><span class=line><span class=ln>18</span><span class=cl>function filter&lt;T&gt;(array: T[], f: (item: T) =&gt; boolean): T[] {
+</span></span><span class=line><span class=ln>19</span><span class=cl>  // ...
+</span></span><span class=line><span class=ln>20</span><span class=cl>}
+</span></span></code></pre></div><h3 id=泛形别名><a href=#%e6%b3%9b%e5%bd%a2%e5%88%ab%e5%90%8d title=泛形别名></a>泛形别名</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback></code></pre></div><h3 id=泛形约束>泛形约束</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript></code></pre></div></main><br><footer><div class=footer-info><p>Copyright &copy; 2026 Rainboy. All rights reserved.
+<span>| Last build: 2026-07-09 13:19:45</span></p></div><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script><script defer src=/js/theme-switcher.js></script></footer></body></html>
