@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/index.html</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 08 Jul 2026 01:22:07 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8.html</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/blog/</link><description>Recent content in Blogs on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 08 Jul 2026 01:22:07 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>cairo图形库入门</title><link>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8/</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/cairo%E5%9B%BE%E5%BD%A2%E5%BA%93%E5%85%A5%E9%97%A8/</guid><description>&lt;h2 id="cairo图形库入门用c绘制优雅的2d矢量图形"&gt;Cairo图形库入门：用C++绘制优雅的2D矢量图形&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 本文是一篇针对初学者的 Cairo 入门教程，将带你从零开始，学习如何使用这个强大而优雅的2D图形库，通过C++语言创建高质量的矢量图形。&lt;/p&gt;
 &lt;h3 id="什么是-cairo"&gt;什么是 Cairo？&lt;/h3&gt;
 &lt;p&gt;Cairo 是一个开源的2D图形库，它提供了一套强大而灵活的API，用于创建高质量的&lt;strong&gt;矢量图形&lt;/strong&gt;。与依赖像素的&lt;strong&gt;位图&lt;/strong&gt;不同，矢量图形基于数学方程，这意味着你可以在不损失任何清晰度的情况下，任意缩放、旋转或变换图形。&lt;/p&gt;
@@ -21,7 +21,7 @@
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这条命令会输出编译和链接所需的全部参数&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;g++ your_program.cpp -o your_program &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --cflags --libs cairo&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="cairo-的核心概念"&gt;Cairo 的核心概念&lt;/h3&gt;
-&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item><item><title>x64dbg快捷键</title><link>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;-号键 回退
+&lt;p&gt;理解 Cairo 的绘图模型是掌握它的关键。想象你是一位画家：&lt;/p&gt;</description></item><item><title>x64dbg快捷键</title><link>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE/</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid><description>&lt;p&gt;-号键 回退
 Ctrl+A 分析
 Ctrl+HOME 转到函数头
 Alt+K 查堆栈历史
@@ -32,7 +32,7 @@ Ctrl+Shift+↑↓ 堆栈中
 行为点附近
 Ctrl+F12的调用返回处
 初始化阶段的代码中
-任何可以&amp;quot;借用&amp;quot;的一切方式和手段&lt;/p&gt;</description></item><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5.html</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
+任何可以&amp;quot;借用&amp;quot;的一切方式和手段&lt;/p&gt;</description></item><item><title>lldb调试程序重定向输入</title><link>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5/</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/lldb%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5/</guid><description>&lt;p&gt;好的，在 Mac M1 芯片上使用命令行 &lt;code&gt;lldb&lt;/code&gt; 调试，并为程序指定输入文件，这需要两步关键操作：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;为你的可执行文件进行代码签名&lt;/strong&gt; (这是 M1/M2/M3 芯片 Mac 的特殊要求)。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;在 lldb 内部使用正确的命令来重定向输入&lt;/strong&gt;。&lt;/li&gt;
@@ -63,7 +63,7 @@ Ctrl+F12的调用返回处
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;2. 创建输入文件 &lt;code&gt;in.txt&lt;/code&gt;&lt;/strong&gt;
-文件的内容要和程序读取的格式对应。&lt;/p&gt;</description></item><item><title>解决M1下lldb不能调试的问题</title><link>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98.html</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="问题描述"&gt;问题描述&lt;/h2&gt;
+文件的内容要和程序读取的格式对应。&lt;/p&gt;</description></item><item><title>解决M1下lldb不能调试的问题</title><link>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E8%A7%A3%E5%86%B3m1%E4%B8%8Blldb%E4%B8%8D%E8%83%BD%E8%B0%83%E8%AF%95%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="问题描述"&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;在使用 Apple M1 芯片的 Mac 通过 SSH 远程连接时，尝试使用 LLDB 进行调试时遇到以下错误：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;lldb error: process exited with status -1 &lt;span class="o"&gt;(&lt;/span&gt;this is a non-interactive debug session, cannot get permission to debug processes.&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个问题通常出现在以下场景：&lt;/p&gt;
@@ -91,7 +91,7 @@ Ctrl+F12的调用返回处
 &lt;li&gt;✅ macOS Monterey 及以上版本&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="参考来源"&gt;参考来源&lt;/h2&gt;
-&lt;p&gt;这个解决方案来自 Stack Overflow 的相关讨论：&lt;a href="https://stackoverflow.com/questions/70748064/cant-debug-using-lldb-on-apple-m1-over-ssh" target="_blank" rel="noopener"&gt;Can&amp;rsquo;t debug using lldb on Apple M1 over SSH&lt;/a&gt;&lt;/p&gt;</description></item><item><title>zellij使用入门</title><link>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</link><pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.html</guid><description>&lt;ul&gt;
+&lt;p&gt;这个解决方案来自 Stack Overflow 的相关讨论：&lt;a href="https://stackoverflow.com/questions/70748064/cant-debug-using-lldb-on-apple-m1-over-ssh" target="_blank" rel="noopener"&gt;Can&amp;rsquo;t debug using lldb on Apple M1 over SSH&lt;/a&gt;&lt;/p&gt;</description></item><item><title>zellij使用入门</title><link>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</link><pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/zellij%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</guid><description>&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://zellij.dev/" target="_blank" rel="noopener"&gt;官网&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;起因: 我不想再使用tmux ,因为它配置起来很麻烦, 而且快捷键也需要大量的定制才能用得顺手. 在寻找替代品的过程中, 我发现了 Zellij, 一个现代的终端多路复用器, 它开箱即用, 功能强大且易于上手.&lt;/p&gt;
@@ -123,7 +123,7 @@ Ctrl+F12的调用返回处
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="基本操作"&gt;基本操作&lt;/h2&gt;
-&lt;p&gt;Zellij 的一大优点是其用户友好的快捷键. 当你按下 &lt;code&gt;Ctrl&lt;/code&gt; 组合键时, 底部栏会提示你接下来可以按哪些键.&lt;/p&gt;</description></item><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.html</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
+&lt;p&gt;Zellij 的一大优点是其用户友好的快捷键. 当你按下 &lt;code&gt;Ctrl&lt;/code&gt; 组合键时, 底部栏会提示你接下来可以按哪些键.&lt;/p&gt;</description></item><item><title>Tmux 快捷键速查表</title><link>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/tmux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid><description>&lt;p&gt;本文档根据我的 &lt;a href="https://github.com/RainboyNoip/nvim-for-oi/blob/main/dotfiles/tmux.conf" target="_blank" rel="noopener"&gt;tmux.conf 配置文件&lt;/a&gt; 整理而成。&lt;/p&gt;
 &lt;h2 id="前缀键-prefix"&gt;前缀键 (Prefix)&lt;/h2&gt;
 &lt;p&gt;所有 &lt;code&gt;tmux&lt;/code&gt; 命令都需要先按下一个前缀键。你的配置中&lt;strong&gt;保留了默认的前缀键&lt;/strong&gt;。&lt;/p&gt;
 &lt;ul&gt;
@@ -211,7 +211,7 @@ Ctrl+F12的调用返回处
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;em&gt;注意：所有新分割的面板都会在当前面板的路径下打开。&lt;/em&gt;&lt;/p&gt;</description></item><item><title>my-awesome-tools</title><link>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools.html</guid><description>&lt;h2 id="1-linux-tool"&gt;1 Linux Tool&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;注意：所有新分割的面板都会在当前面板的路径下打开。&lt;/em&gt;&lt;/p&gt;</description></item><item><title>my-awesome-tools</title><link>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/my-awesome-tools/</guid><description>&lt;h2 id="1-linux-tool"&gt;1 Linux Tool&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://linuxcommand.org/lc3_adv_dialog.php" target="_blank" rel="noopener"&gt;dialog&lt;/a&gt; - 用于在 shell 脚本中创建文本用户界面的工具，支持对话框、菜单、进度条等交互元素&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/charmbracelet/gum" target="_blank" rel="noopener"&gt;gum&lt;/a&gt;：一个由 Charmbracelet 开发的命令行工具，用于创建漂亮的交互式 Shell 脚本，支持输入、选择、确认等 UI 组件，适合增强终端用户体验。&lt;/li&gt;
@@ -297,7 +297,7 @@ Ctrl+F12的调用返回处
 &lt;li&gt;&lt;a href="https://using-d3js.com" target="_blank" rel="noopener"&gt;using d3.js&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://live-team.pages.debian.net/live-manual/html/live-manual/index.en.html" target="_blank" rel="noopener"&gt;debian live build&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.sssam.com/tool/libgen/" target="_blank" rel="noopener"&gt;libgen&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98.html</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
+&lt;/ul&gt;</description></item><item><title>archlinux下网络延迟问题</title><link>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/archlinux%E4%B8%8B%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="1-起因"&gt;1. 起因&lt;/h2&gt;
 &lt;p&gt;最近在使用archlinux,发现网络延迟很高,但是其他设备正常,于是开始排查问题.&lt;/p&gt;
 &lt;h2 id="2-问题排查"&gt;2. 问题排查&lt;/h2&gt;
 &lt;p&gt;直接问AI,AI 告诉我最大的可能是:&lt;/p&gt;
@@ -326,7 +326,7 @@ Ctrl+F12的调用返回处
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://gist.github.com/jcberthon/ea8cfe278998968ba7c5a95344bc8b55" target="_blank" rel="noopener"&gt;NetworkManager Wi-Fi powersaving configuration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Power_management#NetworkManager" target="_blank" rel="noopener"&gt;Arch Linux Wi-Fi Power Management&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>vscode-markdown不能使用snippets的问题</title><link>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98.html</link><pubDate>Fri, 19 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98.html</guid><description>&lt;p&gt;打开用户的setting.json，&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>vscode-markdown不能使用snippets的问题</title><link>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Fri, 19 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/vscode-markdown%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8snippets%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;打开用户的setting.json，&lt;/p&gt;
 &lt;p&gt;加入下面的配置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt; // markdown不显示代码块的问题
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;	&amp;#34;[markdown]&amp;#34;: {
@@ -335,7 +335,7 @@ Ctrl+F12的调用返回处
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;		}
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;	},
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不生效的原因：&lt;/p&gt;
-&lt;p&gt;这个&amp;quot;other&amp;quot;项的配置，默认值是&amp;rsquo;off'&lt;/p&gt;</description></item><item><title>Github无法推送</title><link>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</link><pubDate>Tue, 09 Sep 2025 12:55:26 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81.html</guid><description>&lt;p&gt;2025-09-09,我发现我的电脑 git 无法推送,&lt;/p&gt;
+&lt;p&gt;这个&amp;quot;other&amp;quot;项的配置，默认值是&amp;rsquo;off'&lt;/p&gt;</description></item><item><title>Github无法推送</title><link>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81/</link><pubDate>Tue, 09 Sep 2025 12:55:26 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/github%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81/</guid><description>&lt;p&gt;2025-09-09,我发现我的电脑 git 无法推送,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;ssh -vvv -T git@github.com 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卡死&lt;/p&gt;
 &lt;p&gt;神奇的是,并不是因为https无法推送,而是ssh无法推送,这是我第一次遇到这种情况.&lt;/p&gt;
@@ -367,7 +367,7 @@ Ctrl+F12的调用返回处
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Warning: Permanently added &amp;#39;&lt;/span&gt;140.82.114.3&lt;span class="s1"&gt;&amp;#39; (ED25519) to the list of known hosts.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;Hi Rainboylvx! You&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;成功了 !?&lt;/p&gt;</description></item><item><title>Latex数学公式手册</title><link>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C.html</link><pubDate>Sun, 07 Sep 2025 20:01:50 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C.html</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;成功了 !?&lt;/p&gt;</description></item><item><title>Latex数学公式手册</title><link>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C/</link><pubDate>Sun, 07 Sep 2025 20:01:50 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%89%8B%E5%86%8C/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
 &lt;p&gt;准备整理一下我所使用的Latex数学公式(其实我大部分时间都在使用&lt;a href="https://katex.org/" target="_blank" rel="noopener"&gt;katex&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;下面列举一些有用的资源&lt;/p&gt;
 &lt;ol&gt;
@@ -455,7 +455,7 @@ Ctrl+F12的调用返回处
 	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id="大写希腊字母"&gt;大写希腊字母&lt;/h3&gt;
-&lt;p&gt;大写希腊字母通常是小写希腊字母的 LATEX 语法第一个字母改为大写，见下表&lt;/p&gt;</description></item><item><title>Newnew</title><link>https://hugo-dead-simple.netlify.com/blog/newnew.html</link><pubDate>Thu, 04 Sep 2025 00:22:36 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/newnew.html</guid><description>&lt;p&gt;test git action webhook&lt;/p&gt;</description></item><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83.html</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83.html</guid><description>&lt;h2 id="自动deploy-blog-到github"&gt;自动deploy blog 到github&lt;/h2&gt;
+&lt;p&gt;大写希腊字母通常是小写希腊字母的 LATEX 语法第一个字母改为大写，见下表&lt;/p&gt;</description></item><item><title>Newnew</title><link>https://hugo-dead-simple.netlify.com/blog/newnew/</link><pubDate>Thu, 04 Sep 2025 00:22:36 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/newnew/</guid><description>&lt;p&gt;test git action webhook&lt;/p&gt;</description></item><item><title>Hugo自动发布</title><link>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</link><pubDate>Wed, 03 Sep 2025 21:05:27 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/hugo%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/</guid><description>&lt;h2 id="自动deploy-blog-到github"&gt;自动deploy blog 到github&lt;/h2&gt;
 &lt;p&gt;参考&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener"&gt;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#3-github%E9%83%A8%E7%BD%B2&lt;/a&gt;&lt;/li&gt;
@@ -498,8 +498,8 @@ Ctrl+F12的调用返回处
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="评论和阅读量迁移"&gt;评论和阅读量迁移&lt;a href="#%e8%af%84%e8%ae%ba%e5%92%8c%e9%98%85%e8%af%bb%e9%87%8f%e8%bf%81%e7%a7%bb"&gt;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;使用了 Twikoo 的评论系统，并解决了链接转换问题&lt;/p&gt;</description></item><item><title>Helloworld</title><link>https://hugo-dead-simple.netlify.com/blog/helloworld.html</link><pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/helloworld.html</guid><description>&lt;h2 id="hello-world"&gt;hello world&lt;/h2&gt;
-&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noopener"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/war3/hum.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/war3/hum.html</guid><description>&lt;p&gt;人族大讲堂 双矿火枪法师对抗暗夜 : &lt;a href="https://www.bilibili.com/video/BV1tY411A7ya/" target="_blank" rel="noopener"&gt;https://www.bilibili.com/video/BV1tY411A7ya/&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/war3/orc.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/war3/orc.html</guid><description>&lt;p&gt;怎么防二本 女巫 TR ?&lt;/p&gt;
+&lt;p&gt;使用了 Twikoo 的评论系统，并解决了链接转换问题&lt;/p&gt;</description></item><item><title>Helloworld</title><link>https://hugo-dead-simple.netlify.com/blog/helloworld/</link><pubDate>Wed, 03 Sep 2025 16:49:19 +0800</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/helloworld/</guid><description>&lt;h2 id="hello-world"&gt;hello world&lt;/h2&gt;
+&lt;p&gt;write by &lt;a href="https://github.com/rainboylvx" target="_blank" rel="noopener"&gt;Rainboy&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/war3/hum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/war3/hum/</guid><description>&lt;p&gt;人族大讲堂 双矿火枪法师对抗暗夜 : &lt;a href="https://www.bilibili.com/video/BV1tY411A7ya/" target="_blank" rel="noopener"&gt;https://www.bilibili.com/video/BV1tY411A7ya/&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/war3/orc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/war3/orc/</guid><description>&lt;p&gt;怎么防二本 女巫 TR ?&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;不要先打塔&lt;/li&gt;
 &lt;li&gt;出投石车 ,先放FE&lt;/li&gt;
@@ -541,7 +541,7 @@ Ctrl+F12的调用返回处
 &lt;ul&gt;
 &lt;li&gt;新造地洞要前置,对手打地洞,你就打农民&lt;/li&gt;
 &lt;li&gt;牙签&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.html</guid><description>&lt;p&gt;&lt;code&gt;ret&lt;/code&gt; 与 &lt;code&gt;ret 10&lt;/code&gt;之间的区别&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title/><link>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/blog/%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;p&gt;&lt;code&gt;ret&lt;/code&gt; 与 &lt;code&gt;ret 10&lt;/code&gt;之间的区别&lt;/p&gt;
 &lt;p&gt;当然可以。&lt;code&gt;ret&lt;/code&gt; 和 &lt;code&gt;ret 10&lt;/code&gt; 都是函数返回指令，但它们之间有一个非常重要且根本的区别。&lt;/p&gt;
 &lt;p&gt;最核心的区别在于&lt;strong&gt;由谁来负责清理函数调用时压入栈的参数&lt;/strong&gt;。&lt;/p&gt;
 &lt;hr&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oi on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/oi.html</link><description>Recent content in Oi on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/oi/index.xml" rel="self" type="application/rss+xml"/><item><title>bookmark</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark.html</guid><description>&lt;p&gt;当然，为代码行添加标记（通常称为“书签”或“Bookmarks”）以便快速导航是一个非常常见的需求。Neovim 不仅有强大的内置标记功能，还有许多优秀的插件可以极大地增强这一体验。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oi on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/oi/</link><description>Recent content in Oi on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Oct 2025 06:30:21 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/oi/index.xml" rel="self" type="application/rss+xml"/><item><title>bookmark</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/bookmark/</guid><description>&lt;p&gt;当然，为代码行添加标记（通常称为“书签”或“Bookmarks”）以便快速导航是一个非常常见的需求。Neovim 不仅有强大的内置标记功能，还有许多优秀的插件可以极大地增强这一体验。&lt;/p&gt;
 &lt;h3 id="1-neovim-的内置标记-built-in-marks"&gt;1 Neovim 的内置标记 (Built-in Marks)&lt;/h3&gt;
 &lt;p&gt;首先，你需要了解 Neovim 自带的、无需任何插件的标记功能。它非常强大和快速。&lt;/p&gt;
 &lt;ul&gt;
@@ -44,7 +44,7 @@
 &lt;li&gt;&lt;strong&gt;Telescope 集成:&lt;/strong&gt; 可以用 Telescope 模糊搜索并跳转到所有标记。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;持久化:&lt;/strong&gt; 可以跨会话保存标记。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>nvim-lsp-clangd</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd.html</guid><description>&lt;p&gt;在 Neovim 中不使用 &lt;code&gt;nvim-lspconfig&lt;/code&gt; 插件来手动配置 &lt;code&gt;clangd&lt;/code&gt; 是一个很好的学习 Neovim 内置 LSP API 的方式。这能让你更深入地理解 LSP 客户端是如何工作的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>nvim-lsp-clangd</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/clangd/</guid><description>&lt;p&gt;在 Neovim 中不使用 &lt;code&gt;nvim-lspconfig&lt;/code&gt; 插件来手动配置 &lt;code&gt;clangd&lt;/code&gt; 是一个很好的学习 Neovim 内置 LSP API 的方式。这能让你更深入地理解 LSP 客户端是如何工作的。&lt;/p&gt;
 &lt;p&gt;下面是详细的步骤和一份完整的 Lua 配置示例。&lt;/p&gt;
 &lt;h3 id="核心思路"&gt;核心思路&lt;/h3&gt;
 &lt;p&gt;不使用 &lt;code&gt;nvim-lspconfig&lt;/code&gt; 的核心是直接调用 Neovim 的原生 LSP 函数 &lt;code&gt;vim.lsp.start()&lt;/code&gt;。这个函数负责启动一个 LSP 服务进程，并将其附加到当前的缓冲区。&lt;/p&gt;
@@ -65,7 +65,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Homebrew 安装的 llvm 可能需要手动链接，或者你可以在配置中指定完整路径&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Ubuntu/Debian:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>outline</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline.html</guid><description>&lt;p&gt;好的，你正在寻找的这类插件通常被称为“符号大纲” (Symbol Outline) 或“符号树” (Symbol Tree)。它们利用 Neovim 的 LSP (Language Server Protocol) 功能来获取代码的结构信息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu/Debian:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>outline</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/outline/</guid><description>&lt;p&gt;好的，你正在寻找的这类插件通常被称为“符号大纲” (Symbol Outline) 或“符号树” (Symbol Tree)。它们利用 Neovim 的 LSP (Language Server Protocol) 功能来获取代码的结构信息。&lt;/p&gt;
 &lt;p&gt;对于 C++，你需要先确保你的 Neovim 已经配置好了 LSP，并且安装了 C++ 的语言服务器，最常用的是 &lt;code&gt;clangd&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;这里有几个非常出色的插件可以完美实现你想要的功能，它们都非常接近 VS Code 的大纲视图。&lt;/p&gt;
 &lt;h3 id="-首选推荐-symbols-outlinenvim"&gt;👑 首选推荐: symbols-outline.nvim&lt;/h3&gt;
@@ -102,7 +102,7 @@
 &lt;li&gt;可以显示代码的层级结构，非常适合大型项目。&lt;/li&gt;
 &lt;li&gt;过滤和排序功能强大。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>which-key</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key.html</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key.html</guid><description>&lt;h2 id="1-使用-which-key-最佳实践"&gt;1. 使用 which-key 最佳实践&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;使用 &lt;code&gt;lazy.nvim&lt;/code&gt; 的安装配置示例:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>which-key</title><link>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/nvim-for-oi/which-key/</guid><description>&lt;h2 id="1-使用-which-key-最佳实践"&gt;1. 使用 which-key 最佳实践&lt;/h2&gt;
 &lt;p&gt;当然，使用 &lt;code&gt;which-key.nvim&lt;/code&gt; 的目标不仅仅是“显示按键”，更是为了构建一个&lt;strong&gt;可发现、有逻辑、易于记忆&lt;/strong&gt;的键位系统。以下是一些被广泛认可的最佳实践：&lt;/p&gt;
 &lt;h3 id="11-合理组织你的按键-organize-your-keys-logically"&gt;1.1. 合理组织你的按键 (Organize Your Keys Logically)&lt;/h3&gt;
 &lt;p&gt;这是最核心的一点。不要随意放置键位，要用分组和助记符来构建你的配置。&lt;/p&gt;
