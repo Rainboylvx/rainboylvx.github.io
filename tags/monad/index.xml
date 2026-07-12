@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Monad on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/monad.html</link><description>Recent content in Monad on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 12 Jul 2026 13:52:56 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/monad/index.xml" rel="self" type="application/rss+xml"/><item><title>P74 - 不用 do 记法编写 IO</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p74.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p74.html</guid><description>&lt;h1 id="p74---不用-do-记法编写-io"&gt;P74 - 不用 do 记法编写 IO&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Monad on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/monad.html</link><description>Recent content in Monad on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 12 Jul 2026 15:04:27 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/monad/index.xml" rel="self" type="application/rss+xml"/><item><title>P74 - 不用 do 记法编写 IO</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p74.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p74.html</guid><description>&lt;h1 id="p74---不用-do-记法编写-io"&gt;P74 - 不用 do 记法编写 IO&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;IO monad without do notation&lt;/p&gt;
 &lt;p&gt;官方模块：&lt;code&gt;Problems.P74&lt;/code&gt;　核心函数：&lt;code&gt;askGoldbach&lt;/code&gt;&lt;/p&gt;
@@ -9,6 +9,7 @@
 &lt;h2 id="题目描述"&gt;题目描述&lt;/h2&gt;
 &lt;p&gt;从输入句柄读取一个偶数，调用 P40 分解，再把 &lt;code&gt;n=a+b&lt;/code&gt; 写到输出句柄。要求不用 &lt;code&gt;do&lt;/code&gt;，直接使用 &lt;code&gt;(&amp;gt;&amp;gt;=)&lt;/code&gt; 和 &lt;code&gt;(&amp;gt;&amp;gt;)&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id="实现"&gt;实现&lt;/h2&gt;
+&lt;h3 id="方法一-绑定风格"&gt;方法一：&amp;raquo;= 绑定风格&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;System.IO&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Handle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;hGetLine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;hPutStr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;hPutStrLn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;askGoldbach&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handle&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handle&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
@@ -26,10 +27,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Integer&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;goldbach&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;hPutStrLn&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;+&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="测试"&gt;测试&lt;/h2&gt;
-&lt;p&gt;使用内容为 &lt;code&gt;104&lt;/code&gt; 的输入句柄时，输出为：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;104=3+101
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;return&lt;/code&gt; 在这里不是命令式语言的“返回语句”，而是把普通值放入某个 Monad 的函数。&lt;/p&gt;</description></item><item><title>P75 - Maybe Monad 校验输入</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p75.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p75.html</guid><description>&lt;h1 id="p75---maybe-monad-校验输入"&gt;P75 - Maybe Monad 校验输入&lt;/h1&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="方法二do-记法对比"&gt;方法二：do 记法（对比）&lt;/h3&gt;
+&lt;p&gt;askGoldbach :: Handle -&amp;gt; Handle -&amp;gt; IO ()
+askGoldbach input output = do
+text &amp;lt;- hGetLine input
+let n = read text :: Integer
+(a, b) = goldbach n
+hPutStr output (show n ++ &amp;ldquo;=&amp;rdquo;)
+hPutStr output (show a ++ &amp;ldquo;+&amp;rdquo;)
+hPutStrLn output (show b)&lt;/p&gt;</description></item><item><title>P75 - Maybe Monad 校验输入</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p75.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p75.html</guid><description>&lt;h1 id="p75---maybe-monad-校验输入"&gt;P75 - Maybe Monad 校验输入&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Maybe monad&lt;/p&gt;
 &lt;p&gt;官方模块：&lt;code&gt;Problems.P75&lt;/code&gt;　核心函数：&lt;code&gt;maybeGoldbach&lt;/code&gt;&lt;/p&gt;
@@ -40,6 +46,7 @@
 &lt;h2 id="题目描述"&gt;题目描述&lt;/h2&gt;
 &lt;p&gt;解析字符串并验证它是大于 2 的偶数，然后返回原数及其哥德巴赫分解。任一步失败都返回 &lt;code&gt;Nothing&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id="实现"&gt;实现&lt;/h2&gt;
+&lt;h3 id="方法一do-记法"&gt;方法一：do 记法&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Control.Monad&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;guard&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Text.Read&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;readMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;
@@ -50,21 +57,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;guard&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;even&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;pure&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;goldbach&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;readMaybe&lt;/code&gt; 处理解析失败，&lt;code&gt;guard False&lt;/code&gt; 在 &lt;code&gt;Maybe&lt;/code&gt; 中产生 &lt;code&gt;Nothing&lt;/code&gt;。&lt;code&gt;do&lt;/code&gt; 把三种失败路径串成一条直线。&lt;/p&gt;
-&lt;h2 id="测试"&gt;测试&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;maybeGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;28&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Just&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;maybeGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;27&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Nothing&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;maybeGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Nothing&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; 能表达成功或失败，却不能说明失败原因；P76 用 &lt;code&gt;Either&lt;/code&gt; 补上错误信息。&lt;/p&gt;
-&lt;h2 id="参考"&gt;参考&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://ninetynine.haskell.chungyc.org/Problems-P75.html" target="_blank" rel="noopener"&gt;官方文档&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/index.html"&gt;Haskell 99 题学习路线&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/p74.html"&gt;← P74 不用 do 的 IO&lt;/a&gt; | &lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/p76.html"&gt;P76 Either Monad →&lt;/a&gt;&lt;/p&gt;</description></item><item><title>P76 - Either Monad 返回错误原因</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p76.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p76.html</guid><description>&lt;h1 id="p76---either-monad-返回错误原因"&gt;P76 - Either Monad 返回错误原因&lt;/h1&gt;
+&lt;h3 id="方法二模式匹配版不需-maybe-monad"&gt;方法二：模式匹配版（不需 Maybe Monad）&lt;/h3&gt;
+&lt;p&gt;maybeGoldbach :: String -&amp;gt; Maybe (Integer, (Integer, Integer))
+maybeGoldbach text =
+case readMaybe text of
+Nothing -&amp;gt; Nothing
+Just n
+| n &amp;lt;= 2 || odd n -&amp;gt; Nothing
+| otherwise -&amp;gt; let (a, b) = goldbach n
+in Just (n, (a, b))&lt;/p&gt;</description></item><item><title>P76 - Either Monad 返回错误原因</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p76.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p76.html</guid><description>&lt;h1 id="p76---either-monad-返回错误原因"&gt;P76 - Either Monad 返回错误原因&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Either monad&lt;/p&gt;
 &lt;p&gt;官方模块：&lt;code&gt;Problems.P76&lt;/code&gt;　核心函数：&lt;code&gt;eitherGoldbach&lt;/code&gt;&lt;/p&gt;
@@ -75,6 +76,7 @@
 &lt;h2 id="题目描述"&gt;题目描述&lt;/h2&gt;
 &lt;p&gt;重写 P75：成功值放在 &lt;code&gt;Right&lt;/code&gt;，解析、范围或奇偶校验失败时在 &lt;code&gt;Left&lt;/code&gt; 中返回具体原因。&lt;/p&gt;
 &lt;h2 id="实现"&gt;实现&lt;/h2&gt;
+&lt;h3 id="方法一do-记法"&gt;方法一：do 记法&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Text.Read&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;readMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;eitherGoldbach&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;String&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Either&lt;/span&gt; &lt;span class="kt"&gt;String&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -86,27 +88,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt; &lt;span class="kt"&gt;Right&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;else&lt;/span&gt; &lt;span class="kt"&gt;Left&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;not an even number&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;pure&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;goldbach&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;Either e&lt;/code&gt; 的 Monad 实例遇到第一个 &lt;code&gt;Left e&lt;/code&gt; 就停止后续计算，因此返回最先发现的错误。&lt;/p&gt;
-&lt;h2 id="测试"&gt;测试&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eitherGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;28&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Right&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eitherGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Left&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;not greater than 2&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eitherGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;27&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Left&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;not an even number&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eitherGoldbach&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;Left&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;not a number&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="要点总结"&gt;要点总结&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Maybe&lt;/code&gt; 适合只关心成败的内部组合。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Either String&lt;/code&gt; 更适合需要向调用者解释失败原因的边界接口。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="参考"&gt;参考&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://ninetynine.haskell.chungyc.org/Problems-P76.html" target="_blank" rel="noopener"&gt;官方文档&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/index.html"&gt;Haskell 99 题学习路线&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/p75.html"&gt;← P75 Maybe Monad&lt;/a&gt; | &lt;a href="https://hugo-dead-simple.netlify.com/program_language/haskell-99/p77.html"&gt;P77 List Monad →&lt;/a&gt;&lt;/p&gt;</description></item><item><title>P77 - List Monad 枚举随机游走路径</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p77.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p77.html</guid><description>&lt;h1 id="p77---list-monad-枚举随机游走路径"&gt;P77 - List Monad 枚举随机游走路径&lt;/h1&gt;
+&lt;h3 id="方法二显式-case-版"&gt;方法二：显式 case 版&lt;/h3&gt;
+&lt;p&gt;eitherGoldbach :: String -&amp;gt; Either String (Integer, (Integer, Integer))
+eitherGoldbach text =
+case readMaybe text of
+Nothing -&amp;gt; Left &amp;ldquo;not a number&amp;rdquo;
+Just n
+| n &amp;lt;= 2 || odd n -&amp;gt; Left &amp;ldquo;not an even number greater than 2&amp;rdquo;
+| otherwise -&amp;gt; Right (n, goldbach n)&lt;/p&gt;</description></item><item><title>P77 - List Monad 枚举随机游走路径</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p77.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p77.html</guid><description>&lt;h1 id="p77---list-monad-枚举随机游走路径"&gt;P77 - List Monad 枚举随机游走路径&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;List monad&lt;/p&gt;
 &lt;p&gt;官方模块：&lt;code&gt;Problems.P77&lt;/code&gt;　核心函数：&lt;code&gt;randomWalkPaths&lt;/code&gt;&lt;/p&gt;
@@ -117,6 +106,7 @@
 &lt;h2 id="题目描述"&gt;题目描述&lt;/h2&gt;
 &lt;p&gt;从位置 0 出发，每一步可以移动 &lt;code&gt;-1&lt;/code&gt;、&lt;code&gt;0&lt;/code&gt; 或 &lt;code&gt;1&lt;/code&gt;。返回长度为 &lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;n&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.4306em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的所有选择所形成的位置路径，路径包含起点。&lt;/p&gt;
 &lt;h2 id="实现"&gt;实现&lt;/h2&gt;
+&lt;h3 id="方法一list-monad-do-记法"&gt;方法一：list monad do 记法&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;randomWalkPaths&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;randomWalkPaths&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt;
@@ -128,14 +118,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;step&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;pure&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;reversedPath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列表 Monad 把每次 &lt;code&gt;step&lt;/code&gt; 的三个可能分支与已有路径做笛卡尔积。内部反向保存路径可用 &lt;code&gt;(:)&lt;/code&gt; 常数时间扩展，最后统一 &lt;code&gt;reverse&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id="测试"&gt;测试&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-haskell" data-lang="haskell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;randomWalkPaths&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;randomWalkPaths&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;81&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;randomWalkPaths&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;True&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;n&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.4306em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 步共有 &lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;3^n&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6644em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord"&gt;3&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.6644em;"&gt;&lt;span style="top:-3.063em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 条路径，输出规模本身就是指数级。&lt;/p&gt;</description></item><item><title>P78 - 用 Writer Monad 统计 Collatz 步数</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p78.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p78.html</guid><description>&lt;h1 id="p78---用-writer-monad-统计-collatz-步数"&gt;P78 - 用 Writer Monad 统计 Collatz 步数&lt;/h1&gt;
+&lt;h3 id="方法二列表推导式"&gt;方法二：列表推导式&lt;/h3&gt;
+&lt;p&gt;randomWalkPaths :: Int -&amp;gt; [[Int]]
+randomWalkPaths n
+| n &amp;lt; 0 = []
+| otherwise = map reverse (walk n)
+where
+walk 0 = [[0]]
+walk k = [x : xs | x &amp;lt;- [(-1), 0, 1], xs &amp;lt;- walk (k - 1)]&lt;/p&gt;</description></item><item><title>P78 - 用 Writer Monad 统计 Collatz 步数</title><link>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p78.html</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/haskell-99/p78.html</guid><description>&lt;h1 id="p78---用-writer-monad-统计-collatz-步数"&gt;P78 - 用 Writer Monad 统计 Collatz 步数&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Collatz conjecture with Writer&lt;/p&gt;
 &lt;p&gt;官方模块：&lt;code&gt;Problems.P78&lt;/code&gt;　核心函数：&lt;code&gt;collatz&lt;/code&gt;&lt;/p&gt;
