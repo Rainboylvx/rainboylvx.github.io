@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>组合数学 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6.html</link><description>Recent content in 组合数学 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 13:58:11 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 组合数学神器：combinations_with_replacement 的巧妙应用</title><link>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</guid><description>&lt;p&gt;在 Python 的 &lt;code&gt;itertools&lt;/code&gt; 库中，有一个名字特别长，却在特定场景下能发挥奇效的函数：&lt;code&gt;combinations_with_replacement&lt;/code&gt;。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>组合数学 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6.html</link><description>Recent content in 组合数学 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 14:12:15 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 组合数学神器：combinations_with_replacement 的巧妙应用</title><link>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</guid><description>&lt;p&gt;在 Python 的 &lt;code&gt;itertools&lt;/code&gt; 库中，有一个名字特别长，却在特定场景下能发挥奇效的函数：&lt;code&gt;combinations_with_replacement&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;翻译过来，它叫做：&lt;strong&gt;有放回的组合&lt;/strong&gt;（也可称为“允许重复的组合”）。&lt;/p&gt;
 &lt;p&gt;这篇文章我们将从&lt;strong&gt;它和普通组合的区别&lt;/strong&gt;讲起，揭示它背后**“隔板法”的数学本质**，最后看看它在算法竞赛暴力枚举中的实战威力。&lt;/p&gt;
 &lt;h2 id="1-核心区别和普通组合的不同"&gt;1. 核心区别：和普通组合的不同&lt;/h2&gt;
@@ -18,4 +18,26 @@
  &lt;div class="admonition-content"&gt;
  &lt;p&gt;千万不要把它和笛卡尔积 &lt;code&gt;product(a, repeat=2)&lt;/code&gt; 搞混。
 &lt;code&gt;product&lt;/code&gt; 是&lt;strong&gt;排列&lt;/strong&gt;（关心顺序），它会生成 &lt;code&gt;(1, 2)&lt;/code&gt; 和 &lt;code&gt;(2, 1)&lt;/code&gt;。
-而 &lt;code&gt;combinations_with_replacement&lt;/code&gt; 是&lt;strong&gt;组合&lt;/strong&gt;（不关心顺序），只会生成 &lt;code&gt;(1, 2)&lt;/code&gt;，因为它已经代表了“选了一个 1 和一个 2”这组选择。&lt;/p&gt;</description></item></channel></rss>
+而 &lt;code&gt;combinations_with_replacement&lt;/code&gt; 是&lt;strong&gt;组合&lt;/strong&gt;（不关心顺序），只会生成 &lt;code&gt;(1, 2)&lt;/code&gt;，因为它已经代表了“选了一个 1 和一个 2”这组选择。&lt;/p&gt;</description></item><item><title>组合去重的核心哲学：有序唯一性 (Ordered Uniqueness)</title><link>https://hugo-dead-simple.netlify.com/program_language/python/ordered_uniqueness.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/ordered_uniqueness.html</guid><description>&lt;p&gt;在上一篇文章《含有重复元素的全排列去重》中，我们详细拆解了如何用 DFS 的剪枝逻辑来消灭重复的排列分支。&lt;/p&gt;
+&lt;p&gt;但如果我们跳出代码本身，从更高的思维维度来看组合数学里的“去重”问题，你会发现不管是组合（Combinations）还是去重排列（Unique Permutations），它们背后共享着一个极其优美而深刻的核心哲学。&lt;/p&gt;
+&lt;p&gt;你用四个字精准地概括了它：&lt;strong&gt;有序唯一性&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id="什么是有序唯一性"&gt;什么是“有序唯一性”？&lt;/h2&gt;
+&lt;p&gt;假设我们要从 &lt;code&gt;[1, 2, 3]&lt;/code&gt; 里面选 2 个数字（不关心顺序，即求组合）。
+如果我们用最暴力的双重循环去选，会选出 &lt;code&gt;(1, 2)&lt;/code&gt;，也会选出 &lt;code&gt;(2, 1)&lt;/code&gt;。在组合的概念里，它们是重复的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何消灭这种重复？&lt;/strong&gt;
+最笨的办法是：全都生成出来，放进一个 Set 里去重。
+&lt;strong&gt;最高级的办法是（也是算法的本质思路）：建立一套严苛的“出场顺序规则”。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们强行规定：&lt;strong&gt;选出来的序列，必须是严格递增的。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(1, 2)&lt;/code&gt; 是递增的，合法，留下。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(2, 1)&lt;/code&gt; 是递减的，非法，直接从源头掐断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一旦引入了“有序”这个强硬的规则，无序的组合状态就被坍缩成了&lt;strong&gt;唯一&lt;/strong&gt;的一种合法表达形式。这就是“有序唯一性”。&lt;/p&gt;
+
+ &lt;link rel="stylesheet" href="https://hugo-dead-simple.netlify.com/css/vendors/admonitions.4fd9a0b8ec8899f2ca952048d255a569f433f77dfb3f52f5bc87e7d65cdce449.css" integrity="sha256-T9mguOyImfLKlSBI0lWlafQz9337P1L1vIfn1lzc5Ek=" crossorigin="anonymous"&gt;
+ &lt;div class="admonition idea"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"&gt;&lt;path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;核心洞见&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;在无序的世界里想要防重复，最好的办法就是给它人为地加上一种“序”。在这个序下，同一个集合只有一种合法的长相。&lt;/p&gt;</description></item></channel></rss>
