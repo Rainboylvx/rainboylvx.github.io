@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>函数式编程 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.html</link><description>Recent content in 函数式编程 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 12:39:18 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 函数式编程三剑客：map、filter 与 reduce</title><link>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</guid><description>&lt;p&gt;在学习了“生成器表达式”之后，我们已经初步体会到了函数式编程带来的代码精简和优雅。而在 Python 中，还有三个历史悠久且非常经典的内置高阶函数——也就是常说的“三剑客”：&lt;code&gt;map&lt;/code&gt;、&lt;code&gt;filter&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;虽然很多时候它们的功能可以用生成器表达式或列表推导式替代，但在某些特定场景下，它们能提供更紧凑的语义表达，尤其是在处理数据流转换和聚合时。&lt;/p&gt;
+&lt;p&gt;这篇文章我们来彻底搞懂它们的设计思想和使用场景。&lt;/p&gt;
+&lt;h2 id="什么是高阶函数"&gt;什么是“高阶函数”？&lt;/h2&gt;
+&lt;p&gt;在讲三剑客之前，必须先明白什么是高阶函数（Higher-order function）。
+简单来说，如果一个函数&lt;strong&gt;能接收另一个函数作为参数&lt;/strong&gt;，或者&lt;strong&gt;返回一个函数&lt;/strong&gt;，那它就是高阶函数。&lt;/p&gt;
+&lt;p&gt;在 Python 中，函数是一等公民，你可以像传递普通变量一样传递函数名：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 此时我们没有调用 double()，而是把函数本身赋值给 f&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 输出 10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;map&lt;/code&gt;、&lt;code&gt;filter&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt; 就是最典型的高阶函数，它们的核心思想都是：&lt;strong&gt;“我来负责控制遍历的过程，你传一个函数告诉我该对元素做什么操作”&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="1-map映射变换"&gt;1. &lt;code&gt;map&lt;/code&gt;：映射变换&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;map(function, iterable)&lt;/code&gt; 的作用是：把一个可迭代对象（列表、元组等）里的每一个元素，挨个送到 &lt;code&gt;function&lt;/code&gt; 里加工，然后把加工后的结果组合成一个新的迭代器返回。&lt;/p&gt;
+
+ &lt;link rel="stylesheet" href="https://hugo-dead-simple.netlify.com/css/vendors/admonitions.4fd9a0b8ec8899f2ca952048d255a569f433f77dfb3f52f5bc87e7d65cdce449.css" integrity="sha256-T9mguOyImfLKlSBI0lWlafQz9337P1L1vIfn1lzc5Ek=" crossorigin="anonymous"&gt;
+ &lt;div class="admonition idea"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"&gt;&lt;path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;记忆诀窍&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;想象一条流水线，传送带上是生鸡蛋。&lt;code&gt;map&lt;/code&gt; 就是那台机器，你给它安装一个叫“煎制”的刷子（函数），出来的就是一排煎蛋。一一对应，数量不变。&lt;/p&gt;</description></item></channel></rss>
