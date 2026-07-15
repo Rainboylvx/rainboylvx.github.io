@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Itertools on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/itertools.html</link><description>Recent content in Itertools on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 13:58:11 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/itertools/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 组合数学神器：combinations_with_replacement 的巧妙应用</title><link>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/combinations_with_replacement.html</guid><description>&lt;p&gt;在 Python 的 &lt;code&gt;itertools&lt;/code&gt; 库中，有一个名字特别长，却在特定场景下能发挥奇效的函数：&lt;code&gt;combinations_with_replacement&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;翻译过来，它叫做：&lt;strong&gt;有放回的组合&lt;/strong&gt;（也可称为“允许重复的组合”）。&lt;/p&gt;
+&lt;p&gt;这篇文章我们将从&lt;strong&gt;它和普通组合的区别&lt;/strong&gt;讲起，揭示它背后**“隔板法”的数学本质**，最后看看它在算法竞赛暴力枚举中的实战威力。&lt;/p&gt;
+&lt;h2 id="1-核心区别和普通组合的不同"&gt;1. 核心区别：和普通组合的不同&lt;/h2&gt;
+&lt;p&gt;假设我们有一个数字池：&lt;code&gt;a = [1, 2, 3]&lt;/code&gt;，我们要从中选出 &lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding="application/x-tex"&gt;K = 2&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6833em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.07153em;"&gt;K&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;=&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6444em;"&gt;&lt;/span&gt;&lt;span class="mord"&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 个数字。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果是普通的组合 &lt;code&gt;combinations(a, 2)&lt;/code&gt;（不放回）：&lt;/strong&gt;
+选出的数字不能重复。
+结果是：&lt;code&gt;(1, 2), (1, 3), (2, 3)&lt;/code&gt;，共 3 种。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果是 &lt;code&gt;combinations_with_replacement(a, 2)&lt;/code&gt;（有放回）：&lt;/strong&gt;
+选出一个数字后，还可以再选它！
+结果是：&lt;code&gt;(1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)&lt;/code&gt;，共 6 种。&lt;/p&gt;
+
+ &lt;link rel="stylesheet" href="https://hugo-dead-simple.netlify.com/css/vendors/admonitions.4fd9a0b8ec8899f2ca952048d255a569f433f77dfb3f52f5bc87e7d65cdce449.css" integrity="sha256-T9mguOyImfLKlSBI0lWlafQz9337P1L1vIfn1lzc5Ek=" crossorigin="anonymous"&gt;
+ &lt;div class="admonition warning"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;&lt;path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;注意它与 product 的区别&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;千万不要把它和笛卡尔积 &lt;code&gt;product(a, repeat=2)&lt;/code&gt; 搞混。
+&lt;code&gt;product&lt;/code&gt; 是&lt;strong&gt;排列&lt;/strong&gt;（关心顺序），它会生成 &lt;code&gt;(1, 2)&lt;/code&gt; 和 &lt;code&gt;(2, 1)&lt;/code&gt;。
+而 &lt;code&gt;combinations_with_replacement&lt;/code&gt; 是&lt;strong&gt;组合&lt;/strong&gt;（不关心顺序），只会生成 &lt;code&gt;(1, 2)&lt;/code&gt;，因为它已经代表了“选了一个 1 和一个 2”这组选择。&lt;/p&gt;</description></item></channel></rss>
