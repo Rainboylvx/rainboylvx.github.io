@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>函数式编程 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.html</link><description>Recent content in 函数式编程 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 12:39:18 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 函数式编程三剑客：map、filter 与 reduce</title><link>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</guid><description>&lt;p&gt;在学习了“生成器表达式”之后，我们已经初步体会到了函数式编程带来的代码精简和优雅。而在 Python 中，还有三个历史悠久且非常经典的内置高阶函数——也就是常说的“三剑客”：&lt;code&gt;map&lt;/code&gt;、&lt;code&gt;filter&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt;。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>函数式编程 on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.html</link><description>Recent content in 函数式编程 on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jul 2026 06:13:46 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>把 Haskell 的思考方式带到 Python OJ：Pattern、Guard 与 Pipe</title><link>https://hugo-dead-simple.netlify.com/program_language/python/haskell_style_thinking_in_python.html</link><pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/haskell_style_thinking_in_python.html</guid><description>&lt;p&gt;Haskell 代码经常很接近人脑对问题的描述：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当前数据是空、只有一个元素，还是由头部和尾部组成？&lt;/li&gt;
+&lt;li&gt;当前状态是否满足某个条件，应该进入哪个分支？&lt;/li&gt;
+&lt;li&gt;原始数据需要依次经过哪些变换，才能得到答案？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这三种思考动作可以分别叫作 &lt;strong&gt;pattern&lt;/strong&gt;、&lt;strong&gt;guard&lt;/strong&gt; 和 &lt;strong&gt;pipe&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;pattern：识别数据的形状
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;guard： 在当前形状中继续筛选条件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;pipe： 把数据依次交给多个独立变换
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Python 不能完整复制 Haskell 的类型系统、惰性求值和模式匹配，但可以保留这套拆题方式。关键不是把 Python 写得像 Haskell，而是先用 Haskell 式思维找到清楚的分类，再选择适合 Python OJ 的实现。&lt;/p&gt;
+
+ &lt;div class="admonition important"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;&lt;path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;本文的两层代码&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;&lt;strong&gt;思维翻译版&lt;/strong&gt;尽量保留 pattern、guard、递归和管道，用于理解题意；&lt;strong&gt;OJ 提交版&lt;/strong&gt;根据 Python 的特性改成索引、循环、生成器或显式状态，用于控制复杂度和递归深度。&lt;/p&gt;</description></item><item><title>Python 函数式编程三剑客：map、filter 与 reduce</title><link>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/map_reduce_filter.html</guid><description>&lt;p&gt;在学习了“生成器表达式”之后，我们已经初步体会到了函数式编程带来的代码精简和优雅。而在 Python 中，还有三个历史悠久且非常经典的内置高阶函数——也就是常说的“三剑客”：&lt;code&gt;map&lt;/code&gt;、&lt;code&gt;filter&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;虽然很多时候它们的功能可以用生成器表达式或列表推导式替代，但在某些特定场景下，它们能提供更紧凑的语义表达，尤其是在处理数据流转换和聚合时。&lt;/p&gt;
 &lt;p&gt;这篇文章我们来彻底搞懂它们的设计思想和使用场景。&lt;/p&gt;
 &lt;h2 id="什么是高阶函数"&gt;什么是“高阶函数”？&lt;/h2&gt;
