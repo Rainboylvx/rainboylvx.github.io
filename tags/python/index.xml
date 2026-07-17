@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/python.html</link><description>Recent content in Python on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Jul 2026 15:55:59 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>C++ 选手转 Python 写暴力：常见的 4 个血泪坑点</title><link>https://hugo-dead-simple.netlify.com/program_language/python/cpp_to_python_pitfalls.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/cpp_to_python_pitfalls.html</guid><description>&lt;p&gt;很多习惯了 C++ 的算法竞赛选手，在发现 Python 写暴力对拍、高精度和组合数学有多爽之后，都会立刻转投 Python 的怀抱。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/python.html</link><description>Recent content in Python on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jul 2026 03:03:25 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 切片位置记忆法：把下标看成切割线</title><link>https://hugo-dead-simple.netlify.com/program_language/python/slicing_positions.html</link><pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/slicing_positions.html</guid><description>&lt;p&gt;看到下面这些切片时，很容易把它们混在一起：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不需要分别背四条规则。切片中的数字表示&lt;strong&gt;元素之间的切割位置&lt;/strong&gt;，而不是要取出的元素下标。只要先画出切割线，所有常用切片都可以直接看出来。&lt;/p&gt;
+&lt;h2 id="核心图数字写在元素之间"&gt;核心图：数字写在元素之间&lt;/h2&gt;
+&lt;p&gt;假设：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;元素的下标写在元素下面，切片位置写在元素之间：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;切片位置： 0 1 2 3 4 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; | 10 | 20 | 30 | 40 | 50 |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;元素下标： 0 1 2 3 4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里一共有 5 个元素，却有 6 个切片位置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;位置 &lt;code&gt;0&lt;/code&gt; 在第一个元素之前；&lt;/li&gt;
+&lt;li&gt;位置 &lt;code&gt;1&lt;/code&gt; 在第一个元素之后；&lt;/li&gt;
+&lt;li&gt;位置 &lt;code&gt;3&lt;/code&gt; 在前三个元素之后；&lt;/li&gt;
+&lt;li&gt;位置 &lt;code&gt;5&lt;/code&gt; 在所有元素之后。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，位置 &lt;code&gt;k&lt;/code&gt; 左边恰好有 &lt;code&gt;k&lt;/code&gt; 个元素。这就是快速理解 &lt;code&gt;a[3:]&lt;/code&gt; 的关键。&lt;/p&gt;
+
+ &lt;div class="admonition important"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;&lt;path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;核心口诀&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;&lt;code&gt;a[left:right]&lt;/code&gt; 表示在位置 &lt;code&gt;left&lt;/code&gt; 和 &lt;code&gt;right&lt;/code&gt; 各切一刀，保留两刀之间的元素。&lt;/p&gt;</description></item><item><title>C++ 选手转 Python 写暴力：常见的 4 个血泪坑点</title><link>https://hugo-dead-simple.netlify.com/program_language/python/cpp_to_python_pitfalls.html</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/cpp_to_python_pitfalls.html</guid><description>&lt;p&gt;很多习惯了 C++ 的算法竞赛选手，在发现 Python 写暴力对拍、高精度和组合数学有多爽之后，都会立刻转投 Python 的怀抱。&lt;/p&gt;
 &lt;p&gt;然而，Python 在内存模型和作用域上的设计与 C++ 截然不同。如果你完全按照 C++ 的直觉写 Python 代码，大概率会遇到&lt;strong&gt;数组联动修改（改一处变全集）&lt;/strong&gt;、&lt;strong&gt;答案存不进去（最后全是空数组）&lt;/strong&gt;、&lt;strong&gt;莫名其妙报错未定义&lt;/strong&gt;或者&lt;strong&gt;神秘爆栈&lt;/strong&gt;等问题。&lt;/p&gt;
 &lt;p&gt;这篇文章总结了 C++ 选手转 Python 竞赛时，最容易踩的 4 个深坑。&lt;/p&gt;
 &lt;h2 id="坑点-1二维数组初始化的浅拷贝灾难"&gt;坑点 1：二维数组初始化的“浅拷贝”灾难&lt;/h2&gt;
