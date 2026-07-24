@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KMP on Rainboy's Blog</title><link>https://hugo-dead-simple.netlify.com/tags/kmp.html</link><description>Recent content in KMP on Rainboy's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 24 Jul 2026 17:11:36 +0000</lastBuildDate><atom:link href="https://hugo-dead-simple.netlify.com/tags/kmp/index.xml" rel="self" type="application/rss+xml"/><item><title>Python 比赛实战：字符串子串匹配（内置方法、正则与手速版 KMP）</title><link>https://hugo-dead-simple.netlify.com/program_language/python/string_matching_kmp.html</link><pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate><guid>https://hugo-dead-simple.netlify.com/program_language/python/string_matching_kmp.html</guid><description>&lt;p&gt;在算法比赛（ACM / Codeforces / LeetCode / 蓝桥杯）中，面对字符串匹配问题，核心目标是&lt;strong&gt;在最短时间内快速验证思路&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;不同的场景下，盲目手写标准 KMP 往往不是最优解。本文总结在比赛中使用 Python 进行子串查找与验证的高效策略。&lt;/p&gt;
+&lt;h2 id="1-场景一仅验证存在--找首个出现位置"&gt;1. 场景一：仅验证存在 / 找首个出现位置&lt;/h2&gt;
+&lt;p&gt;如果在比赛中只需要知道模式串 &lt;code&gt;p&lt;/code&gt; 是否在文本串 &lt;code&gt;s&lt;/code&gt; 中出现，或者只需要第一次出现的位置：&lt;/p&gt;
+
+ &lt;div class="admonition important"&gt;
+ &lt;div class="admonition-header"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;&lt;path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/&gt;&lt;/svg&gt;
+ &lt;span&gt;绝不要手写 KMP，直接使用 Python 内置方法&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ &lt;p&gt;Python 内置的 &lt;code&gt;in&lt;/code&gt; 和 &lt;code&gt;s.find()&lt;/code&gt; 是由 C 底层（CPython Fastsearch，结合了 Boyer-Moore-Horspool 与哈希优化）实现的，运行效率极高，且 &lt;strong&gt;0 错码风险&lt;/strong&gt;。&lt;/p&gt;</description></item></channel></rss>
