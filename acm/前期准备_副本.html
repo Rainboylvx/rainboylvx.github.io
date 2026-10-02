@@ -1,0 +1,119 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=cache-control content="max-age=0"><meta http-equiv=cache-control content="no-cache"><meta http-equiv=expires content="0"><meta http-equiv=expires content="Tue, 01 Jan 1980 1:00:00 GMT"><meta http-equiv=pragma content="no-cache"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png }><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#1b1b1b"><meta name=description content><script>(function(){const e=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",e)})()</script><title>| Rainboy's Blog</title><style>:root{--background:#ffffff}@media(prefers-color-scheme:dark){:root{--background:#1b1b1b}}html{background-color:var(--background)}body{background-color:var(--background)}</style><link rel=stylesheet type=text/css href=/style.min.1d356e5600557d570427502901d4de356452409afbb226cde27de20aba769b4f.css media=all><link rel=stylesheet href=/grid.css><link href="https://fonts.font.im/css?family=Roboto+Mono" rel=stylesheet><style>body,.heti,.heti--sans{font-family:roboto mono,monospace,times new roman,times,heti song,serif,apple color emoji,segoe ui emoji,segoe ui symbol}</style></head><body><nav><ul class=menu><li><a tabindex=-1 class=menu-link href=/><u>H</u>ome</a></li><li><a tabindex=-1 class=menu-link href=/tags><u>T</u>ags</a></li><li><span style=cursor:pointer id=theme-switcher class=menu-link type=button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-4 w-4"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg></span></li></ul></nav><nav class=breadcrumbs aria-label=面包屑导航><ol><li><a href=/index.html>首页</a></li><li><a href=/acm/index.html>Acms</a></li><li aria-current=page></li></ol></nav><div id=single-header><h1></h1><div id=single-meta></div></div><main class="heti heti--classic"><h1 id=二最重要的是上课前不要现场装环境>二、最重要的是：上课前不要现场装环境</h1><p>我非常赞同你说的：</p><blockquote><p>VS Code + WSL / Ubuntu + AI</p></blockquote><p>但我会要求学生在 <strong>开课前一天就全部准备完成</strong>。</p><p>Windows 学生统一：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>Windows 11
+</span></span><span class=line><span class=ln> 2</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln> 3</span><span class=cl>WSL2
+</span></span><span class=line><span class=ln> 4</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln> 5</span><span class=cl>Ubuntu
+</span></span><span class=line><span class=ln> 6</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln> 7</span><span class=cl>g++ / gdb / git
+</span></span><span class=line><span class=ln> 8</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln> 9</span><span class=cl>VS Code
+</span></span><span class=line><span class=ln>10</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln>11</span><span class=cl>VS Code Remote/WSL
+</span></span><span class=line><span class=ln>12</span><span class=cl>    ↓
+</span></span><span class=line><span class=ln>13</span><span class=cl>AI Agent
+</span></span></code></pre></div><p>有 Linux 实机的学生直接 Ubuntu 即可。</p><p>我反而<strong>不推荐 Ubuntu 虚拟机作为第一选择</strong>。因为大学生 ACM 编程，本质上只需要 Linux terminal + gcc，WSL2 足够，而且文件、剪贴板、VS Code 集成都方便很多。</p><p>统一要求能运行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>g++ --version
+</span></span><span class=line><span class=ln>2</span><span class=cl>git --version
+</span></span><span class=line><span class=ln>3</span><span class=cl>gdb --version
+</span></span></code></pre></div><p>再让学生提前编译：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=ln>1</span><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;bits/stdc++.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln>2</span><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;ACM Ready!&#34;</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>统一编译命令可以直接教：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>g++ main.cpp -std=c++20 -O2 -Wall -Wextra -o main
+</span></span><span class=line><span class=ln>2</span><span class=cl>./main
+</span></span></code></pre></div><p>甚至第一周都不需要 CMake。</p><hr><h1 id=三ai-工具我会和你的方案稍微不同>三、AI 工具我会和你的方案稍微不同</h1><p>你提到：</p><blockquote><p>Cherry Studio + VS Code + Cline</p></blockquote><p>我不建议三个东西都作为“必装软件”。</p><p>2026 年的 VS Code 自身已经把 Agent 能力做得非常完整，目前官方支持 GitHub Copilot、Anthropic Claude 和 OpenAI Codex 等 agent harness，也可以在编辑器里进行 Plan、Agent、代码编辑、终端执行和测试。VS Code 官方现在已经把这种 agent 工作流当作核心开发方式之一。</p><p>所以我会设计成：</p><table><thead><tr><th>工具</th><th>定位</th><th>是否必需</th></tr></thead><tbody><tr><td>VS Code</td><td>编程环境</td><td><strong>必须</strong></td></tr><tr><td>VS Code AI Agent / Cline</td><td>编程 AI</td><td><strong>二选一必须</strong></td></tr><tr><td>Cherry Studio</td><td>问概念、总结知识、读题</td><td>可选</td></tr><tr><td>Git</td><td>保存代码/比较 AI 修改</td><td><strong>必须</strong></td></tr></tbody></table><h3 id=如果让我给学生统一我现在更倾向于>如果让我给学生统一，我现在更倾向于</h3><h2 id=安装-deepseek-v4-for-copilot-插件>安装 deepseek-v4-for-copilot 插件</h2><p>这个插件的官方使用文档: <a href=https://github.com/Vizards/deepseek-v4-for-copilot/blob/main/README.zh-cn.md target=_blank rel=noopener>https://github.com/Vizards/deepseek-v4-for-copilot/blob/main/README.zh-cn.md</a></p><p>第一步: 安装<code>deepseek-v4-fro-copilot</code>插件</p><p><p class=imgp><img loading=lazy src=./images/SCR-20260925-kfzv.png alt=SCR-20260925-kfzv></p></p><p>第二步: 配置 <code>API -key</code></p><p>注册 <a href=https://deepseek.com target=_blank rel=noopener>deepseek</a> 首先充值<a href=https://platform.deepseek.com/top_up target=_blank rel=noopener>deepseek</a>,然后来到<a href=/index.html>deepseek api key</a>页面,创建一个 key</p><p>配置 API如下: vscode 快捷键 <code>ctrl + shift + p</code> 打开命令面板:</p><p><p class=imgp><img loading=lazy src=./images/SCR-20260925-kmaj.png alt=SCR-20260925-kmaj></p></p><p>然后粘贴自己key</p><p>开始聊天</p><p><p class=imgp><img loading=lazy src=./images/SCR-20260925-koef.png alt=SCR-20260925-koef></p></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=ln>1</span><span class=cl>不要重写我的代码。
+</span></span><span class=line><span class=ln>2</span><span class=cl>
+</span></span><span class=line><span class=ln>3</span><span class=cl>请根据题目检查我的 main.cpp：
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=k>1.</span> 判断算法复杂度
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=k>2.</span> 找可能的边界情况
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=k>3.</span> 如果存在 bug，只告诉我 bug 的位置和原因
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=k>4.</span> 不要直接给完整答案
+</span></span></code></pre></div><h2 id=agentsmd><code>AGENTS.md</code></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=ln> 1</span><span class=cl><span class=gh># ACM Learning Rules
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>你是一名 ACM 算法助教。
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>目标不是替学生完成题目，而是帮助学生掌握算法。
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>当学生询问题目时：
+</span></span><span class=line><span class=ln> 8</span><span class=cl>
+</span></span><span class=line><span class=ln> 9</span><span class=cl><span class=k>1.</span> 不要直接给出完整代码。
+</span></span><span class=line><span class=ln>10</span><span class=cl><span class=k>2.</span> 首先询问学生当前的思路。
+</span></span><span class=line><span class=ln>11</span><span class=cl><span class=k>3.</span> 优先给提示，而不是答案。
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=k>4.</span> 提示顺序：
+</span></span><span class=line><span class=ln>13</span><span class=cl>   <span class=k>-</span> 数据范围
+</span></span><span class=line><span class=ln>14</span><span class=cl>   <span class=k>-</span> 时间复杂度
+</span></span><span class=line><span class=ln>15</span><span class=cl>   <span class=k>-</span> 算法方向
+</span></span><span class=line><span class=ln>16</span><span class=cl>   <span class=k>-</span> 关键性质
+</span></span><span class=line><span class=ln>17</span><span class=cl>   <span class=k>-</span> 伪代码
+</span></span><span class=line><span class=ln>18</span><span class=cl><span class=k>5.</span> 只有学生已经写出代码后，才允许帮助 Debug。
+</span></span><span class=line><span class=ln>19</span><span class=cl><span class=k>6.</span> Debug 时优先指出问题位置，不直接重写完整程序。
+</span></span><span class=line><span class=ln>20</span><span class=cl><span class=k>7.</span> AC 后帮助学生分析：
+</span></span><span class=line><span class=ln>21</span><span class=cl>   <span class=k>-</span> 时间复杂度
+</span></span><span class=line><span class=ln>22</span><span class=cl>   <span class=k>-</span> 空间复杂度
+</span></span><span class=line><span class=ln>23</span><span class=cl>   <span class=k>-</span> 边界情况
+</span></span><span class=line><span class=ln>24</span><span class=cl>   <span class=k>-</span> 是否存在更优解法
+</span></span><span class=line><span class=ln>25</span><span class=cl><span class=k>8.</span> 每道题最后要求学生自己总结算法。
+</span></span></code></pre></div><h2 id=2-第一个实验直接让-ai-看整个工程>2. 第一个实验：直接让 AI 看整个工程</h2><p>比如创建：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>acm-test/
+</span></span><span class=line><span class=ln>2</span><span class=cl>└── main.cpp
+</span></span></code></pre></div><p><code>main.cpp</code>：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=ln> 1</span><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;bits/stdc++.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=ln> 2</span><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>
+</span></span><span class=line><span class=ln> 4</span><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=p>{</span><span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>};</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>    <span class=n>sort</span><span class=p>(</span><span class=n>a</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span> <span class=n>a</span><span class=p>.</span><span class=n>end</span><span class=p>());</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=k>auto</span> <span class=nl>x</span> <span class=p>:</span> <span class=n>a</span><span class=p>)</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>x</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl>
+</span></span><span class=line><span class=ln>12</span><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h1 id=8-对-acm我最推荐的是这个-prompt>8. 对 ACM，我最推荐的是这个 Prompt</h1><p>例如一道题，学生先自己思考，然后告诉 Agent：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>你是我的 ACM 助教。
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>请阅读题目和我当前的 main.cpp。
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>不要直接给我完整答案，也不要直接重写代码。
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>请按照下面顺序帮助我：
+</span></span><span class=line><span class=ln> 8</span><span class=cl>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>1. 根据数据范围判断允许的时间复杂度
+</span></span><span class=line><span class=ln>10</span><span class=cl>2. 判断我的算法思路是否正确
+</span></span><span class=line><span class=ln>11</span><span class=cl>3. 如果错误，只给我一个提示
+</span></span><span class=line><span class=ln>12</span><span class=cl>4. 如果代码有 bug，指出大概位置和原因
+</span></span><span class=line><span class=ln>13</span><span class=cl>5. 等我修改后再继续检查
+</span></span></code></pre></div><p>这个用法非常好。</p><p>再比如 WA：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln>1</span><span class=cl>我的程序在 OJ 上 WA。
+</span></span><span class=line><span class=ln>2</span><span class=cl>
+</span></span><span class=line><span class=ln>3</span><span class=cl>不要直接修改代码。
+</span></span><span class=line><span class=ln>4</span><span class=cl>
+</span></span><span class=line><span class=ln>5</span><span class=cl>请：
+</span></span><span class=line><span class=ln>6</span><span class=cl>1. 阅读 main.cpp
+</span></span><span class=line><span class=ln>7</span><span class=cl>2. 分析可能遗漏的边界情况
+</span></span><span class=line><span class=ln>8</span><span class=cl>3. 给我构造一个能 Hack 掉当前程序的数据
+</span></span><span class=line><span class=ln>9</span><span class=cl>4. 告诉我实际输出和正确输出为什么不同
+</span></span></code></pre></div><p>这个比“帮我改代码”有教学价值太多。</p><h1 id=9-agent-最厉害的地方可以把多个动作串起来>9. Agent 最厉害的地方：可以把多个动作串起来</h1><p>以后学生甚至可以说：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>阅读当前目录里的题目说明和 main.cpp。
+</span></span><span class=line><span class=ln> 2</span><span class=cl>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>先编译程序。
+</span></span><span class=line><span class=ln> 4</span><span class=cl>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>然后自己生成 10 组小规模测试数据。
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>如果程序崩溃或者出现明显错误，
+</span></span><span class=line><span class=ln> 8</span><span class=cl>告诉我失败的测试数据以及原因。
+</span></span><span class=line><span class=ln> 9</span><span class=cl>
+</span></span><span class=line><span class=ln>10</span><span class=cl>不要修改代码。
+</span></span></code></pre></div><p>Agent 可以形成：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=ln> 1</span><span class=cl>读取文件
+</span></span><span class=line><span class=ln> 2</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln> 3</span><span class=cl>理解代码
+</span></span><span class=line><span class=ln> 4</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln> 5</span><span class=cl>调用 Terminal
+</span></span><span class=line><span class=ln> 6</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln> 7</span><span class=cl>g++ 编译
+</span></span><span class=line><span class=ln> 8</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln> 9</span><span class=cl>运行测试
+</span></span><span class=line><span class=ln>10</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln>11</span><span class=cl>分析结果
+</span></span><span class=line><span class=ln>12</span><span class=cl>   ↓
+</span></span><span class=line><span class=ln>13</span><span class=cl>回答学生
+</span></span></code></pre></div><p>这才是真正的 <strong>Coding Agent</strong>，也是它和 Cherry Studio 普通聊天最大的区别。</p></main><br><footer><div class=footer-info><p>Copyright &copy; 2026 Rainboy. All rights reserved.
+<span>| Last build: 2026-10-02 19:02:56</span></p></div><script defer>document.addEventListener("keydown",function(e){if(document.activeElement.isContentEditable)return!1;if(document.activeElement.tagName=="INPUT")return!1;if(e.altKey||e.ctrlKey||e.shiftKey)return!1;var t=e.key;if(t==="h")e.preventDefault(),e.stopPropagation(),window.location.href="/";else if(t==="t")e.preventDefault(),e.stopPropagation(),window.location.href=`https://${location.hostname}/tags`;else if(t==="i"){e.preventDefault(),e.stopPropagation();const t=document.querySelectorAll("input");for(let e=0;e<t.length;e++)if(t[e].offsetParent!==null){t[e].selectionStart=t[e].selectionEnd=t[e].value.length,t[e].focus();break}}return!1})</script><script defer>function throttle(e,t){var n=Date.now();return function(){var s=Date.now();n+t-s<0&&(e(),n=s)}}function scrollHandler(){const e=Array.from(document.querySelectorAll("body h2, body h3"));function t(){for(var n,s,o,i=window.pageYOffset||document.documentElement.scrollTop,t=0;t<e.length;t++)s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n&&n.classList.remove("active-toc");for(t=e.length-1;t>=0;t--)if(o=e[t].offsetTop,i>o-75&&(s=e[t].getAttribute("id"),n=document.querySelector('nav ul li a[href="#'+s+'"]'),n)){n.classList.add("active-toc");break}}window.addEventListener("scroll",throttle(t,200))}setTimeout(scrollHandler,100)</script><script defer>function addCopyButtonToCodeBlocks(){const e=document.querySelectorAll('code[class^="language-"]:not(.output):not([class*="language-console"])');e.forEach(e=>{const t=document.createElement("button");t.classList.add("copy-code-button"),t.innerHTML="copy",t.addEventListener("click",()=>{const s=e.querySelectorAll(".cl");let n="";s.forEach(e=>{n+=e.innerText}),navigator.clipboard.writeText(n),t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},1500)}),e.parentNode.before(t)})}setTimeout(function(){addCopyButtonToCodeBlocks()},100)</script><script defer src=/js/theme-switcher.js></script></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.15.0/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:document.documentElement.getAttribute("data-theme")==="dark"?"dark":"default"})</script></body></html>
